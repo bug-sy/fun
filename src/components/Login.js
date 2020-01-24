@@ -3,7 +3,7 @@ import { Button } from 'react-native-elements';
 import { TextInput, Paragraph, Headline } from 'react-native-paper';
 import { Text, View, Image, ScrollView } from 'react-native';
 
-export default class MyComponent extends React.Component {
+export default class Login extends React.Component {
     state = {
         username: '',
         password: ''

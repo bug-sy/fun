@@ -5,6 +5,7 @@ import Login from './src/components/Login'
 import SignUp from './src/Signup.js'
 import 'react-native-gesture-handler';
 import HomeScreen from './src/components/HomeScreen'
+import Myapp from './'
 
 
 
