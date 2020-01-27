@@ -47,7 +47,7 @@ export default class Login extends React.Component {
 
                     <View style={{ height: 80, justifyContent: 'center',  width: 240 }}>
                         <Button
-                            title="Sign UP"
+                            title="Sign In"
                             type="outline"
                             raised="true"
                             onPress={() => console.log('Pressed')}
@@ -59,7 +59,7 @@ export default class Login extends React.Component {
 
                         <Paragraph >Forgot Password?</Paragraph>
 
-                        <Paragraph >Sign UP</Paragraph>
+                        <Paragraph  onPress={() => this.props.navigation.navigate('SignUp')}>Sign UP</Paragraph>
 
                     </View>
 

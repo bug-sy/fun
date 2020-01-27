@@ -7,11 +7,11 @@ import { SignUp } from './SignUpDataLayer'
 
 export default class MyComponent extends React.Component {
     state = {
-        first_name: '',
-        last_name: '',
-        username: '',
+        firstName: '',
+        lastName: '',
+        userName: '',
         password: '',
-        confirm_password: '',
+        confirmPassword: '',
         emailerror: '',
         emailError: '',
         passwordError: '',
@@ -19,7 +19,7 @@ export default class MyComponent extends React.Component {
     };
 
 
-    handleEmailandPassword = (first_name,last_name,email,password) => {
+    handleEmailandPassword = (firstName,lastName,email,password) => {
         if (!email || !password) {
             if (!email && !password) {
                 this.setState({
@@ -37,8 +37,6 @@ export default class MyComponent extends React.Component {
                 this.setState({
                     emailerror: "please enter email",
                     emailError: true
-
-
                 })
                 //console.log('email')
             }
@@ -53,11 +51,15 @@ export default class MyComponent extends React.Component {
         }
 
         else {
+console.log('email=',email)
+         
+SignUp(firstName,lastName,email,password,(notes)=>{
+    console.log('inside callback signup firstName =', notes)
+    this.props.navigation.navigate('Login')
+    
+})
+        
 
-            SignUp(first_name,last_name,email,password,()=>{
-                console.log("hgfds");
-                
-            })
             
         }
     
@@ -68,8 +70,9 @@ export default class MyComponent extends React.Component {
 
 
     render() {
+        const {navigate} =this.props.navigation;
         return (
-
+           
 
             <ScrollView>
                 <View style={{ justifyContent: 'flex-start', flex: 1, alignItems: 'center' }}>
@@ -93,24 +96,27 @@ export default class MyComponent extends React.Component {
                         <TextField
                             
                             label='First Name'
+                            labelStyle={{backgroundColor:'transparent'}}
                             errorMessage='Please Enter The First Name '
                             type={'outlined'}
                             //error='true'
-                            value={this.state.first_name}
-                            onChangeText={first_name => this.setState({ first_name: first_name })}
+                            value={this.state.firstName}
+                            onChangeText={firstName => this.setState({ firstName: firstName })}
                         />
 
-                         <TextField
+                        <TextField
                             type={'outlined'}
                             label='Last Name'
-                            errorMessage='ENTER A VALID ERROR HERE'
-                            value={this.state.last_name}
-                            onChangeText={last_name => this.setState({ last_name: last_name })}
+                            labelStyle={{backgroundColor:'transparent'}}
+                            //errorMessage='ENTER A VALID ERROR HERE'
+                            value={this.state.lastName}
+                            onChangeText={lastName => this.setState({ lastName: lastName })}
                         />
 
                         <TextField
                             type={'outlined'}
                             label='Username'
+                            labelStyle={{backgroundColor:'transparent'}}
                            // error={true}
                             error={this.state.emailError}
                             value={this.state.username}
@@ -121,6 +127,7 @@ export default class MyComponent extends React.Component {
                         <TextField
                             type={'outlined'}
                             label='Password'
+                            labelStyle={{backgroundColor:'transparent'}}
                             error={this.state.passwordError}
                             helperText={this.state.passworderror}
                             secureTextEntry={true}
@@ -132,10 +139,10 @@ export default class MyComponent extends React.Component {
                             type={'outlined'}
                             label='Confirm Password'
                             secureTextEntry={true}
-                           // error={this.state.passwordError}
-                           
-                            value={this.state.confirm_password}
-                            onChangeText={confirm_password => this.setState({ confirm_password: confirm_password })}
+                            labelStyle={{backgroundColor:'transparent'}}
+                           // error={this.state.passwordError}                       
+                            value={this.state.confirmPassword}
+                            onChangeText={confirmPassword => this.setState({ confirmPassword: confirmPassword })}
                         /> 
 
                     </View>
@@ -145,7 +152,7 @@ export default class MyComponent extends React.Component {
                             title="Sign UP"
                             type="outline"
                             raised="true"
-                            onPress={(e) =>this.handleEmailandPassword(this.state.first_name,this.state.last_name,this.state.username,this.state.password)}
+                            onPress={(e) =>this.handleEmailandPassword(this.state.firstName,this.state.lastName,this.state.username,this.state.password)}
                         />
                     </View>
                 </View>

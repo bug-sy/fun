@@ -12,9 +12,10 @@
   "dependencies": {
     "@react-native-community/masked-view": "^0.1.6",
     "firebase": "^7.7.0",
+    "link": "^0.1.5",
     "material-bread": "^0.2.5",
     "react": "16.9.0",
-    "react-native": "0.61.5",
+    "react-native": "^0.61.5",
     "react-native-elements": "^1.2.7",
     "react-native-gesture-handler": "^1.5.3",
     "react-native-paper": "^3.4.0",

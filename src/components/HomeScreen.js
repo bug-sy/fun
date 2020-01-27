@@ -3,7 +3,8 @@ import { View, Text } from 'react-native';
 import { createAppContainer } from 'react-navigation';
 import { createStackNavigator } from 'react-navigation-stack';
 import Login from './Login'
-import Myapp from './Drawer'
+import Drawer from './Drawer'
+
 
 class HomeScreen extends React.Component {
   render() {
@@ -19,11 +20,11 @@ const AppNavigator = createStackNavigator({
   Home: {
     screen: Login, navigationOptions:{header:null}
   },
-  Myapp: {
-    screen: Myapp, navigationOptions:{header:null}
+  Drawer: {
+    screen: Drawer, navigationOptions:{header:null}
   },
 },{
-    initialRouteName:'Myapp'
+    initialRouteName:'Drawer'
 });
 
 export default createAppContainer(AppNavigator);
