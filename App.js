@@ -7,16 +7,17 @@ import 'react-native-gesture-handler';
 import HomeScreen from './src/components/HomeScreen'
 import Myapp from './'
 import Dashboard from './src/Dashboard/Dashboard'
-//import SingInScreen from './src/switchNavigation/NavigationFiles/SignInScreen'
+import AddingNote from './src/Dashboard/AddingNote'
 
 export default class PizzaTranslator extends Component {
   render() {
     return (    
        //<Login/>
       //<SignUp/>
-      //<HomeScreen/>
+      <HomeScreen/>
      //<SingInScreen/>
-      <Dashboard/>
+      //<Dashboard/>
+      //<AddingNote/>
     
     );
   }

@@ -2,10 +2,11 @@
 import { Avatar } from 'react-native-elements';
 import React, { Component } from 'react'
 import { Text, Image, ScrollView } from 'react-native';
+import { MyApp } from '/home/admin1/Documents/FundooApp/AwesomeProject/src/components/Drawer.js'
+import Drawer from '../components/Drawer'
 import {
     StyleSheet,
     TouchableOpacity,
-
     View,
 } from 'react-native'
 
@@ -19,133 +20,87 @@ export default class App extends Component {
 
     render() {
         return (
-    
-                
-            
-                    
-                <View style={{flex:1,flexDirection:'column' }}>
-                        
-                    
-                    <View style={{width:'100%',flexDirection:'row',height:45}}>
-
-                    <View style={{ flexDirection: 'row', width: '80%'}}>
+            <View style={{ flex: 1, flexDirection: 'column' ,elevation:10}}>
+                <View style={{ width: '100%', flexDirection: 'row', height: 45,backgroundColor:'grey',padding:4 }}>
+                    <View style={{ flexDirection: 'row', width: '80%' }}>
                         <View style={{ flexDirection: 'row' }}>
-                            <TouchableOpacity style={{ width:'5%' }}>
+                            <TouchableOpacity style={{ width: '12%' }} 
+                            onPress={()=>this.props.navigation.toggleDrawer(Drawer)}
+                        
+                            >
                                 <Image
                                     style={{ height: 34, width: 40 }}
                                     source={require('/home/admin1/Documents/FundooApp/AwesomeProject/image/view_list-512.png')}
                                 />
                             </TouchableOpacity>
-
-                            
-                            <TouchableOpacity style={{ width: '95%', height: '100%', justifyContent: 'center', flexDirection: 'row' }}>
+                            <TouchableOpacity style={{ width: '87%', height: '100%', justifyContent: 'center', flexDirection: 'row' }}>
                                 <Text
                                     style={{ fontSize: 25 }}
                                 >
                                     Search your Notes
                                 </Text>
                             </TouchableOpacity>
-                            
                         </View>
                         <View style={{ flexDirection: 'row', justifyContent: 'flex-end', width: '20%' }}>
-                            
-                            <TouchableOpacity >
+
+                            <TouchableOpacity style={{}} >
                                 <Image
                                     style={{ height: 30, width: 30 }}
                                     source={require('/home/admin1/Documents/FundooApp/AwesomeProject/image/grid.png')}
                                 />
                             </TouchableOpacity>
-                            
-                         
-                            
-
                             <TouchableOpacity
-                                
                             >
                                 <Avatar rounded title="MD" />
                             </TouchableOpacity>
-
-                            
                         </View>
                     </View>
-                    </View>
+                </View>
 
-               
-               
-
-                
-            
-                
-
-                    <View style={{flex:1,flexDirection:'row',bottom:0,position:'absolute'}}>
-                        <View style={{
-                            flexDirection: 'row',
-                            flex: 1,
-                            
-                            width: '100%',
-                            justifyContent: 'space-between'
-                        }}>
-
-                            <TouchableOpacity style={{ width: '70%' }}>
-                                <Text
-                                    style={{ fontSize: 25, width: '100%' }}
-                                >
-                                    Add a note
-                                </Text>
-
-
+                <View style={{ flex: 1, flexDirection: 'row', bottom: 0, position: 'absolute' ,backgroundColor:'grey'}}>
+                    <View style={{
+                        flexDirection: 'row',
+                        flex: 1,
+                        width: '100%',
+                        justifyContent: 'space-between',
+                        padding:6
+                    }}>
+                        <TouchableOpacity style={{ width: '70%' }} onPress={() => this.props.navigation.navigate('AddingNote')}>
+                            <Text
+                                style={{ fontSize: 25, width: '100%' }}
+                            >
+                                Add a note
+                            </Text>
+                        </TouchableOpacity>
+                        <View style={styles.bottomicons}>
+                            <TouchableOpacity>
+                                <Image
+                                    style={{ height: 33, width: 40 }}
+                                    source={require('/home/admin1/Documents/FundooApp/AwesomeProject/image/edit.png')}
+                                />
                             </TouchableOpacity>
-
-                                            <View style={styles.bottomicons}>
-
-                                                <TouchableOpacity>
-                                                    <Image
-                                                        style={{ height: 33, width: 40 }}
-                                                        source={require('/home/admin1/Documents/FundooApp/AwesomeProject/image/edit.png')}
-                                                    />
-                                                </TouchableOpacity>
-
-                                                <TouchableOpacity>
-                                                    <Image
-                                                        style={{ height: 32, width: 30 }}
-                                                        source={require('/home/admin1/Documents/FundooApp/AwesomeProject/image/check-box.png')}
-                                                    />
-                                                </TouchableOpacity>
-                                                <TouchableOpacity style={{  height: 34 }}>
-                                                    <Image
-                                                        style={{ height: 32, width: 32 }}
-                                                        source={require('/home/admin1/Documents/FundooApp/AwesomeProject/image/add_image.png')}
-                                                    />
-                                                </TouchableOpacity>
-                                                <TouchableOpacity style={{  height: 34 }}>
-                                                    <Image
-                                                        style={{ height: 32, width: 30 }}
-                                                        source={require('/home/admin1/Documents/FundooApp/AwesomeProject/image/audio_recording.png')}
-                                                    />
-                                                </TouchableOpacity>
-                                            </View>
-
-
-
+                            <TouchableOpacity>
+                                <Image
+                                    style={{ height: 32, width: 30 }}
+                                    source={require('/home/admin1/Documents/FundooApp/AwesomeProject/image/check-box.png')}
+                                />
+                            </TouchableOpacity>
+                            <TouchableOpacity style={{ height: 34 }}>
+                                <Image
+                                    style={{ height: 32, width: 32 }}
+                                    source={require('/home/admin1/Documents/FundooApp/AwesomeProject/image/add_image.png')}
+                                />
+                            </TouchableOpacity>
+                            <TouchableOpacity style={{ height: 34 }}>
+                                <Image
+                                    style={{ height: 32, width: 30 }}
+                                    source={require('/home/admin1/Documents/FundooApp/AwesomeProject/image/audio_recording.png')}
+                                />
+                            </TouchableOpacity>
                         </View>
-                        </View>
-                        </View>
-                        
-                        
-                        
-                
-
-                        
-
-
-
-
-
-
-
-                
-        
-
+                    </View>
+                </View>
+            </View>
         )
     }
 }
@@ -198,16 +153,16 @@ const styles = StyleSheet.create({
         width: '30%',
         justifyContent: 'flex-end'
     },
-    fullPage:{
-        flex:1,
+    fullPage: {
+        flex: 1,
         //backgroundColor:'#ff00ff',
         //height:200
-        flexDirection:'column',
+        flexDirection: 'column',
 
-        justifyContent:'space-between'
-        
+        justifyContent: 'space-between'
+
     },
-    
- 
+
+
 
 })

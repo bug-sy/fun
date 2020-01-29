@@ -2,8 +2,13 @@ import React from 'react';
 import { View, Text } from 'react-native';
 import { createAppContainer } from 'react-navigation';
 import { createStackNavigator } from 'react-navigation-stack';
-import Login from './Login'
+
 import Drawer from './Drawer'
+import Login from '../components/Login'
+import SignUp from '../Signup'
+
+import AddingNote from '../Dashboard/AddingNote'
+
 
 
 class HomeScreen extends React.Component {
@@ -17,14 +22,23 @@ class HomeScreen extends React.Component {
 }
 
 const AppNavigator = createStackNavigator({
-  Home: {
+  Login: {
     screen: Login, navigationOptions:{header:null}
   },
   Drawer: {
     screen: Drawer, navigationOptions:{header:null}
   },
+  Login: {
+    screen: Login, navigationOptions:{header:null}
+  },
+  SignUp: {
+    screen: SignUp, navigationOptions:{header:null}
+  },
+  AddingNote:{
+      screen:AddingNote, navigationOptions:{header:null}
+  }
 },{
-    initialRouteName:'Drawer'
+    initialRouteName:'Login'
 });
 
 export default createAppContainer(AppNavigator);

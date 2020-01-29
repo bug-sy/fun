@@ -50,7 +50,7 @@ export default class Login extends React.Component {
                             title="Sign In"
                             type="outline"
                             raised="true"
-                            onPress={() => console.log('Pressed')}
+                            onPress={() => this.props.navigation.navigate('Drawer')}
                         />
 
                     </View>
