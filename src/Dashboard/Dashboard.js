@@ -65,7 +65,7 @@ export default class App extends Component {
                         justifyContent: 'space-between',
                         padding:6
                     }}>
-                        <TouchableOpacity style={{ width: '70%' }} onPress={() => this.props.navigation.navigate('AddingNote')}>
+                        <TouchableOpacity style={{ width: '60%' }} onPress={() => this.props.navigation.navigate('AddingNote')}>
                             <Text
                                 style={{ fontSize: 25, width: '100%' }}
                             >
@@ -149,9 +149,10 @@ const styles = StyleSheet.create({
     },
     bottomicons: {
         flexDirection: 'row',
-        //backgroundColor: 'blue',
-        width: '30%',
-        justifyContent: 'flex-end'
+       // backgroundColor: 'blue',
+        width: '40%',
+        justifyContent: 'space-around',
+
     },
     fullPage: {
         flex: 1,

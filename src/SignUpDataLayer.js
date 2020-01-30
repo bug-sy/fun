@@ -1,8 +1,9 @@
 import { firebaseAuth, firebaseDatabaseRef } from './firebase'
-//import { createUserNote, getNotes } from '/Users/rakesh/Desktop/newsignup/src/firebase.js'
+import {AsyncStorage} from 'react-native';
 
 
-export function SignUp  (first_name, last_name, email, password,callback)  {
+
+export function SignUp  (firstName, lastName, email, password,callback)  {
     console.log('zxcvbnmnbvcx',email)
     
      firebaseAuth.createUserWithEmailAndPassword(
@@ -11,45 +12,41 @@ export function SignUp  (first_name, last_name, email, password,callback)  {
     ).then((success) => {
         console.log(success)
         firebaseDatabaseRef.ref('/users /' + success.user.uid + '/userData/').set({
-            first_name: first_name,
-            last_name: last_name,
+            firstName: firstName,
+            lastName: lastName,
         })
-        return callback(first_name)
-    }).catch((err)=>{console.log('err in login')})
+        return callback(firstName)
+    }).catch((err)=>{console.log('error =>',err)})
 
     }
 
-
-// export function SignIn  ( email, password,callback)  {
-//         console.log(email)
+ export function SignIn  (email, password,callback)  {
+         console.log(email)
         
-//          firebaseAuth.createUserWithEmailAndPassword(
-//             email,
-//             password,
-//         ).then((success) => {
-//             console.log(success)
-//             firebaseDatabaseRef.ref('/users /' + success.user.uid + '/userData/').set({
-//                 first_name: first_name,
-//                 last_name: last_name,
-//             })
-//             callback()
-//         }).catch((err)=>{console.log('err')})
+          firebaseAuth.signInWithEmailAndPassword(
+            email,
+            password,
+        ).then((success) => {
+             console.log(success)
+             AsyncStorage.setItem('key', success.user.uid )
+             const id= AsyncStorage.getItem('key')
+             console.log("inside the sigin function => ",id)
+           return callback( success.user.uid)
+         }).catch((err)=>{console.log('err in login =>',err)})
     
-//         }
+        }
 
-
-// export function logIn (email, password) => 
-//     {
-//         e.preventDefault()
-//         await  firebaseAuth.signInWithEmailAndPassword(
-//             email,
-//             password,
-//         ).then((success) => {
-    
-//         console.log("uid" + success.user.uid)
-//         localStorage.setItem('uid', success.user.uid)
-//            // const uid = localStorage.getItem('uid')
-//            // console.log('app : ' + uid);
-    
+        export function createUserNote( obj ){
+            AsyncStorage.getItem('key').then((success)=>{
+            console.log("key is =>",success);
            
-//         })
+            console.log("Trash" + obj.trashStatus)
+            console.log("Archive " + obj.archiveStatus)
+            console.log("Pin" + obj.pinStatus)
+            firebaseDatabaseRef.ref('/users /' + uid + '/notes/').push(obj);
+             })
+        }
+
+
+
+

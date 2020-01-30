@@ -8,16 +8,16 @@ import HomeScreen from './src/components/HomeScreen'
 import Myapp from './'
 import Dashboard from './src/Dashboard/Dashboard'
 import AddingNote from './src/Dashboard/AddingNote'
+import Flatlist from '/home/admin1/Documents/FundooApp/AwesomeProject/src/flatlist/Flatlist.js'
 
 export default class PizzaTranslator extends Component {
   render() {
     return (    
-       //<Login/>
-      //<SignUp/>
+    
       <HomeScreen/>
-     //<SingInScreen/>
-      //<Dashboard/>
-      //<AddingNote/>
+      //<Flatlist/>
+    
+      
     
     );
   }

@@ -9,13 +9,26 @@ import {
 } from 'react-native'
 
 export default class AddingNote extends Component {
+    constructor(props) {
+        super(props)
+        this.state = {  pinStatus: false,
+                        archiveStatus: false,
+                        trashStatus:false,
+                        title:'',
+                        textNote:''   
+                        }
+    }
+
+
+
+
     render() {
         return (
             <View style={styles. topAndBottomBar}>
 
 
             <View style={styles.topBar}>
-                <TouchableOpacity style={{  width: '30%' }}  onPress={() => this.props.navigation.navigate('Dashboard')}>
+                <TouchableOpacity style={{  width: '30%' }}  onPress={() => {this.props.navigation.navigate('Dashboard'),console.log(this.state.textNote)}}>
                     <Image
                         style={{ height: 30, width: 40 }}
                         source={require('/home/admin1/Documents/FundooApp/AwesomeProject/image/goBack.png')}
@@ -54,8 +67,20 @@ export default class AddingNote extends Component {
 
 
             <View style={styles.titleAndNote} >
-                <TextInput style={{fontSize:40}} placeholder="Title" multiline={true}/>
-                <TextInput style={styles.note} placeholder="Note" multiline={true}/>
+                <TextInput 
+                style={{fontSize:40}} 
+                placeholder="Title" 
+                multiline={true}
+                value={this.state.title}
+                onChangeText={ title => this.setState({ title: title })}
+                />
+                <TextInput 
+                style={styles.note} 
+                placeholder="Note" 
+                multiline={true}
+                value={this.state.textNote}
+                onChangeText={ textNote => this.setState({textNote: textNote })}
+                />
             </View>
 
 
@@ -93,11 +118,9 @@ export default class AddingNote extends Component {
 const styles = StyleSheet.create({
     topBar: {
         flexDirection: 'row',
-        //justifyContent: 'center',
         backgroundColor: 'grey',
         justifyContent: 'space-between',
-        borderBottomWidth : 0.5,
-        
+        borderBottomWidth : 0.5,    
     },
     innerIcons: {
         flexDirection: 'row',
@@ -112,7 +135,7 @@ const styles = StyleSheet.create({
         width:'100%',
         justifyContent:'space-between',
         borderTopWidth:0.5,
-        height:'6%'
+        height:'6%',    
     },
     topAndBottomBar:{
         flexDirection:'column',

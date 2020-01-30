@@ -13,8 +13,9 @@ const MyDrawerNavigator = createDrawerNavigator({
         screen: SignUp,
     },
   },{
-    initialRouteName:'Dashboard'
-});
+    initialRouteName:'Dashboard',
+    
+},);
   
 const MyApp = createAppContainer(MyDrawerNavigator);
 
