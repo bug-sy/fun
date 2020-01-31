@@ -9,6 +9,7 @@ import {
     TouchableOpacity,
     View,
 } from 'react-native'
+import FlatlistNotes from '../Flatlist/Flatlist' 
 
 export default class App extends Component {
     constructor(props) {
@@ -55,6 +56,10 @@ export default class App extends Component {
                             </TouchableOpacity>
                         </View>
                     </View>
+                </View> 
+
+                <View style={{backgroundColor:'green' ,height:'89%',justifyContent:'center'}}>
+                <FlatlistNotes/>
                 </View>
 
                 <View style={{ flex: 1, flexDirection: 'row', bottom: 0, position: 'absolute' ,backgroundColor:'grey'}}>

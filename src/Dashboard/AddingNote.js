@@ -1,5 +1,6 @@
 import { Avatar } from 'react-native-elements';
 import React, { Component } from 'react'
+import { createUserNote } from '../SignUpDataLayer/'
 import { Text, Image, ScrollView,TextInput } from 'react-native';
 import {
     StyleSheet,
@@ -28,7 +29,11 @@ export default class AddingNote extends Component {
 
 
             <View style={styles.topBar}>
-                <TouchableOpacity style={{  width: '30%' }}  onPress={() => {this.props.navigation.navigate('Dashboard'),console.log(this.state.textNote)}}>
+                <TouchableOpacity style={{  width: '30%' }}  onPress={() => {this.props.navigation.navigate('Dashboard'),createUserNote({pinStatus :this.state.pinStatus,
+                                                                                                                                        archiveStatus :this.state.archiveStatus,
+                                                                                                                                        trashStatus :this.state.trashStatus,
+                                                                                                                                        title:this.state.title,
+                                                                                                                                        textNote:this.state.textNote})}}>
                     <Image
                         style={{ height: 30, width: 40 }}
                         source={require('/home/admin1/Documents/FundooApp/AwesomeProject/image/goBack.png')}
