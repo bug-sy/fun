@@ -37,6 +37,7 @@ import {AsyncStorage} from 'react-native';
         }
 
         export function createUserNote( obj ){
+            if(obj.title!=''){
             AsyncStorage.getItem('key').then((success)=>{
                 console.log("key is =>",success);
                 console.log("Trash ->" + obj.trashStatus)
@@ -44,6 +45,7 @@ import {AsyncStorage} from 'react-native';
                 console.log("Pin ->" + obj.pinStatus)
             firebaseDatabaseRef.ref('/users /' + success + '/notes/').push(obj);
             })
+        }
         }
 
         export function getNotes(callback){

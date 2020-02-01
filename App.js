@@ -8,15 +8,17 @@ import HomeScreen from './src/components/HomeScreen'
 import Myapp from './'
 import Dashboard from './src/Dashboard/Dashboard'
 import AddingNote from './src/Dashboard/AddingNote'
-import Flatlist from './src/Flatlist/Flatlist'
+//import Flatlist from './src/Flatlist/Flatlist'
+import TodoList from './TodoList/TodoList'
 
 
-export default class PizzaTranslator extends Component {
+export default class FundooApp extends Component {
   render() {
     return (    
     
-     <HomeScreen/> 
+     //<HomeScreen/> 
       //<Flatlist/>
+      <TodoList/>
     
     );
   }

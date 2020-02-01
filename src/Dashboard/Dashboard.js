@@ -9,25 +9,22 @@ import {
     TouchableOpacity,
     View,
 } from 'react-native'
-import FlatlistNotes from '../Flatlist/Flatlist' 
+import FlatlistNotes from '../FlatlistNotes/FlatlistNotes'
 
 export default class App extends Component {
     constructor(props) {
         super(props)
-        this.state = { count: 0, search: '' }
+        this.state = { toggleGridOrList:false }
     }
-
-
 
     render() {
         return (
-            <View style={{ flex: 1, flexDirection: 'column' ,elevation:10}}>
-                <View style={{ width: '100%', flexDirection: 'row', height: 45,backgroundColor:'grey',padding:4 }}>
+            <View style={{ flex: 1, flexDirection: 'column', elevation: 10 }}>
+                <View style={{ width: '100%', flexDirection: 'row', height: 45, backgroundColor: 'grey', padding: 4 }}>
                     <View style={{ flexDirection: 'row', width: '80%' }}>
                         <View style={{ flexDirection: 'row' }}>
-                            <TouchableOpacity style={{ width: '12%' }} 
-                            onPress={()=>this.props.navigation.toggleDrawer(Drawer)}
-                        
+                            <TouchableOpacity style={{ width: '12%' }}
+                                onPress={() => this.props.navigation.toggleDrawer(Drawer)}
                             >
                                 <Image
                                     style={{ height: 34, width: 40 }}
@@ -42,33 +39,44 @@ export default class App extends Component {
                                 </Text>
                             </TouchableOpacity>
                         </View>
-                        <View style={{ flexDirection: 'row', justifyContent: 'flex-end', width: '20%' }}>
-
-                            <TouchableOpacity style={{}} >
-                                <Image
-                                    style={{ height: 30, width: 30 }}
+                        <View style={{ flexDirection: 'row', justifyContent: 'space-between', width: '25%' }}>
+                                {
+                                    this.state.toggleGridOrList!=false
+                                    ?
+                                    <TouchableOpacity  onPress={()=>this.setState({ toggleGridOrList:!this.state.toggleGridOrList })}>
+                                    <Image
+                                        style={{ height: 39, width: 30 }}
+                                        source={require('/home/admin1/Documents/FundooApp/AwesomeProject/image/list.png')}
+                                       
+                                    />
+                                        </TouchableOpacity>
+                                    :
+                                    <TouchableOpacity  onPress={()=>this.setState({ toggleGridOrList:!this.state.toggleGridOrList })}>
+                                    <Image
+                                    style={{ height: 39, width: 30 }}
                                     source={require('/home/admin1/Documents/FundooApp/AwesomeProject/image/grid.png')}
-                                />
-                            </TouchableOpacity>
+                                    />
+                                    </TouchableOpacity>
+                                }
                             <TouchableOpacity
                             >
                                 <Avatar rounded title="MD" />
                             </TouchableOpacity>
                         </View>
                     </View>
-                </View> 
-
-                <View style={{backgroundColor:'green' ,height:'89%',justifyContent:'center'}}>
-                <FlatlistNotes/>
                 </View>
 
-                <View style={{ flex: 1, flexDirection: 'row', bottom: 0, position: 'absolute' ,backgroundColor:'grey'}}>
+                <View style={{ justifyContent: 'center', marginBottom: 45, flex: 2 }}>
+                    <FlatlistNotes />
+                </View>
+
+                <View style={{ flex: 1, flexDirection: 'row', bottom: 0, position: 'absolute', backgroundColor: 'grey' }}>
                     <View style={{
                         flexDirection: 'row',
                         flex: 1,
                         width: '100%',
                         justifyContent: 'space-between',
-                        padding:6
+                        padding: 6
                     }}>
                         <TouchableOpacity style={{ width: '60%' }} onPress={() => this.props.navigation.navigate('AddingNote')}>
                             <Text
@@ -113,14 +121,10 @@ export default class App extends Component {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        //justifyContent: 'center',
         paddingHorizontal: 10
     },
     button: {
-        //alignItems: 'center',
         backgroundColor: '#DDDDDD',
-        //padding: 10,
-        // alignItems:'center',
         justifyContent: 'flex-start',
         flexDirection: 'column',
         width: '5%',
@@ -139,36 +143,25 @@ const styles = StyleSheet.create({
         justifyContent: "center",
         flex: 1,
         alignItems: "stretch",
-        backgroundColor: 'pink'
+        backgroundColor: 'pink',
+        elevation: 10
     },
     bottom: {
-
         flexDirection: 'row',
         flex: 1,
         backgroundColor: 'green',
-        // alignItems:'flex-end',
         width: '90%',
-        justifyContent: 'flex-start'
-
-
+        justifyContent: 'flex-start',
+        elevation: 10
     },
     bottomicons: {
         flexDirection: 'row',
-       // backgroundColor: 'blue',
         width: '40%',
         justifyContent: 'space-around',
-
     },
     fullPage: {
         flex: 1,
-        //backgroundColor:'#ff00ff',
-        //height:200
         flexDirection: 'column',
-
         justifyContent: 'space-between'
-
     },
-
-
-
 })
