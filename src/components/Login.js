@@ -1,11 +1,10 @@
 import * as React from 'react';
 import { Button } from 'react-native-elements';
-import { TextInput, Paragraph, Headline } from 'react-native-paper';
-import { Text, View, Image, ScrollView } from 'react-native';
+import {  Paragraph, Headline } from 'react-native-paper';
+import { View, Image, ScrollView } from 'react-native';
 import { TextField } from 'material-bread';
 import { SignIn } from '../SignUpDataLayer'
 import {AsyncStorage} from 'react-native';
-
 
 export default class Login extends React.Component {
     state = {
@@ -47,34 +46,17 @@ export default class Login extends React.Component {
         }
 
         else {
-                console.log('email=',email)
-         
- SignIn(email,password,(notes)=>{
-     console.log('inside callback signin email =', notes)
-     this.props.navigation.navigate('Dashboard')
-  
-AsyncStorage.getItem('key').then((success)=>{
-    console.log("key is =>",success);
-    
-})
- 
-    console.log("end of callback Sigin = ")   
- })
-        
-
-            
+                console.log('email=',email)         
+                SignIn(email,password,(notes)=>{
+                console.log('inside callback signin email =', notes)
+                this.props.navigation.navigate('Dashboard')
+                AsyncStorage.getItem('key').then((success)=>{
+                console.log("key is =>",success);
+            }) 
+                console.log("end of callback Sigin = ")   
+            })    
         }
-    
-
     }
-
-
-
-
-
-
-
-
 
     render() {
         return (
@@ -85,17 +67,14 @@ AsyncStorage.getItem('key').then((success)=>{
 
                     <View style={{ alignItems: 'center', justifyContent: 'space-around', height: 280 }} >
                         <Headline>LogIn Page</Headline>
-
                         <Image
                             style={{ height: 100, width: 100, tintColor: 'black' }}
                             source={require('/home/admin1/Documents/FundooApp/AwesomeProject/image/account_1.png')}
                         />
-
-
                     </View>
 
                     <View style={{ width: 280, height: 180, justifyContent: 'space-around' }} >
-                    <TextField
+                        <TextField
                             type={'outlined'}
                             label='Username'
                             labelStyle={{backgroundColor:'transparent'}}
@@ -105,7 +84,6 @@ AsyncStorage.getItem('key').then((success)=>{
                             onChangeText={username => this.setState({ username: username })}
                             helperText={this.state.emailerror}
                         />
-
                         <TextField
                             type={'outlined'}
                             label='Password'
@@ -116,7 +94,6 @@ AsyncStorage.getItem('key').then((success)=>{
                             value={this.state.password}
                             onChangeText={password => this.setState({ password: password })}
                         />
-
                     </View>
 
                     <View style={{ height: 80, justifyContent: 'center',  width: 240 }}>
@@ -126,20 +103,15 @@ AsyncStorage.getItem('key').then((success)=>{
                             raised="true"
                             onPress={(e) =>this.handleEmailandPassword(this.state.username,this.state.password)}
                         />
-
                     </View>
 
                     <View style={{ flexDirection: 'row', justifyContent: 'space-between', top: 140, height: 300, width: 280 }}>
-
                         <Paragraph >Forgot Password?</Paragraph>
-
                         <Paragraph  onPress={() => this.props.navigation.navigate('SignUp')}>Sign UP</Paragraph>
-
                     </View>
 
                 </View>
             </ScrollView>
-
         );
     }
 }

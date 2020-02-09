@@ -2,14 +2,10 @@ import React from 'react';
 import { View, Text } from 'react-native';
 import { createAppContainer } from 'react-navigation';
 import { createStackNavigator } from 'react-navigation-stack';
-
 import Drawer from './Drawer'
 import Login from '../components/Login'
 import SignUp from '../Signup'
-
 import AddingNote from '../Dashboard/AddingNote'
-
-
 
 class HomeScreen extends React.Component {
   render() {

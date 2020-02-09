@@ -5,7 +5,6 @@ import { Text, Image, ScrollView, TextInput } from 'react-native';
 import {
     StyleSheet,
     TouchableOpacity,
-
     View,
 } from 'react-native'
 
@@ -21,13 +20,9 @@ export default class AddingNote extends Component {
         }
     }
 
-
-
-
     render() {
         return (
             <View style={styles.topAndBottomBar}>
-
 
                 <View style={styles.topBar}>
                     <TouchableOpacity style={{ width: '30%' }} onPress={() => {
@@ -55,26 +50,19 @@ export default class AddingNote extends Component {
 
                         </TouchableOpacity>
                         <TouchableOpacity  >
-
-
                             <Image
                                 style={{ height: 30, width: 20 }}
                                 source={require('/home/admin1/Documents/FundooApp/AwesomeProject/image/alert.png')}
                             />
-
                         </TouchableOpacity>
                         <TouchableOpacity  >
-
-
                             <Image
                                 style={{ height: 30, width: 20 }}
                                 source={require('/home/admin1/Documents/FundooApp/AwesomeProject/image/archive.png')}
                             />
-
                         </TouchableOpacity>
                     </View>
                 </View>
-
 
                 <View style={styles.titleAndNote} >
                     <TextInput
@@ -93,10 +81,6 @@ export default class AddingNote extends Component {
                     />
                 </View>
 
-
-
-
-
                 <View style={styles.bottomBar}>
                     <TouchableOpacity  >
 
@@ -105,16 +89,12 @@ export default class AddingNote extends Component {
                             style={{ height: 30, width: 40, top: '5%' }}
                             source={require('/home/admin1/Documents/FundooApp/AwesomeProject/image/addition.png')}
                         />
-
                     </TouchableOpacity>
                     <TouchableOpacity  >
-
-
                         <Image
                             style={{ height: 30, width: 20, top: '5%' }}
                             source={require('/home/admin1/Documents/FundooApp/AwesomeProject/image/verticalMenu.png')}
                         />
-
                     </TouchableOpacity>
                 </View>
 
@@ -166,6 +146,4 @@ const styles = StyleSheet.create({
         fontSize: 30,
         textAlignVertical: "top"
     }
-
-
 })

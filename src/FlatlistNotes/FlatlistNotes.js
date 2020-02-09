@@ -22,8 +22,6 @@ export default class Login extends React.Component {
     }
   }
 
-
-
   componentDidMount() {
     getNotes((notes) => {
       this.setState({
@@ -38,9 +36,6 @@ export default class Login extends React.Component {
       })
     })
   }
-
-
-
 
   render() {
     var arr = [];

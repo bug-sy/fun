@@ -16,9 +16,9 @@ export default class FundooApp extends Component {
   render() {
     return (    
     
-     //<HomeScreen/> 
+     <HomeScreen/> 
       //<Flatlist/>
-      <TodoList/>
+      //<TodoList/>
     
     );
   }

@@ -1,11 +1,8 @@
 import { firebaseAuth, firebaseDatabaseRef } from './firebase'
 import {AsyncStorage} from 'react-native';
 
-
-
         export function SignUp  (firstName, lastName, email, password,callback)  {
-        console.log('zxcvbnmnbvcx',email)
-        
+        console.log('zxcvbnmnbvcx',email)        
         firebaseAuth.createUserWithEmailAndPassword(
             email,
             password,
@@ -17,12 +14,10 @@ import {AsyncStorage} from 'react-native';
             })
             return callback(firstName)
         }).catch((err)=>{console.log('error =>',err)})
-
         }
 
         export function SignIn  (email, password,callback)  {
-         console.log(email)
-        
+         console.log(email)        
           firebaseAuth.signInWithEmailAndPassword(
             email,
             password,
@@ -33,7 +28,6 @@ import {AsyncStorage} from 'react-native';
              console.log("inside the sigin function => ",id)
            return callback( success.user.uid)
          }).catch((err)=>{console.log('err in login =>',err)})
-    
         }
 
         export function createUserNote( obj ){
