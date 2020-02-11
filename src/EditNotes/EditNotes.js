@@ -23,6 +23,16 @@ export default class AddingNote extends Component {
         }
     }
 
+    componentDidMount() {
+        this.setState({  title:this.props.navigation.state.params.titleOfCurrentNote })
+    }
+
+    // componentWillUpdate(){
+    //     this.setState({title:this.state.title})
+    // }
+
+    
+
     render() {
         return (
             <View style={styles.topAndBottomBar}>
@@ -79,13 +89,11 @@ export default class AddingNote extends Component {
                                source={require('/home/admin1/Documents/FundooApp/AwesomeProject/image/reminderOutlined.png')}
                                />
                                </TouchableOpacity>
-                     
                            }
                         
                         { 
                             this.state.toggleArchive!=false
                             ?   
-                           
                               <TouchableOpacity  onPress={()=>this.setState({ toggleArchive:!this.state.toggleArchive })}>
                               <Image
                                  style={{ height: 30, width: 24 }}
@@ -106,7 +114,8 @@ export default class AddingNote extends Component {
                 <View style={styles.titleAndNote} >
                     <TextInput
                         style={{ fontSize: 40 }}
-                        placeholder="Title"
+                        defaultValue={this.props.navigation.state.params.titleOfCurrentNote}
+                        
                         multiline={true}
                         value={this.state.title}
                         onChangeText={title => this.setState({ title: title })}

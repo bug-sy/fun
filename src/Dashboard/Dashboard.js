@@ -20,7 +20,7 @@ export default class App extends Component {
     render() {
         return (
             <View style={{ flex: 1, flexDirection: 'column', elevation: 10 }}>
-                <View style={{ width: '100%', flexDirection: 'row', height: 45, backgroundColor: 'grey', padding: 4 }}>
+                <View style={{ width: '100%', flexDirection: 'row', height: 45, backgroundColor: '#ddddbb', padding: 4 }}>
                     <View style={{ flexDirection: 'row', width: '80%' }}>
                         <View style={{ flexDirection: 'row' }}>
                             <TouchableOpacity style={{ width: '12%' }}
@@ -43,20 +43,21 @@ export default class App extends Component {
                                 {
                                     this.state.toggleGridOrList!=false
                                     ?
-                                    <TouchableOpacity  onPress={()=>this.setState({ toggleGridOrList:!this.state.toggleGridOrList })}>
-                                    <Image
-                                        style={{ height: 39, width: 30 }}
-                                        source={require('/home/admin1/Documents/FundooApp/AwesomeProject/image/list.png')}
-                                       
-                                    />
-                                        </TouchableOpacity>
+                                            <TouchableOpacity  onPress={()=>this.setState({ toggleGridOrList:!this.state.toggleGridOrList })}>
+                                            <Image
+                                            style={{ height: 39, width: 30 }}
+                                            source={require('/home/admin1/Documents/FundooApp/AwesomeProject/image/grid.png')}
+                                            />
+                                            </TouchableOpacity>
                                     :
-                                    <TouchableOpacity  onPress={()=>this.setState({ toggleGridOrList:!this.state.toggleGridOrList })}>
-                                    <Image
-                                    style={{ height: 39, width: 30 }}
-                                    source={require('/home/admin1/Documents/FundooApp/AwesomeProject/image/grid.png')}
-                                    />
-                                    </TouchableOpacity>
+                                  
+                                           <TouchableOpacity  onPress={()=>this.setState({ toggleGridOrList:!this.state.toggleGridOrList })}>
+                                           <Image
+                                               style={{ height: 39, width: 30 }}
+                                               source={require('/home/admin1/Documents/FundooApp/AwesomeProject/image/list.png')}
+                                              
+                                           />
+                                           </TouchableOpacity>
                                 }
                             <TouchableOpacity
                             >
@@ -67,10 +68,13 @@ export default class App extends Component {
                 </View>
 
                 <View style={{ justifyContent: 'center', marginBottom: 45, flex: 2 }}>
-                    <FlatlistNotes />
+                    <FlatlistNotes 
+                    navigation={this.props.navigation}
+                    toggleGridOrList={this.state.toggleGridOrList}
+                    />
                 </View>
 
-                <View style={{ flex: 1, flexDirection: 'row', bottom: 0, position: 'absolute', backgroundColor: 'grey' }}>
+                <View style={{ flex: 1, flexDirection: 'row', bottom: 0, position: 'absolute', backgroundColor: '#ddddbb' }}>
                     <View style={{
                         flexDirection: 'row',
                         flex: 1,
