@@ -3,25 +3,16 @@ import { SafeAreaView, View, FlatList, StyleSheet, Text, TouchableOpacity } from
 import Constants from 'expo-constants';
 import { getNotes } from '../SignUpDataLayer/'
 
-
-
-  // const Tasks = (props) => {
-      //   const { navigate } = props.navigation;
-      //   //function to go to next screen
-      //   goToNextScreen = () => {
-      //       return navigate('AddingNote');
-      //   }
-
 export default class Login extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
       notes: '',
       columnCount:[],
+      pinned:'pinned',
+      columnCountAnother:[]
     }
   }
-
-  
 
   componentDidMount() {
     getNotes((notes) => {
@@ -39,31 +30,54 @@ export default class Login extends React.Component {
     })
   }
 
-  render() {
-    var arr = [];
-    console.log("inside the render KEYS ---------> ", Object.getOwnPropertyNames(this.state.notes))
-    Object.keys(this.state.notes).map((item) => {
-      this.state.notes[item].noteId=item
-      arr.push(this.state.notes[item])
-      console.log("the id are ----->",this.state.notes[item].noteId)
+  header= () => {
+    return(
+    <View >
+      <Text >Pinned</Text>
+    </View>);
+  }
 
+  headerUnpinned= () => {
+    return(
+    <View >
+      <Text >UnPinned</Text>
+    </View>);
+  }
+
+  render() {
+    var pinnedNote = [];
+    Object.keys(this.state.notes).map((item) => {
+      if(this.state.notes[item].pinStatus==true){
+      this.state.notes[item].noteId=item
+      pinnedNote.push(this.state.notes[item])
+      console.log("pinned notes are ----->",this.state.notes[item].noteId)
+      }
+    })
+    
+    var unpinnedNote = [];
+    //console.log("inside the render KEYS ---------> ", Object.getOwnPropertyNames(this.state.notes))
+    Object.keys(this.state.notes).map((item) => {
+      if(this.state.notes[item].pinStatus==false){
+      this.state.notes[item].noteId=item
+      unpinnedNote.push(this.state.notes[item])
+      console.log("the id are ----->",this.state.notes[item].noteId)
+      }
     })
 
 
-    console.log("================")
-    console.log('I am inside the array =======', arr)
-    console.log("================")
-
+  
       {     
       this.props.toggleGridOrList==false
       ?
       this.state.columnCount[0]=2
       : 
       this.state.columnCount[0]=1
-      1}
+      }
 
-      
-    
+      {
+        this.props.toggleGridOrList==false?
+        this.state.columnCountAnother[0]=2:this.state.columnCountAnother[0]=1
+      }
 
       const Item = ({ List,pinStatus,trashStatus,archiveStatus,noteId, title, textNote }) => {
         return (
@@ -73,20 +87,24 @@ export default class Login extends React.Component {
                       :
                       styles.listItem
                       }>
-            <TouchableOpacity onPress={() => this.props.navigation.navigate('EditNotes',{"pin":pinStatus,"trash":trashStatus,"archive":archiveStatus,"noteId":noteId,"titleOfCurrentNote": title,"note": textNote })}>
+            <TouchableOpacity onPress={() => 
+              this.props.navigation.navigate('EditNotes',
+              {"pin":pinStatus,"trash":trashStatus,
+              "archive":archiveStatus,"noteId":noteId,
+              "titleOfCurrentNote": title,"note": textNote })}>
               <Text style={styles.title}>{title}</Text>
               <Text style={styles.title}>{textNote}</Text>
-              <Text style={styles.title}>{archiveStatus+" "}</Text>
             </TouchableOpacity>
           </View>
         )
       }
-
+     
     return (
       <SafeAreaView style={styles.container}>
+
         <FlatList
-          data={arr}
-          renderItem={({ item }) =>( console.log("item while rendering in flatlist :",item)
+          data={pinnedNote}
+          renderItem={({ item }) =>( console.log("Pinned items are ------------->>>>>> :",item)
           ,
           <Item List={this.props.toggleGridOrList}
            title={item.title} textNote={item.textNote} 
@@ -96,17 +114,23 @@ export default class Login extends React.Component {
         }
         key={this.state.columnCount[0]}
         numColumns={this.state.columnCount[0]}
+        ListHeaderComponent={this.header}
+       stickyHeaderIndices={[0]}
         />
+        
+      
       </SafeAreaView>
+        
     );
   }
 }
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
+    flex: 2,
     marginTop: Constants.statusBarHeight,
-    padding:10
+    padding:10,
+    backgroundColor:"pink"
   },
   gridItem: {
     backgroundColor: '#b3d9ff',

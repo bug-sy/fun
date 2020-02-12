@@ -49,9 +49,28 @@ import {AsyncStorage} from 'react-native';
             {
                 console.log('uid inside the getnotes -> ',success)
                 console.log("get Notes --->> ",snapshot.val())
-                callback(snapshot.val())
+                if(snapshot.val()!=null){
+                return callback(snapshot.val())
+                }
+               // callback("hi")
             })
             })
+        }
+
+        export function updateUserNote(obj,noteUpdationId){
+            AsyncStorage.getItem('key').then((success)=>{
+            console.log('Updation initiated : ' + success);
+            console.log('noteId is ------>',noteUpdationId)
+            //console.log("Trash" + obj.trashStatus)
+            //console.log("Archive " + obj.archiveStatus)
+            console.log("::::::::::::::::::::::::::::::::")
+            console.log("Pin----------------->"+obj.title+"------->" + obj.togglePinOrUnpin)
+            console.log("Title" + obj.title)
+            console.log("Data" + obj.textNote)
+            console.log("::::::::::::::::::::::::::::::::::::::")
+            firebaseDatabaseRef.ref('/users /' + success + '/notes/' + noteUpdationId).update(obj);
+            
+            }).catch((err)=>{console.log('err in updation note =>',err)})
         }
 
 

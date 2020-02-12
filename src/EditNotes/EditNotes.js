@@ -1,6 +1,6 @@
 import { Avatar } from 'react-native-elements';
 import React, { Component } from 'react'
-import { createUserNote } from '../SignUpDataLayer/'
+import { createUserNote,updateUserNote } from '../SignUpDataLayer'
 import { Text, Image, ScrollView, TextInput } from 'react-native';
 import {
     StyleSheet,
@@ -12,26 +12,24 @@ export default class AddingNote extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            pinStatus: false,
             archiveStatus: false,
             trashStatus: false,
             title: '',
             textNote: '',
             togglePinOrUnpin:false,
             toggleAlertion:false,
-            toggleArchive:false
+            toggleArchive:false,
+            noteUpdationId:''
         }
     }
 
     componentDidMount() {
-        this.setState({  title:this.props.navigation.state.params.titleOfCurrentNote })
+        this.setState({
+            noteUpdationId:this.props.navigation.state.params.noteId,
+            pinStatus:this.props.navigation.state.params.pin,
+            title:this.props.navigation.state.params.titleOfCurrentNote,
+            textNote:this.props.navigation.state.params.note })
     }
-
-    // componentWillUpdate(){
-    //     this.setState({title:this.state.title})
-    // }
-
-    
 
     render() {
         return (
@@ -39,13 +37,13 @@ export default class AddingNote extends Component {
 
                 <View style={styles.topBar}>
                     <TouchableOpacity style={{ width: '30%' }} onPress={() => {
-                        this.props.navigation.navigate('Dashboard'), createUserNote({
+                        updateUserNote({
                             pinStatus: this.state.pinStatus,
-                            archiveStatus: this.state.archiveStatus,
-                            trashStatus: this.state.trashStatus,
+                           // archiveStatus: this.state.archiveStatus,
+                            //trashStatus: this.state.trashStatus,
                             title: this.state.title,
-                            textNote: this.state.textNote
-                        })
+                            textNote: this.state.textNote,
+                        },this.state.noteUpdationId),this.props.navigation.navigate('Dashboard')
                     }}>
                         <Image
                             style={{ height: 30, width: 40 }}
@@ -54,9 +52,9 @@ export default class AddingNote extends Component {
                     </TouchableOpacity>
                     <View style={styles.innerIcons}>
                                 {
-                                    this.state.togglePinOrUnpin!=false
+                                    this.state.pinStatus
                                     ?
-                                            <TouchableOpacity  onPress={()=>this.setState({ togglePinOrUnpin:!this.state.togglePinOrUnpin })}>
+                                            <TouchableOpacity  onPress={()=>this.setState({ pinStatus:!this.state.pinStatus })}>
                                          <Image
                                             style={{ height: 30, width: 40 }}
                                             source={require('/home/admin1/Documents/FundooApp/AwesomeProject/image/pin.png')}
@@ -64,7 +62,7 @@ export default class AddingNote extends Component {
                                             </TouchableOpacity>
                                     :
                                   
-                                           <TouchableOpacity  onPress={()=>this.setState({ togglePinOrUnpin:!this.state.togglePinOrUnpin })}>
+                                           <TouchableOpacity  onPress={()=>this.setState({ pinStatus:!this.state.pinStatus })}>
                                            <Image
                                                style={{ height: 30, width: 30 }}
                                                source={require('/home/admin1/Documents/FundooApp/AwesomeProject/image/outlinedPin.png')}
@@ -114,8 +112,7 @@ export default class AddingNote extends Component {
                 <View style={styles.titleAndNote} >
                     <TextInput
                         style={{ fontSize: 40 }}
-                        defaultValue={this.props.navigation.state.params.titleOfCurrentNote}
-                        
+                        placeholder="Title"
                         multiline={true}
                         value={this.state.title}
                         onChangeText={title => this.setState({ title: title })}
