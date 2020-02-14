@@ -19,8 +19,10 @@ export default class Login extends React.Component {
       this.setState({
         notes: notes
       }, () => {
+        
         console.log("inside the [FLATLIST callback] state of a note ----->  :", this.state.notes)
         Object.keys(this.state.notes).map((item) => {
+         
           //console.log(arr)
 
         })
@@ -28,33 +30,35 @@ export default class Login extends React.Component {
     })
   }
 
-  header= () => {
+  headerUnpinned = () => {
     return(
     <View >
-      <Text >Pinned</Text>
-    </View>);
-  }
-
-  headerUnpinned= () => {
-    return(
-    <View >
-      <Text >UnPinned</Text>
+      <Text >Others</Text>
     </View>);
   }
 
   render() {
     var pinnedNote = [];
     Object.keys(this.state.notes).map((item) => {
-      if(this.state.notes[item].pinStatus==true 
-       // && 
-       // this.state.notes[item].archiveStatus==false
-        ){
+      if(this.state.notes[item].pinStatus==false && this.state.notes[item].archiveStatus==false){
       this.state.notes[item].noteId=item
       pinnedNote.push(this.state.notes[item])
       console.log("pinned notes are ----->",this.state.notes[item].noteId)
       }
     })
+    
+    var unpinnedNote = [];
+    //console.log("inside the render KEYS ---------> ", Object.getOwnPropertyNames(this.state.notes))
+    Object.keys(this.state.notes).map((item) => {
+      if(this.state.notes[item].pinStatus==false){
+      this.state.notes[item].noteId=item
+      unpinnedNote.push(this.state.notes[item])
+      console.log("the id are ----->",this.state.notes[item].noteId)
+      }
+    })
 
+
+  
       {     
       this.props.toggleGridOrList==false
       ?
@@ -64,11 +68,8 @@ export default class Login extends React.Component {
       }
 
       {
-        this.props.toggleGridOrList==false
-        ?
-        this.state.columnCountAnother[0]=2
-        :
-        this.state.columnCountAnother[0]=1
+        this.props.toggleGridOrList==false?
+        this.state.columnCountAnother[0]=2:this.state.columnCountAnother[0]=1
       }
 
       const Item = ({ List,pinStatus,trashStatus,archiveStatus,noteId, title, textNote }) => {
@@ -106,11 +107,9 @@ export default class Login extends React.Component {
         }
         key={this.state.columnCount[0]}
         numColumns={this.state.columnCount[0]}
-        ListHeaderComponent={this.header}
+        ListHeaderComponent={this.headerUnpinned}
        stickyHeaderIndices={[0]}
         />
-        
-      
       </SafeAreaView>
         
     );
@@ -122,7 +121,7 @@ const styles = StyleSheet.create({
     flex: 2,
     marginTop: Constants.statusBarHeight,
     padding:10,
-   // backgroundColor:"pink"
+    //backgroundColor:"pink"
   },
   gridItem: {
     backgroundColor: '#b3d9ff',

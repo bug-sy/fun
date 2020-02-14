@@ -4,15 +4,17 @@ import React, { Component } from 'react'
 import { Text, Image, ScrollView } from 'react-native';
 import { MyApp } from '/home/admin1/Documents/FundooApp/AwesomeProject/src/components/Drawer.js'
 import Drawer from '../components/Drawer'
+import Archive from '../FlatlistNotes/FlatlistNotesArchived'
+
 import {
     StyleSheet,
     TouchableOpacity,
     View,
 } from 'react-native'
 import FlatlistNotes from '../FlatlistNotes/FlatlistNotes'
-import FlatListNotesUnpinned from '../FlatlistNotes/FlatListNotesUnpinned'
+import FlatlistNotesArchived from '../FlatlistNotes/FlatlistNotesArchived'
 
-export default class App extends Component {
+export default class ArchivePage extends Component {
     constructor(props) {
         super(props)
         this.state = { toggleGridOrList:false }
@@ -32,15 +34,22 @@ export default class App extends Component {
                                     source={require('/home/admin1/Documents/FundooApp/AwesomeProject/image/view_list-512.png')}
                                 />
                             </TouchableOpacity>
-                            <TouchableOpacity style={{ width: '87%', height: '100%', justifyContent: 'center', flexDirection: 'row' }}>
+                            <TouchableOpacity style={{ width: '77%', height: '100%', justifyContent: 'center', flexDirection: 'row' }}>
                                 <Text
                                     style={{ fontSize: 25 }}
                                 >
-                                    Search your Notes
+                                    Archive
                                 </Text>
                             </TouchableOpacity>
                         </View>
-                        <View style={{ flexDirection: 'row', justifyContent: 'space-between', width: '25%' }}>
+                        <View style={{ flexDirection: 'row', justifyContent: 'space-between', width: '32%' }}>
+                            <TouchableOpacity
+                            >
+                                <Image
+                                               style={{ height: 39, width: 40,justifyContent:"center" }}
+                                               source={require('/home/admin1/Documents/FundooApp/AwesomeProject/image/search.png')} 
+                                           />
+                            </TouchableOpacity>
                                 {
                                     this.state.toggleGridOrList!=false
                                     ?
@@ -60,72 +69,27 @@ export default class App extends Component {
                                            />
                                            </TouchableOpacity>
                                 }
-                            <TouchableOpacity
-                            >
-                                <Avatar rounded title="MD" />
-                            </TouchableOpacity>
+                    
                         </View>
                     </View>
                 </View>
-                
-                <ScrollView>
+
                 <View style={{ justifyContent: 'center', marginBottom: 5, flex: 1 }}>
-                    <FlatlistNotes 
+                    <FlatlistNotesArchived 
                     navigation={this.props.navigation}
                     toggleGridOrList={this.state.toggleGridOrList}
                     />
                 </View>
-                 <View style={{ justifyContent: 'center', marginBottom: 45, flex: 1 }}>
+                 {/* <View style={{ justifyContent: 'center', marginBottom: 45, flex: 1 }}>
                     <FlatListNotesUnpinned 
                     navigation={this.props.navigation}
                     toggleGridOrList={this.state.toggleGridOrList}
                     />
-                </View> 
-                </ScrollView>
+                </View>  */}
 
-                <View style={{ flex: 1, flexDirection: 'row', bottom: 0, position: 'absolute', backgroundColor: '#ddddbb' }}>
-                    <View style={{
-                        flexDirection: 'row',
-                        flex: 1,
-                        width: '100%',
-                        justifyContent: 'space-between',
-                        padding: 6
-                    }}>
-                        <TouchableOpacity style={{ width: '60%' }} onPress={() => this.props.navigation.navigate('AddingNote')}>
-                            <Text
-                                style={{ fontSize: 25, width: '100%' }}
-                            >
-                                Add a note
-                            </Text>
-                        </TouchableOpacity>
-                        <View style={styles.bottomicons}>
-                            <TouchableOpacity>
-                                <Image
-                                    style={{ height: 33, width: 40 }}
-                                    source={require('/home/admin1/Documents/FundooApp/AwesomeProject/image/edit.png')}
-                                />
-                            </TouchableOpacity>
-                            <TouchableOpacity>
-                                <Image
-                                    style={{ height: 32, width: 30 }}
-                                    source={require('/home/admin1/Documents/FundooApp/AwesomeProject/image/check-box.png')}
-                                />
-                            </TouchableOpacity>
-                            <TouchableOpacity style={{ height: 34 }}>
-                                <Image
-                                    style={{ height: 32, width: 32 }}
-                                    source={require('/home/admin1/Documents/FundooApp/AwesomeProject/image/add_image.png')}
-                                />
-                            </TouchableOpacity>
-                            <TouchableOpacity style={{ height: 34 }}>
-                                <Image
-                                    style={{ height: 32, width: 30 }}
-                                    source={require('/home/admin1/Documents/FundooApp/AwesomeProject/image/audio_recording.png')}
-                                />
-                            </TouchableOpacity>
-                        </View>
-                    </View>
-                </View>
+              
+                    
+
             </View>
         )
     }

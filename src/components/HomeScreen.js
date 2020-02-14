@@ -7,6 +7,7 @@ import Login from '../components/Login'
 import SignUp from '../Signup'
 import AddingNote from '../Dashboard/AddingNote'
 import EditNotes from '../EditNotes/EditNotes'
+import EditNotesInArchive from '../EditNotes/EditNotesInArchive'
 
 class HomeScreen extends React.Component {
   render() {
@@ -36,7 +37,10 @@ const AppNavigator = createStackNavigator({
   },
   EditNotes:{
     screen:EditNotes,navigationOptions:{header:null}
-  }
+  },
+  EditNotesInArchive:{
+    screen:EditNotesInArchive,navigationOptions:{header:null}
+  },
 },{
     initialRouteName:'Login'
 });

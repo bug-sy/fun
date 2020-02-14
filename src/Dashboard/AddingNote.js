@@ -105,7 +105,7 @@ export default class AddingNote extends Component {
 
                 <View style={styles.titleAndNote} >
                     <TextInput
-                        style={{ fontSize: 40 }}
+                        style={{ fontSize: 40 ,backgroundColor:"pink",height:"15%"}}
                         placeholder="Title"
                         multiline={true}
                         value={this.state.title}
@@ -122,10 +122,8 @@ export default class AddingNote extends Component {
 
                 <View style={styles.bottomBar}>
                     <TouchableOpacity  >
-
-
                         <Image
-                            style={{ height: 30, width: 40, top: '5%' }}
+                            style={{ height: 30, width: 40, top: '5%'}}
                             source={require('/home/admin1/Documents/FundooApp/AwesomeProject/image/addition.png')}
                         />
                     </TouchableOpacity>
@@ -136,11 +134,8 @@ export default class AddingNote extends Component {
                         />
                     </TouchableOpacity>
                 </View>
-
             </View>
         )
-
-
     }
 }
 
@@ -164,9 +159,9 @@ const styles = StyleSheet.create({
         bottom: 0,
         width: '100%',
         justifyContent: 'space-between',
-        borderTopWidth: 0.5,
+        borderTopWidth: 0.2,
         height: '6%',
-        padding: 9
+        padding:6
     },
     topAndBottomBar: {
         flexDirection: 'column',
@@ -180,7 +175,7 @@ const styles = StyleSheet.create({
         //backgroundColor:'green',
     },
     note: {
-        height: '40%',
+        height: '80%',
         //backgroundColor:'skyblue',
         fontSize: 30,
         textAlignVertical: "top"

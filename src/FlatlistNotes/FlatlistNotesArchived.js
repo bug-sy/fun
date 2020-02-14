@@ -3,7 +3,7 @@ import { SafeAreaView, View, FlatList, StyleSheet, Text, TouchableOpacity } from
 import Constants from 'expo-constants';
 import { getNotes } from '../SignUpDataLayer/'
 
-export default class Login extends React.Component {
+export default class FlatlistNotesArchived extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
@@ -19,8 +19,10 @@ export default class Login extends React.Component {
       this.setState({
         notes: notes
       }, () => {
+        
         console.log("inside the [FLATLIST callback] state of a note ----->  :", this.state.notes)
         Object.keys(this.state.notes).map((item) => {
+         
           //console.log(arr)
 
         })
@@ -28,33 +30,31 @@ export default class Login extends React.Component {
     })
   }
 
-  header= () => {
+  headerArchive = () => {
     return(
     <View >
-      <Text >Pinned</Text>
-    </View>);
-  }
-
-  headerUnpinned= () => {
-    return(
-    <View >
-      <Text >UnPinned</Text>
+      <Text >Archive</Text>
     </View>);
   }
 
   render() {
-    var pinnedNote = [];
+
+    
+    var archiveNote = [];
+    //console.log("inside the render KEYS ---------> ", Object.getOwnPropertyNames(this.state.notes))
     Object.keys(this.state.notes).map((item) => {
-      if(this.state.notes[item].pinStatus==true 
-       // && 
-       // this.state.notes[item].archiveStatus==false
-        ){
+      if(this.state.notes[item].archiveStatus==true 
+        && 
+        this.state.notes[item].pinStatus==false
+         ){
       this.state.notes[item].noteId=item
-      pinnedNote.push(this.state.notes[item])
-      console.log("pinned notes are ----->",this.state.notes[item].noteId)
+      archiveNote.push(this.state.notes[item])
+      console.log("the archive are ----->",archiveNote)
       }
     })
 
+
+  
       {     
       this.props.toggleGridOrList==false
       ?
@@ -80,7 +80,7 @@ export default class Login extends React.Component {
                       styles.listItem
                       }>
             <TouchableOpacity onPress={() => 
-              this.props.navigation.navigate('EditNotes',
+              this.props.navigation.navigate('EditNotesInArchive',
               {"pin":pinStatus,"trash":trashStatus,
               "archive":archiveStatus,"noteId":noteId,
               "titleOfCurrentNote": title,"note": textNote })}>
@@ -95,7 +95,7 @@ export default class Login extends React.Component {
       <SafeAreaView style={styles.container}>
 
         <FlatList
-          data={pinnedNote}
+          data={archiveNote}
           renderItem={({ item }) =>( console.log("Pinned items are ------------->>>>>> :",item)
           ,
           <Item List={this.props.toggleGridOrList}
@@ -106,11 +106,9 @@ export default class Login extends React.Component {
         }
         key={this.state.columnCount[0]}
         numColumns={this.state.columnCount[0]}
-        ListHeaderComponent={this.header}
-       stickyHeaderIndices={[0]}
+        ListHeaderComponent={this.headerArchive}
+        stickyHeaderIndices={[0]}
         />
-        
-      
       </SafeAreaView>
         
     );
@@ -122,7 +120,6 @@ const styles = StyleSheet.create({
     flex: 2,
     marginTop: Constants.statusBarHeight,
     padding:10,
-   // backgroundColor:"pink"
   },
   gridItem: {
     backgroundColor: '#b3d9ff',

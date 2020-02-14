@@ -23,23 +23,23 @@ export default class AddingNote extends Component {
         }
     }
 
-    handlePinResult = () => {
-        this.state.archiveStatus==true
-        ?
-          updateUserNote({
-          pinStatus: false,
-          archiveStatus: this.state.archiveStatus,
-          title: this.state.title,
-          textNote: this.state.textNote,
-          },this.state.noteUpdationId)
-      :
-          updateUserNote({
-          pinStatus: this.state.pinStatus,
-          archiveStatus: this.state.archiveStatus,
-          title: this.state.title,
-          textNote: this.state.textNote,
-          },this.state.noteUpdationId)
-      }
+    handleArchiveResult = () => {
+      this.state.pinStatus==true
+      ?
+        updateUserNote({
+        pinStatus: this.state.pinStatus,
+        archiveStatus: false,
+        title: this.state.title,
+        textNote: this.state.textNote,
+        },this.state.noteUpdationId)
+    :
+        updateUserNote({
+        pinStatus: this.state.pinStatus,
+        archiveStatus: this.state.archiveStatus,
+        title: this.state.title,
+        textNote: this.state.textNote,
+        },this.state.noteUpdationId)
+    }
 
     componentDidMount() {
         this.setState({
@@ -56,7 +56,7 @@ export default class AddingNote extends Component {
 
                 <View style={styles.topBar}>
                     <TouchableOpacity style={{ width: '30%' }} onPress={() => {
-                      this.handlePinResult(),this.props.navigation.navigate('Dashboard')
+                      this.handleArchiveResult(),this.props.navigation.navigate('Dashboard')
                     }}>
                         <Image
                             style={{ height: 30, width: 40 }}
