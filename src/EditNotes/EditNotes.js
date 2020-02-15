@@ -7,6 +7,7 @@ import {
     TouchableOpacity,
     View,
 } from 'react-native'
+import CompoRemind from '../Reminder/CompoRemind'
 
 export default class AddingNote extends Component {
     constructor(props) {
@@ -85,21 +86,9 @@ export default class AddingNote extends Component {
                                 }
                         
                            { 
-                            this.state.toggleAlertion!=false
-                            ?   
-                            <TouchableOpacity  onPress={()=>this.setState({ toggleAlertion:!this.state.toggleAlertion })}>
-                            <Image
-                                 style={{ height: 30, width: 20 }}
-                                 source={require('/home/admin1/Documents/FundooApp/AwesomeProject/image/alert.png')}
-                                 />
-                            </TouchableOpacity>   
-                            :
-                            <TouchableOpacity  onPress={()=>this.setState({ toggleAlertion:!this.state.toggleAlertion })}>
-                            <Image
-                               style={{ height: 30, width: 24 }}
-                               source={require('/home/admin1/Documents/FundooApp/AwesomeProject/image/reminderOutlined.png')}
-                               />
-                               </TouchableOpacity>
+                        
+                            <CompoRemind/>
+
                            }
                         
                         { 

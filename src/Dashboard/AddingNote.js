@@ -7,6 +7,7 @@ import {
     TouchableOpacity,
     View,
 } from 'react-native'
+import CompoRemind from '../Reminder/CompoRemind'
 
 export default class AddingNote extends Component {
     constructor(props) {
@@ -19,8 +20,19 @@ export default class AddingNote extends Component {
             textNote: '',
             togglePinOrUnpin:false,
             toggleAlertion:false,
-            toggleArchive:false
+            toggleArchive:false,
+            reminder:'',
         }
+    }
+
+    handleDateTime = (dateTime) => {
+        console.log("jhjhjh->",dateTime)
+        this.setState({reminder:dateTime},()=>{
+            console.log("what time this time ------->>>>",this.state.reminder)
+        })
+    
+        // obj.trashStatus = true;
+        // updateNote(noteId, obj)
     }
 
     render() {
@@ -57,29 +69,19 @@ export default class AddingNote extends Component {
                                            <TouchableOpacity  onPress={()=>this.setState({ togglePinOrUnpin:!this.state.togglePinOrUnpin })}>
                                            <Image
                                                style={{ height: 30, width: 30 }}
-                                               source={require('/home/admin1/Documents/FundooApp/AwesomeProject/image/outlinedPin.png')}
-                                              
+                                               source={require('/home/admin1/Documents/FundooApp/AwesomeProject/image/outlinedPin.png')} 
                                            />
                                            </TouchableOpacity>
                                 }
                         
                            { 
-                            this.state.toggleAlertion!=false
-                            ?   
-                            <TouchableOpacity  onPress={()=>this.setState({ toggleAlertion:!this.state.toggleAlertion })}>
-                            <Image
-                                 style={{ height: 30, width: 20 }}
-                                 source={require('/home/admin1/Documents/FundooApp/AwesomeProject/image/alert.png')}
-                                 />
-                            </TouchableOpacity>   
-                            :
-                            <TouchableOpacity  onPress={()=>this.setState({ toggleAlertion:!this.state.toggleAlertion })}>
-                            <Image
-                               style={{ height: 30, width: 24 }}
-                               source={require('/home/admin1/Documents/FundooApp/AwesomeProject/image/reminderOutlined.png')}
-                               />
-                               </TouchableOpacity>
-                     
+                          
+                            //  <TouchableOpacity  onPress={()=>this.setState({ toggleAlertion:!this.state.toggleAlertion })}>
+                            
+                            //  </TouchableOpacity>   
+                            <CompoRemind
+                            handleDateTime={this.handleDateTime}
+                            />
                            }
                         
                         { 
@@ -101,11 +103,13 @@ export default class AddingNote extends Component {
                             </TouchableOpacity> 
                            }
                     </View>
+                  
                 </View>
-
-                <View style={styles.titleAndNote} >
+               
+                 <View style={styles.titleAndNote} >
+               
                     <TextInput
-                        style={{ fontSize: 40 ,backgroundColor:"pink",height:"15%"}}
+                        style={{ fontSize: 40 }}
                         placeholder="Title"
                         multiline={true}
                         value={this.state.title}
@@ -118,7 +122,7 @@ export default class AddingNote extends Component {
                         value={this.state.textNote}
                         onChangeText={textNote => this.setState({ textNote: textNote })}
                     />
-                </View>
+                </View> 
 
                 <View style={styles.bottomBar}>
                     <TouchableOpacity  >
