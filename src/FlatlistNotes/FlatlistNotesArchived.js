@@ -119,21 +119,27 @@ const styles = StyleSheet.create({
   container: {
     flex: 2,
     marginTop: Constants.statusBarHeight,
-    padding:10,
+    padding:2,
   },
   gridItem: {
-    backgroundColor: '#b3d9ff',
-    padding: 20,
+    backgroundColor: 'grey',
+    padding: 2,
     marginVertical: 4,
     marginHorizontal: 4,
-    width: '50%'
+    width: '48%',
+    borderRadius:6,
+    elevation:4,
+    borderWidth:0.25
   },
   listItem: {
-    backgroundColor: '#b3d9ff',
-    padding: 20,
+    backgroundColor: 'grey',
+    padding: 2,
     marginVertical: 4,
     marginHorizontal: 4,
-    width: '100%',
+    width: '95%',
+    borderRadius:6,
+    elevation:4,
+    borderWidth:0.25
   },
   title: {
     fontSize: 18,

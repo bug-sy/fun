@@ -8,6 +8,7 @@ import {
     View,
 } from 'react-native'
 import CompoRemind from '../Reminder/CompoRemind'
+import VerticalIcon from '../PopOverOptions/SelectionPopOver' 
 
 export default class AddingNote extends Component {
     constructor(props) {
@@ -21,19 +22,33 @@ export default class AddingNote extends Component {
             togglePinOrUnpin:false,
             toggleAlertion:false,
             toggleArchive:false,
-            reminder:'',
+            reminderDate:'',
+            reminderTime:'',
         }
     }
 
-    handleDateTime = (dateTime) => {
-        console.log("jhjhjh->",dateTime)
-        this.setState({reminder:dateTime},()=>{
-            console.log("what time this time ------->>>>",this.state.reminder)
+    handleDateTime = (date,time) => {
+        console.log("jhjhjh->",date,time)
+        this.setState({reminderDate:date,reminderTime:time},()=>{
+            console.log("what time this time ------->>>>",this.state.reminderDate,this.state.reminderTime)
         })
-    
-        // obj.trashStatus = true;
-        // updateNote(noteId, obj)
     }
+
+    handleUserNote = () => {
+        const  note = {           
+            pinStatus: this.state.pinStatus,
+            archiveStatus: this.state.archiveStatus,
+            trashStatus: this.state.trashStatus,
+            title: this.state.title,
+            textNote: this.state.textNote,
+            reminderDate:this.state.reminderDate,
+            reminderTime:this.state.reminderTime
+        }
+        if (note.title && note.textNote) {
+            createUserNote(note)
+        }
+     
+    } 
 
     render() {
         return (
@@ -41,13 +56,7 @@ export default class AddingNote extends Component {
 
                 <View style={styles.topBar}>
                     <TouchableOpacity style={{ width: '30%' }} onPress={() => {
-                        this.props.navigation.navigate('Dashboard'), createUserNote({
-                            pinStatus: this.state.pinStatus,
-                            archiveStatus: this.state.archiveStatus,
-                            trashStatus: this.state.trashStatus,
-                            title: this.state.title,
-                            textNote: this.state.textNote
-                        })
+                        this.props.navigation.navigate('Dashboard'), this.handleUserNote()
                     }}>
                         <Image
                             style={{ height: 30, width: 40 }}
@@ -74,11 +83,7 @@ export default class AddingNote extends Component {
                                            </TouchableOpacity>
                                 }
                         
-                           { 
-                          
-                            //  <TouchableOpacity  onPress={()=>this.setState({ toggleAlertion:!this.state.toggleAlertion })}>
-                            
-                            //  </TouchableOpacity>   
+                           {  
                             <CompoRemind
                             handleDateTime={this.handleDateTime}
                             />
@@ -131,12 +136,11 @@ export default class AddingNote extends Component {
                             source={require('/home/admin1/Documents/FundooApp/AwesomeProject/image/addition.png')}
                         />
                     </TouchableOpacity>
-                    <TouchableOpacity  >
-                        <Image
-                            style={{ height: 30, width: 20, top: '5%' }}
-                            source={require('/home/admin1/Documents/FundooApp/AwesomeProject/image/verticalMenu.png')}
-                        />
-                    </TouchableOpacity>
+                    {
+                        <VerticalIcon/>
+                    }
+                    
+                   
                 </View>
             </View>
         )
@@ -146,7 +150,7 @@ export default class AddingNote extends Component {
 const styles = StyleSheet.create({
     topBar: {
         flexDirection: 'row',
-        backgroundColor: '#ddddbb',
+        backgroundColor: 'transparent',
         justifyContent: 'space-between',
         borderBottomWidth: 0.5,
         padding: 9
@@ -159,10 +163,11 @@ const styles = StyleSheet.create({
     bottomBar: {
         flexDirection: 'row',
         position: 'absolute',
-        backgroundColor: '#ddddbb',
+        backgroundColor: 'transparent',
         bottom: 0,
         width: '100%',
         justifyContent: 'space-between',
+        alignItems:'flex-end',
         borderTopWidth: 0.2,
         height: '6%',
         padding:6
@@ -171,15 +176,14 @@ const styles = StyleSheet.create({
         flexDirection: 'column',
         flex: 1,
         position: "relative",
-        elevation: 10
     },
     titleAndNote: {
         flexDirection: 'column',
-        width: '100%',
+        width: '80%',
         //backgroundColor:'green',
     },
     note: {
-        height: '80%',
+        height: '60%',
         //backgroundColor:'skyblue',
         fontSize: 30,
         textAlignVertical: "top"

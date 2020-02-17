@@ -20,8 +20,8 @@ export default class App extends Component {
 
     render() {
         return (
-            <View style={{ flex: 1, flexDirection: 'column', elevation: 10 }}>
-                <View style={{ width: '100%', flexDirection: 'row', height: 45, backgroundColor: '#ddddbb', padding: 4 }}>
+            <View style={{ flex: 1, flexDirection: 'column' }}>
+                <View style={{ width: '100%', flexDirection: 'row', height: 45, backgroundColor: '#999966', padding: 4,elevation:8 }}>
                     <View style={{ flexDirection: 'row', width: '80%' }}>
                         <View style={{ flexDirection: 'row' }}>
                             <TouchableOpacity style={{ width: '12%' }}
@@ -29,7 +29,7 @@ export default class App extends Component {
                             >
                                 <Image
                                     style={{ height: 34, width: 40 }}
-                                    source={require('/home/admin1/Documents/FundooApp/AwesomeProject/image/view_list-512.png')}
+                                    source={require('/home/admin1/Documents/FundooApp/AwesomeProject/image/menuIcon2.png')}
                                 />
                             </TouchableOpacity>
                             <TouchableOpacity style={{ width: '87%', height: '100%', justifyContent: 'center', flexDirection: 'row' }}>
@@ -69,13 +69,13 @@ export default class App extends Component {
                 </View>
                 
                 <ScrollView>
-                <View style={{ justifyContent: 'center', marginBottom: 5, flex: 1 }}>
+                <View style={{ justifyContent: 'center' }}>
                     <FlatlistNotes 
                     navigation={this.props.navigation}
                     toggleGridOrList={this.state.toggleGridOrList}
                     />
                 </View>
-                 <View style={{ justifyContent: 'center', marginBottom: 45, flex: 1 }}>
+                 <View style={{ justifyContent: 'center', marginBottom: 45}}>
                     <FlatListNotesUnpinned 
                     navigation={this.props.navigation}
                     toggleGridOrList={this.state.toggleGridOrList}
@@ -83,13 +83,16 @@ export default class App extends Component {
                 </View> 
                 </ScrollView>
 
-                <View style={{ flex: 1, flexDirection: 'row', bottom: 0, position: 'absolute', backgroundColor: '#ddddbb' }}>
+                
+                <View style={{  flexDirection: 'row', bottom: 0, position: 'absolute', backgroundColor: '#999966' }}>
                     <View style={{
                         flexDirection: 'row',
                         flex: 1,
                         width: '100%',
                         justifyContent: 'space-between',
-                        padding: 6
+                        padding: 6,
+                        elevation:12
+                       
                     }}>
                         <TouchableOpacity style={{ width: '60%' }} onPress={() => this.props.navigation.navigate('AddingNote')}>
                             <Text
@@ -127,6 +130,7 @@ export default class App extends Component {
                     </View>
                 </View>
             </View>
+            
         )
     }
 }

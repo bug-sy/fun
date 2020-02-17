@@ -2,6 +2,7 @@ import React from 'react';
 import { SafeAreaView, View, FlatList, StyleSheet, Text, TouchableOpacity } from 'react-native';
 import Constants from 'expo-constants';
 import { getNotes } from '../SignUpDataLayer/'
+import { Chip } from 'react-native-paper';
 
 export default class Login extends React.Component {
   constructor(props) {
@@ -33,11 +34,12 @@ export default class Login extends React.Component {
   headerUnpinned = () => {
     return(
     <View >
-      <Text >Others</Text>
+      <Text style={{fontSize:30}}>Others</Text>
     </View>);
   }
 
   render() {
+    var moment = require('moment');
     var pinnedNote = [];
     Object.keys(this.state.notes).map((item) => {
       if(this.state.notes[item].pinStatus==false && this.state.notes[item].archiveStatus==false){
@@ -72,7 +74,7 @@ export default class Login extends React.Component {
         this.state.columnCountAnother[0]=2:this.state.columnCountAnother[0]=1
       }
 
-      const Item = ({ List,pinStatus,trashStatus,archiveStatus,noteId, title, textNote }) => {
+      const Item = ({ List,pinStatus,trashStatus,archiveStatus,noteId, title, textNote, reminderDate, reminderTime }) => {
         return (
           <View style={List==false
                       ?
@@ -87,6 +89,17 @@ export default class Login extends React.Component {
               "titleOfCurrentNote": title,"note": textNote })}>
               <Text style={styles.title}>{title}</Text>
               <Text style={styles.title}>{textNote}</Text>
+              {
+                (reminderDate!=undefined && reminderTime!=undefined)
+                ?
+                <View style={styles.reminder}>
+                <Chip icon={require('/home/admin1/Documents/FundooApp/AwesomeProject/image/alarm.png')} style={{width:160}} onPress={() => console.log('Pressed')}>
+                {moment(reminderDate).format("MMM Do")},{reminderTime}             </Chip>
+               
+                </View>
+                :
+                null
+              }
             </TouchableOpacity>
           </View>
         )
@@ -103,6 +116,7 @@ export default class Login extends React.Component {
            title={item.title} textNote={item.textNote} 
            noteId={item.noteId} pinStatus={item.pinStatus} 
            trashStatus={item.trashStatus} archiveStatus={item.archiveStatus}
+           reminderDate={item.reminderDate}  reminderTime={item.reminderTime}
           /> )
         }
         key={this.state.columnCount[0]}
@@ -120,24 +134,36 @@ const styles = StyleSheet.create({
   container: {
     flex: 2,
     marginTop: Constants.statusBarHeight,
-    padding:10,
-    //backgroundColor:"pink"
+    padding:2,
+    
   },
   gridItem: {
-    backgroundColor: '#b3d9ff',
-    padding: 20,
+    backgroundColor: 'grey',
+    padding: 2,
     marginVertical: 4,
     marginHorizontal: 4,
-    width: '50%'
+    width: '48%',
+    borderRadius:6,
+    elevation:4,
+    borderWidth:0.25
   },
   listItem: {
-    backgroundColor: '#b3d9ff',
-    padding: 20,
+    backgroundColor: 'grey',
+    padding: 2,
     marginVertical: 4,
     marginHorizontal: 4,
-    width: '100%',
+    width: '95%',
+    borderRadius:6,
+    elevation:4,
+    borderWidth:0.25
   },
   title: {
     fontSize: 18,
   },
+  reminder:{
+    display:'flex',
+    width:'100%',
+    flexDirection:'column',
+    justifyContent:'space-around'
+  }
 });

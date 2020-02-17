@@ -23,7 +23,7 @@ export default class ArchivePage extends Component {
     render() {
         return (
             <View style={{ flex: 1, flexDirection: 'column', elevation: 10 }}>
-                <View style={{ width: '100%', flexDirection: 'row', height: 45, backgroundColor: '#ddddbb', padding: 4 }}>
+                <View style={{ width: '100%', flexDirection: 'row', height: 45, backgroundColor: '#999966', padding: 4 ,elevation:8}}>
                     <View style={{ flexDirection: 'row', width: '80%' }}>
                         <View style={{ flexDirection: 'row' }}>
                             <TouchableOpacity style={{ width: '12%' }}
@@ -31,7 +31,7 @@ export default class ArchivePage extends Component {
                             >
                                 <Image
                                     style={{ height: 34, width: 40 }}
-                                    source={require('/home/admin1/Documents/FundooApp/AwesomeProject/image/view_list-512.png')}
+                                    source={require('/home/admin1/Documents/FundooApp/AwesomeProject/image/menuIcon2.png')}
                                 />
                             </TouchableOpacity>
                             <TouchableOpacity style={{ width: '77%', height: '100%', justifyContent: 'center', flexDirection: 'row' }}>

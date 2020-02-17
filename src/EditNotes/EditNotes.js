@@ -155,10 +155,11 @@ export default class AddingNote extends Component {
 const styles = StyleSheet.create({
     topBar: {
         flexDirection: 'row',
-        backgroundColor: '#ddddbb',
+        backgroundColor: 'transparent',
         justifyContent: 'space-between',
         borderBottomWidth: 0.5,
-        padding: 9
+        padding: 9,
+        
     },
     innerIcons: {
         flexDirection: 'row',
@@ -168,19 +169,19 @@ const styles = StyleSheet.create({
     bottomBar: {
         flexDirection: 'row',
         position: 'absolute',
-        backgroundColor: '#ddddbb',
+        backgroundColor: 'transparent',
         bottom: 0,
         width: '100%',
         justifyContent: 'space-between',
-        borderTopWidth: 0.5,
         height: '6%',
-        padding: 9
+        padding: 9,
+        alignItems:'flex-end',
     },
     topAndBottomBar: {
         flexDirection: 'column',
         flex: 1,
         position: "relative",
-        elevation: 10
+        
     },
     titleAndNote: {
         flexDirection: 'column',
