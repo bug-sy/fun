@@ -1,10 +1,10 @@
 import * as React from 'react';
 import { Button } from 'react-native-elements';
-import {  Paragraph, Headline } from 'react-native-paper';
+import { Paragraph, Headline } from 'react-native-paper';
 import { View, Image, ScrollView } from 'react-native';
 import { TextField } from 'material-bread';
 import { SignIn } from '../SignUpDataLayer'
-import {AsyncStorage} from 'react-native';
+import { AsyncStorage } from 'react-native';
 
 export default class Login extends React.Component {
     state = {
@@ -16,7 +16,7 @@ export default class Login extends React.Component {
         passworderror: '',
     };
 
-    handleEmailandPassword = (email,password) => {
+    handleEmailandPassword = (email, password) => {
         if (!email || !password) {
             if (!email && !password) {
                 this.setState({
@@ -25,7 +25,6 @@ export default class Login extends React.Component {
                     passworderror: "please enter password",
                     passwordError: true
                 })
-                //console.log('error')
             }
 
             else if (!email) {
@@ -33,37 +32,34 @@ export default class Login extends React.Component {
                     emailerror: "please enter email",
                     emailError: true
                 })
-                //console.log('email')
             }
 
             else if (!password) {
-                 this.setState({
-                     passworderror: "please enter password",
-                     passwordError: true
-                 })
-                 console.log("password")
-             }
+                this.setState({
+                    passworderror: "please enter password",
+                    passwordError: true
+                })
+                console.log("password")
+            }
         }
 
         else {
-                console.log('email=',email)         
-                SignIn(email,password,(notes)=>{
+            console.log('email=', email)
+            SignIn(email, password, (notes) => {
                 console.log('inside callback signin email =', notes)
                 this.props.navigation.navigate('Dashboard')
-                AsyncStorage.getItem('key').then((success)=>{
-                console.log("key is =>",success);
-            }) 
-                console.log("end of callback Sigin = ")   
-            })    
+                AsyncStorage.getItem('key').then((success) => {
+                    console.log("key is =>", success);
+                })
+                console.log("end of callback Sigin = ")
+            })
         }
     }
 
     render() {
         return (
-
             <ScrollView>
-                <View style={{ justifyContent: 'flex-start', flex: 1, alignItems: 'center' }}>
-
+                 <View style={{ justifyContent: 'flex-start', flex: 1, alignItems: 'center' }}>
 
                     <View style={{ alignItems: 'center', justifyContent: 'space-around', height: 280 }} >
                         <Headline>LogIn Page</Headline>
@@ -77,8 +73,8 @@ export default class Login extends React.Component {
                         <TextField
                             type={'outlined'}
                             label='Username'
-                            labelStyle={{backgroundColor:'transparent'}}
-                           // error={true}
+                            labelStyle={{ backgroundColor: 'transparent' }}
+                            // error={true}
                             error={this.state.emailError}
                             value={this.state.username}
                             onChangeText={username => this.setState({ username: username })}
@@ -87,7 +83,7 @@ export default class Login extends React.Component {
                         <TextField
                             type={'outlined'}
                             label='Password'
-                            labelStyle={{backgroundColor:'transparent'}}
+                            labelStyle={{ backgroundColor: 'transparent' }}
                             error={this.state.passwordError}
                             helperText={this.state.passworderror}
                             secureTextEntry={true}
@@ -96,18 +92,18 @@ export default class Login extends React.Component {
                         />
                     </View>
 
-                    <View style={{ height: 80, justifyContent: 'center',  width: 240 }}>
+                    <View style={{ height: 80, justifyContent: 'center', width: 240 }}>
                         <Button
                             title="Sign In"
                             type="outline"
                             raised="true"
-                            onPress={(e) =>this.handleEmailandPassword(this.state.username,this.state.password)}
+                            onPress={(e) => this.handleEmailandPassword(this.state.username, this.state.password)}
                         />
                     </View>
 
                     <View style={{ flexDirection: 'row', justifyContent: 'space-between', top: 140, height: 300, width: 280 }}>
                         <Paragraph >Forgot Password?</Paragraph>
-                        <Paragraph  onPress={() => this.props.navigation.navigate('SignUp')}>Sign UP</Paragraph>
+                        <Paragraph onPress={() => this.props.navigation.navigate('SignUp')}>Sign UP</Paragraph>
                     </View>
 
                 </View>

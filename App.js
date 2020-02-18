@@ -5,6 +5,7 @@ import CompoRemind from './src/Reminder/CompoRemind'
 import { Provider } from 'react-native-paper';
 import PickTheDate from './src/Reminder/PickTheDate';
 import Selection from './src/PopOverOptions/SelectionPopOver'
+import VerticalIcon from './src/VerticalIconAddingNotes/VertialIcon'
 
 
 export default class FundooApp extends Component {
@@ -16,7 +17,9 @@ export default class FundooApp extends Component {
       //<TodoList/>
      // <Selection/>
  //<CompoRemind/>
- //<PickTheDate/>
+ //<VerticalIcon/>
+ 
+
       
      
    

@@ -9,9 +9,9 @@ export default class Login extends React.Component {
     super(props)
     this.state = {
       notes: '',
-      columnCount:[],
-      pinned:'pinned',
-      columnCountAnother:[]
+      columnCount: [],
+      pinned: 'pinned',
+      columnCountAnother: []
     }
   }
 
@@ -20,112 +20,109 @@ export default class Login extends React.Component {
       this.setState({
         notes: notes
       }, () => {
-        
         console.log("inside the [FLATLIST callback] state of a note ----->  :", this.state.notes)
         Object.keys(this.state.notes).map((item) => {
-         
-          //console.log(arr)
-
         })
       })
     })
   }
 
   headerUnpinned = () => {
-    return(
-    <View >
-      <Text style={{fontSize:30}}>Others</Text>
-    </View>);
+    return (
+      <View >
+        <Text style={{ fontSize: 30 }}>Others</Text>
+      </View>);
   }
 
   render() {
     var moment = require('moment');
     var pinnedNote = [];
     Object.keys(this.state.notes).map((item) => {
-      if(this.state.notes[item].pinStatus==false && this.state.notes[item].archiveStatus==false){
-      this.state.notes[item].noteId=item
-      pinnedNote.push(this.state.notes[item])
-      console.log("pinned notes are ----->",this.state.notes[item].noteId)
+      if (this.state.notes[item].pinStatus == false && this.state.notes[item].archiveStatus == false) {
+        this.state.notes[item].noteId = item
+        pinnedNote.push(this.state.notes[item])
+        console.log("pinned notes are ----->", this.state.notes[item].noteId)
       }
     })
-    
+
     var unpinnedNote = [];
-    //console.log("inside the render KEYS ---------> ", Object.getOwnPropertyNames(this.state.notes))
     Object.keys(this.state.notes).map((item) => {
-      if(this.state.notes[item].pinStatus==false){
-      this.state.notes[item].noteId=item
-      unpinnedNote.push(this.state.notes[item])
-      console.log("the id are ----->",this.state.notes[item].noteId)
+      if (this.state.notes[item].pinStatus == false) {
+        this.state.notes[item].noteId = item
+        unpinnedNote.push(this.state.notes[item])
+        console.log("the id are ----->", this.state.notes[item].noteId)
       }
     })
 
+    {
+      this.props.toggleGridOrList == false
+        ?
+        this.state.columnCount[0] = 2
+        :
+        this.state.columnCount[0] = 1
+    }
 
-  
-      {     
-      this.props.toggleGridOrList==false
-      ?
-      this.state.columnCount[0]=2
-      : 
-      this.state.columnCount[0]=1
-      }
+    {
+      this.props.toggleGridOrList == false ?
+        this.state.columnCountAnother[0] = 2 : this.state.columnCountAnother[0] = 1
+    }
 
-      {
-        this.props.toggleGridOrList==false?
-        this.state.columnCountAnother[0]=2:this.state.columnCountAnother[0]=1
-      }
-
-      const Item = ({ List,pinStatus,trashStatus,archiveStatus,noteId, title, textNote, reminderDate, reminderTime }) => {
-        return (
-          <View style={List==false
-                      ?
-                      styles.gridItem
-                      :
-                      styles.listItem
-                      }>
-            <TouchableOpacity onPress={() => 
-              this.props.navigation.navigate('EditNotes',
-              {"pin":pinStatus,"trash":trashStatus,
-              "archive":archiveStatus,"noteId":noteId,
-              "titleOfCurrentNote": title,"note": textNote })}>
-              <Text style={styles.title}>{title}</Text>
-              <Text style={styles.title}>{textNote}</Text>
+    const Item = ({ List, pinStatus, trashStatus, archiveStatus, noteId, title, textNote, reminderDate, reminderTime }) => {
+      return (
+        <View style = {List == false
+          ?
+          styles.gridItem
+          :
+          styles.listItem
+        }>
+          <TouchableOpacity onPress = {() =>
+            this.props.navigation.navigate('VerticalIconOfEdit',
               {
-                (reminderDate!=undefined && reminderTime!=undefined)
+                "pin": pinStatus, "trash": trashStatus,
+                "archive": archiveStatus, "noteId": noteId,
+                "titleOfCurrentNote": title, "note": textNote
+              })}>
+            <Text style = {styles.title}>{title}</Text>
+            <Text style = {styles.title}>{textNote}</Text>
+            {
+              (reminderDate != undefined && reminderTime != undefined)
                 ?
-                <View style={styles.reminder}>
-                <Chip icon={require('/home/admin1/Documents/FundooApp/AwesomeProject/image/alarm.png')} style={{width:160}} onPress={() => console.log('Pressed')}>
-                {moment(reminderDate).format("MMM Do")},{reminderTime}             </Chip>
-               
+                <View style = {styles.reminder}>
+                  <Chip 
+                    icon = {require('/home/admin1/Documents/FundooApp/AwesomeProject/image/alarm.png')}
+                    style = {{ width: 160 }} onPress = {() => console.log('Pressed')}>
+                    {moment(reminderDate).format("MMM Do")},{reminderTime}
+                  </Chip>
                 </View>
                 :
                 null
-              }
-            </TouchableOpacity>
-          </View>
-        )
-      }
-     
+            }
+          </TouchableOpacity>
+        </View>
+      )
+    }
+
     return (
-      <SafeAreaView style={styles.container}>
+      <SafeAreaView style = {styles.container}>
 
         <FlatList
-          data={pinnedNote}
-          renderItem={({ item }) =>( console.log("Pinned items are ------------->>>>>> :",item)
-          ,
-          <Item List={this.props.toggleGridOrList}
-           title={item.title} textNote={item.textNote} 
-           noteId={item.noteId} pinStatus={item.pinStatus} 
-           trashStatus={item.trashStatus} archiveStatus={item.archiveStatus}
-           reminderDate={item.reminderDate}  reminderTime={item.reminderTime}
-          /> )
-        }
-        key={this.state.columnCount[0]}
-        numColumns={this.state.columnCount[0]}
-        ListHeaderComponent={this.headerUnpinned}
-       stickyHeaderIndices={[0]}
+          data = {pinnedNote}
+          renderItem = {({ item }) => (console.log("Pinned items are ------------->>>>>> :", item)
+            ,
+            <Item List = {this.props.toggleGridOrList}
+              title = {item.title} textNote = {item.textNote}
+              noteId = {item.noteId} pinStatus = {item.pinStatus}
+              trashStatus = {item.trashStatus} archiveStatus = {item.archiveStatus}
+              reminderDate = {item.reminderDate} reminderTime = {item.reminderTime}
+            />)
+          }
+          key = {this.state.columnCount[0]}
+          numColumns = {this.state.columnCount[0]}
+          ListHeaderComponent = {this.headerUnpinned}
+          stickyHeaderIndices = {[0]}
         />
+
       </SafeAreaView>
-        
     );
   }
 }
@@ -134,8 +131,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 2,
     marginTop: Constants.statusBarHeight,
-    padding:2,
-    
+    padding: 2,
   },
   gridItem: {
     backgroundColor: 'grey',
@@ -143,9 +139,9 @@ const styles = StyleSheet.create({
     marginVertical: 4,
     marginHorizontal: 4,
     width: '48%',
-    borderRadius:6,
-    elevation:4,
-    borderWidth:0.25
+    borderRadius: 6,
+    elevation: 4,
+    borderWidth: 0.25
   },
   listItem: {
     backgroundColor: 'grey',
@@ -153,17 +149,17 @@ const styles = StyleSheet.create({
     marginVertical: 4,
     marginHorizontal: 4,
     width: '95%',
-    borderRadius:6,
-    elevation:4,
-    borderWidth:0.25
+    borderRadius: 6,
+    elevation: 4,
+    borderWidth: 0.25
   },
   title: {
     fontSize: 18,
   },
-  reminder:{
-    display:'flex',
-    width:'100%',
-    flexDirection:'column',
-    justifyContent:'space-around'
+  reminder: {
+    display: 'flex',
+    width: '100%',
+    flexDirection: 'column',
+    justifyContent: 'space-around'
   }
 });

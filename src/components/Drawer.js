@@ -12,14 +12,14 @@ const MyDrawerNavigator = createDrawerNavigator({
     SignUp: {
         screen: SignUp,
     },
-    Archive:{
+    Archive: {
         screen: Archive,
     },
-  },{
-    initialRouteName:'Dashboard',
-    
-},);
-  
+}, {
+    initialRouteName: 'Dashboard',
+
+});
+
 const MyApp = createAppContainer(MyDrawerNavigator);
 
 export default MyApp
