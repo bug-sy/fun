@@ -66,19 +66,19 @@ export default class AddingNote extends Component {
                     </TouchableOpacity>
                     <View style = { styles.innerIcons }>
                         {
-                            this.props.check
+                            this.state.pinStatus
                                 ?
                                 <TouchableOpacity 
-                                onPress = { (e) => { this.props.globalChange(!this.props.check) } }
+                                onPress = { () => this.setState({ pinStatus: !this.state.pinStatus }) }
                                 
                                 >
                                     <Image
-                                        style = {{ height: 30, width: 40 }}
+                                        style = {{ height : 30, width : 40 }}
                                         source = { require('/home/admin1/Documents/FundooApp/AwesomeProject/image/pin.png') }
                                     />
                                 </TouchableOpacity>
                                 :
-                                <TouchableOpacity onPress = { (e) => { this.props.globalChange(!this.props.check)} }>
+                                <TouchableOpacity onPress = { () => this.setState({ pinStatus: !this.state.pinStatus }) }>
                                     <Image
                                         style = {{ height : 30, width : 30 }}
                                         source = { require('/home/admin1/Documents/FundooApp/AwesomeProject/image/outlinedPin.png') }
