@@ -1,25 +1,32 @@
 import { createDrawerNavigator } from 'react-navigation-drawer';
 import { createAppContainer } from 'react-navigation'
-import Login from '../components/Login'
 import SignUp from '../Signup'
 import Dashboard from '../Dashboard/Dashboard'
 import Archive from '../NavigationPages/ArchivePage'
+import ReminderPage from '../NavigationPages/ReminderPage'
+// import ReminderPage from '../Reminder/ReminderFiles/ReminderPage';
+//import ReminderPage from '/home/admin1/Documents/FundooApp/AwesomeProject/src/Reminder/ReminderFiles/ReminderPage.js'
 
 const MyDrawerNavigator = createDrawerNavigator({
+ 
     Dashboard : {
         screen : Dashboard,
     },
-    SignUp: {
+    SignUp : {
         screen : SignUp,
     },
-    Archive: {
+    Archive : {
         screen : Archive,
     },
+    ReminderPage : {
+        screen : ReminderPage,
+     },
+     
 }, {
     initialRouteName : 'Dashboard',
 
 });
 
-const MyApp = createAppContainer(MyDrawerNavigator);
+const Drawer = createAppContainer(MyDrawerNavigator);
 
-export default MyApp
+export default Drawer

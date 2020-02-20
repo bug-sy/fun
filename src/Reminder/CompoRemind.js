@@ -1,10 +1,9 @@
 import * as React from 'react';
 import { View, Image, TouchableOpacity } from 'react-native';
 import Dialog from "react-native-dialog";
-import PickTheDate from "./PickTheDate"
 import DatePicker from 'react-native-datepicker'
 
-export default class DialogTester extends React.Component {
+export default class CompoReminder extends React.Component {
   state = {
     dialogVisible : false,
     date : "2016-05-15",

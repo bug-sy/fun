@@ -4,13 +4,13 @@ import Constants from 'expo-constants';
 import { getNotes } from '../SignUpDataLayer/'
 import { Chip } from 'react-native-paper';
 
-export default class FlatListNotesArchived extends React.Component {
+export default class ReminderNotes extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
       notes : '',
       columnCount : [],
-      pinned : 'pinned',
+      pinned : 'Reminder',
       columnCountAnother : []
     }
   }
@@ -27,30 +27,22 @@ export default class FlatListNotesArchived extends React.Component {
     })
   }
 
-  headerUnpinned = () => {
+  header = () => {
     return (
       <View >
-        <Text style={{ fontSize: 30 }}>Others</Text>
+        <Text style = {{ fontSize: 30 }}>Reminder</Text>
       </View>);
   }
 
   render() {
     var moment = require('moment');
-    var pinnedNote = [];
+    var reminderNote = [];
     Object.keys(this.state.notes).map((item) => {
-      if (this.state.notes[item].pinStatus == false && this.state.notes[item].archiveStatus == false) {
+      if (this.state.notes[item].reminderDate != null
+      ) {
         this.state.notes[item].noteId = item
-        pinnedNote.push(this.state.notes[item])
-        console.log("pinned notes are ----->", this.state.notes[item].noteId)
-      }
-    })
-
-    var unpinnedNote = [];
-    Object.keys(this.state.notes).map((item) => {
-      if (this.state.notes[item].pinStatus == false) {
-        this.state.notes[item].noteId = item
-        unpinnedNote.push(this.state.notes[item])
-        console.log("the id are ----->", this.state.notes[item].noteId)
+        reminderNote.push(this.state.notes[item])
+        console.log("reminder notes are ----->", this.state.notes[item].noteId)
       }
     })
 
@@ -63,37 +55,40 @@ export default class FlatListNotesArchived extends React.Component {
     }
 
     {
-      this.props.toggleGridOrList == false ?
-        this.state.columnCountAnother[0] = 2 : this.state.columnCountAnother[0] = 1
+      this.props.toggleGridOrList == false
+        ?
+        this.state.columnCountAnother[0] = 2
+        :
+        this.state.columnCountAnother[0] = 1
     }
 
     const Item = ({ List, pinStatus, trashStatus, archiveStatus, noteId, title, textNote, reminderDate, reminderTime }) => {
       return (
-        <View style = {List == false
+        <View style = { List == false
           ?
           styles.gridItem
           :
           styles.listItem
-        }>
-          <TouchableOpacity onPress = {() =>
-            this.props.navigation.navigate('VerticalIconOfEdit',
-              {
-                "pin" : pinStatus, "trash" : trashStatus,
-                "archive" : archiveStatus, "noteId" : noteId,
-                "titleOfCurrentNote" : title, "note" : textNote
-              })}>
+        } >
+          <TouchableOpacity 
+            //   onPress = 
+            //   { () =>
+            // this.props.navigation.navigate('VerticalIconOfEdit',
+            //   {
+            //     "pin" : pinStatus, "trash" : trashStatus,
+            //     "archive" : archiveStatus, "noteId" : noteId,
+            //     "titleOfCurrentNote" : title, "note" : textNote
+            //   })}
+            >
             <Text style = { styles.title }>{ title }</Text>
             <Text style = { styles.title }>{ textNote }</Text>
             {
-              (reminderDate != undefined && reminderTime != undefined)
+              reminderDate != undefined
                 ?
-                <View style = { styles.reminder }>
-                  <Chip 
-                    icon = { require('/home/admin1/Documents/FundooApp/AwesomeProject/image/alarm.png') }
-                    style = { { width : 160 } } onPress = { () => console.log('Pressed') }>
-                    { moment(reminderDate).format("MMM Do") },{ reminderTime }
-                  </Chip>
-                </View>
+                <Chip icon = { require('/home/admin1/Documents/FundooApp/AwesomeProject/image/alarm.png') } 
+                  style = {{ width : 160 }} onPress = { () => console.log('Pressed') }>
+                  { moment(reminderDate).format("MMM Do")},{ reminderTime }
+                </Chip>
                 :
                 null
             }
@@ -106,8 +101,8 @@ export default class FlatListNotesArchived extends React.Component {
       <SafeAreaView style = { styles.container }>
 
         <FlatList
-          data = { pinnedNote }
-          renderItem = {({ item }) => (console.log("Pinned items are ------------->>>>>> :", item)
+          data = { reminderNote }
+          renderItem = {({ item }) => (console.log("Reminder items are ------------->>>>>> :", item)
             ,
             <Item List = { this.props.toggleGridOrList }
               title = { item.title } textNote = { item.textNote }
@@ -118,7 +113,7 @@ export default class FlatListNotesArchived extends React.Component {
           }
           key = { this.state.columnCount[0] }
           numColumns = { this.state.columnCount[0] }
-          ListHeaderComponent = { this.headerUnpinned }
+          ListHeaderComponent = { this.header }
           stickyHeaderIndices = { [0] }
         />
 
@@ -156,10 +151,4 @@ const styles = StyleSheet.create({
   title : {
     fontSize : 18,
   },
-  reminder : {
-    display : 'flex',
-    width : '100%',
-    flexDirection : 'column',
-    justifyContent : 'space-around'
-  }
 });

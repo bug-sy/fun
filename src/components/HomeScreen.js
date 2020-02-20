@@ -5,6 +5,7 @@ import { createStackNavigator } from 'react-navigation-stack';
 import Drawer from './Drawer'
 import Login from '../components/Login'
 import SignUp from '../Signup'
+//import MyApp from './Drawer'
 import VerticalIconOfEdit from '../EditNotes/VerticalIconOfEdit'
 import EditNotesInArchive from '../EditNotes/EditNotesInArchive'
 import VerticalIcon from '../VerticalIconAddingNotes/VertialIcon'

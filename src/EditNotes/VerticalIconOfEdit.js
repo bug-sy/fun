@@ -1,10 +1,9 @@
 import * as React from 'react';
-import { View, TouchableOpacity, Image, Text } from 'react-native';
-import { Button, Paragraph, Menu, Divider, Provider } from 'react-native-paper';
+import { View, TouchableOpacity, Image } from 'react-native';
+import { Menu, Provider } from 'react-native-paper';
 import EditNotes from '../EditNotes/EditNotes'
-import { deleteUserNote } from '../SignUpDataLayer'
 
-export default class MyComponent extends React.Component {
+export default class VerticalIconOfEdit extends React.Component {
     state = {
         visible : false,
         check : false

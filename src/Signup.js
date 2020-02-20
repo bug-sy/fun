@@ -1,11 +1,10 @@
 import * as React from 'react';
 import { Button, Input } from 'react-native-elements';
 import { TextField } from 'material-bread';
-import { TextInput, Paragraph, Headline, Card } from 'react-native-paper';
 import { Text, View, Image, ScrollView } from 'react-native';
 import { SignUp } from './SignUpDataLayer'
 
-export default class MyComponent extends React.Component {
+export default class SignUpBeforeLogin extends React.Component {
     state = {
         firstName : '',
         lastName : '',

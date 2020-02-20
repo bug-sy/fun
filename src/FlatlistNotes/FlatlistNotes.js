@@ -4,7 +4,7 @@ import Constants from 'expo-constants';
 import { getNotes } from '../SignUpDataLayer/'
 import { Chip } from 'react-native-paper';
 
-export default class Login extends React.Component {
+export default class FlatListNotesPinned extends React.Component {
   constructor(props) {
     super(props)
     this.state = {

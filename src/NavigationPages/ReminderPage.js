@@ -8,10 +8,9 @@ import {
     TouchableOpacity,
     View,
 } from 'react-native'
-import FlatlistNotes from '../FlatlistNotes/FlatlistNotes'
-import FlatListNotesUnpinned from '../FlatlistNotes/FlatListNotesUnpinned'
+import ReminderNotes from './ReminderNotes'
 
-export default class DashBoard extends Component {
+class ReminderPage extends Component {
     constructor(props) {
         super(props)
         this.state = { toggleGridOrList : false }
@@ -19,9 +18,11 @@ export default class DashBoard extends Component {
 
     render() {
         return (
-            <View style = {{ flex : 1, flexDirection : 'column' }}>
+            <View 
+             style = {{ flex : 1, flexDirection : 'column' }}
+            >
 
-                <View style = {{ width : '100%', flexDirection : 'row', height : 45, backgroundColor: '#999966', padding : 4, elevation : 8 }}>
+                <View style = {{ width : '100%', flexDirection : 'row', height : 45, backgroundColor : '#999966', padding : 4, elevation : 8 }}>
                     <View style = {{ flexDirection : 'row', width : '80%' }}>
                         <View style = {{ flexDirection : 'row' }}>
                             <TouchableOpacity style = {{ width : '12%' }}
@@ -68,68 +69,19 @@ export default class DashBoard extends Component {
 
                 <ScrollView>
                     <View style = {{ justifyContent : 'center' }}>
-                        <FlatlistNotes
+                        <ReminderNotes
                             navigation = { this.props.navigation }
                             toggleGridOrList = { this.state.toggleGridOrList }
                         />
                     </View>
-                    <View style = {{ justifyContent: 'center', marginBottom: 45 }}>
-                        <FlatListNotesUnpinned
-                            navigation = { this.props.navigation }
-                            toggleGridOrList = { this.state.toggleGridOrList }
-                        />
-                    </View>
-                </ScrollView>
+                </ScrollView> 
 
-                <View style = {{ flexDirection : 'row', bottom : 0, position : 'absolute', backgroundColor : '#999966' }}>
-                    <View style = {{
-                        flexDirection : 'row',
-                        flex : 1,
-                        width : '100%',
-                        justifyContent : 'space-between',
-                        padding : 6,
-                        elevation : 12
-                    }}>
-                        <TouchableOpacity style = {{ width : '60%' }} onPress = { () => this.props.navigation.navigate('VerticalIcon') }>
-                            <Text
-                                style = {{ fontSize : 25, width : '100%' }}
-                            >
-                                Add a note
-                            </Text>
-                        </TouchableOpacity>
-                        <View style = { styles.bottomicons }>
-                            <TouchableOpacity>
-                                <Image
-                                    style = {{ height : 33, width : 40 }}
-                                    source = { require('/home/admin1/Documents/FundooApp/AwesomeProject/image/edit.png') }
-                                />
-                            </TouchableOpacity>
-                            <TouchableOpacity>
-                                <Image
-                                    style = {{ height : 32, width : 30 }}
-                                    source = { require('/home/admin1/Documents/FundooApp/AwesomeProject/image/check-box.png') }
-                                />
-                            </TouchableOpacity>
-                            <TouchableOpacity style = {{ height: 34 }}>
-                                <Image
-                                    style = {{ height: 32, width: 32 }}
-                                    source = { require('/home/admin1/Documents/FundooApp/AwesomeProject/image/add_image.png') }
-                                />
-                            </TouchableOpacity>
-                            <TouchableOpacity style = {{ height: 34 }}>
-                                <Image
-                                    style = {{ height: 32, width: 30 }}
-                                    source = { require('/home/admin1/Documents/FundooApp/AwesomeProject/image/audio_recording.png') }
-                                />
-                            </TouchableOpacity>
-                        </View>
-                    </View>
-                </View>
-            
             </View>
         )
     }
 }
+
+export default ReminderPage;
 
 const styles = StyleSheet.create({
     container : {

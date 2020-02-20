@@ -3,7 +3,7 @@ import { View, TouchableOpacity, Image, Text } from 'react-native';
 import { Button, Paragraph, Menu, Divider, Provider } from 'react-native-paper';
 import AddingNote from '../Dashboard/AddingNote'
 
-export default class MyComponent extends React.Component {
+export default class VerticalIcon extends React.Component {
   state = {
     visible : false,
   };

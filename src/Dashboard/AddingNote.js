@@ -1,14 +1,12 @@
-import { Avatar } from 'react-native-elements';
 import React, { Component } from 'react'
 import { createUserNote } from '../SignUpDataLayer/'
-import { Text, Image, ScrollView, TextInput } from 'react-native';
+import { Image, TextInput } from 'react-native';
 import {
     StyleSheet,
     TouchableOpacity,
     View,
 } from 'react-native'
 import CompoRemind from '../Reminder/CompoRemind'
-import VerticalIcon from '../PopOverOptions/SelectionPopOver'
 
 export default class AddingNote extends Component {
     constructor(props) {

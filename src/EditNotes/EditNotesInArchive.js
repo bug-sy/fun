@@ -1,14 +1,13 @@
-import { Avatar } from 'react-native-elements';
 import React, { Component } from 'react'
-import { createUserNote, updateUserNote } from '../SignUpDataLayer'
-import { Text, Image, ScrollView, TextInput } from 'react-native';
+import { updateUserNote } from '../SignUpDataLayer'
+import { Image, TextInput } from 'react-native';
 import {
     StyleSheet,
     TouchableOpacity,
     View,
 } from 'react-native'
 
-export default class AddingNote extends Component {
+export default class EditNotesInArchive extends Component {
     constructor(props) {
         super(props)
         this.state = {
