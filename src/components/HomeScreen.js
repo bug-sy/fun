@@ -20,29 +20,29 @@ class HomeScreen extends React.Component {
 }
 
 const AppNavigator = createStackNavigator({
-  Login: {
+  Login : {
+    screen : Login, navigationOptions: { header: null }
+  },
+  Drawer : {
+    screen : Drawer, navigationOptions: { header: null }
+  },
+  Login : {
     screen: Login, navigationOptions: { header: null }
   },
-  Drawer: {
-    screen: Drawer, navigationOptions: { header: null }
-  },
-  Login: {
-    screen: Login, navigationOptions: { header: null }
-  },
-  SignUp: {
+  SignUp : {
     screen: SignUp, navigationOptions: { header: null }
   },
-  VerticalIcon: {
-    screen: VerticalIcon, navigationOptions: { header: null }
+  VerticalIcon : {
+    screen : VerticalIcon, navigationOptions: { header: null }
   },
-  VerticalIconOfEdit: {
-    screen: VerticalIconOfEdit, navigationOptions: { header: null }
+  VerticalIconOfEdit : {
+    screen : VerticalIconOfEdit, navigationOptions : { header: null }
   },
   EditNotesInArchive: {
-    screen: EditNotesInArchive, navigationOptions: { header: null }
+    screen : EditNotesInArchive, navigationOptions : { header: null }
   },
 }, {
-  initialRouteName: 'Login'
+  initialRouteName : 'Login'
 });
 
 export default createAppContainer(AppNavigator);

@@ -8,17 +8,17 @@ export default class Login extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      notes: '',
-      columnCount: [],
-      pinned: 'pinned',
-      columnCountAnother: []
+      notes : '',
+      columnCount : [],
+      pinned : 'pinned',
+      columnCountAnother : []
     }
   }
 
   componentDidMount() {
     getNotes((notes) => {
       this.setState({
-        notes: notes
+        notes : notes
       }, () => {
         console.log("inside the [FLATLIST callback] state of a note ----->  :", this.state.notes)
         Object.keys(this.state.notes).map((item) => {
@@ -78,20 +78,20 @@ export default class Login extends React.Component {
           <TouchableOpacity onPress = {() =>
             this.props.navigation.navigate('VerticalIconOfEdit',
               {
-                "pin": pinStatus, "trash": trashStatus,
-                "archive": archiveStatus, "noteId": noteId,
-                "titleOfCurrentNote": title, "note": textNote
+                "pin" : pinStatus, "trash" : trashStatus,
+                "archive" : archiveStatus, "noteId" : noteId,
+                "titleOfCurrentNote" : title, "note" : textNote
               })}>
-            <Text style = {styles.title}>{title}</Text>
-            <Text style = {styles.title}>{textNote}</Text>
+            <Text style = { styles.title }>{ title }</Text>
+            <Text style = { styles.title }>{ textNote }</Text>
             {
               (reminderDate != undefined && reminderTime != undefined)
                 ?
-                <View style = {styles.reminder}>
+                <View style = { styles.reminder }>
                   <Chip 
-                    icon = {require('/home/admin1/Documents/FundooApp/AwesomeProject/image/alarm.png')}
-                    style = {{ width: 160 }} onPress = {() => console.log('Pressed')}>
-                    {moment(reminderDate).format("MMM Do")},{reminderTime}
+                    icon = { require('/home/admin1/Documents/FundooApp/AwesomeProject/image/alarm.png') }
+                    style = { { width : 160 } } onPress = { () => console.log('Pressed') }>
+                    { moment(reminderDate).format("MMM Do") },{ reminderTime }
                   </Chip>
                 </View>
                 :
@@ -103,23 +103,23 @@ export default class Login extends React.Component {
     }
 
     return (
-      <SafeAreaView style = {styles.container}>
+      <SafeAreaView style = { styles.container }>
 
         <FlatList
-          data = {pinnedNote}
+          data = { pinnedNote }
           renderItem = {({ item }) => (console.log("Pinned items are ------------->>>>>> :", item)
             ,
-            <Item List = {this.props.toggleGridOrList}
-              title = {item.title} textNote = {item.textNote}
-              noteId = {item.noteId} pinStatus = {item.pinStatus}
-              trashStatus = {item.trashStatus} archiveStatus = {item.archiveStatus}
-              reminderDate = {item.reminderDate} reminderTime = {item.reminderTime}
+            <Item List = { this.props.toggleGridOrList }
+              title = { item.title } textNote = { item.textNote }
+              noteId = { item.noteId } pinStatus = { item.pinStatus }
+              trashStatus = { item.trashStatus } archiveStatus = { item.archiveStatus }
+              reminderDate = { item.reminderDate } reminderTime = { item.reminderTime }
             />)
           }
-          key = {this.state.columnCount[0]}
-          numColumns = {this.state.columnCount[0]}
-          ListHeaderComponent = {this.headerUnpinned}
-          stickyHeaderIndices = {[0]}
+          key = { this.state.columnCount[0] }
+          numColumns = { this.state.columnCount[0] }
+          ListHeaderComponent = { this.headerUnpinned }
+          stickyHeaderIndices = { [0] }
         />
 
       </SafeAreaView>
@@ -128,38 +128,38 @@ export default class Login extends React.Component {
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 2,
-    marginTop: Constants.statusBarHeight,
-    padding: 2,
+  container : {
+    flex : 2,
+    marginTop : Constants.statusBarHeight,
+    padding : 2,
   },
-  gridItem: {
-    backgroundColor: 'grey',
-    padding: 2,
-    marginVertical: 4,
-    marginHorizontal: 4,
-    width: '48%',
-    borderRadius: 6,
-    elevation: 4,
-    borderWidth: 0.25
+  gridItem : {
+    backgroundColor : 'grey',
+    padding : 2,
+    marginVertical : 4,
+    marginHorizontal : 4,
+    width : '48%',
+    borderRadius : 6,
+    elevation : 4,
+    borderWidth : 0.25
   },
-  listItem: {
-    backgroundColor: 'grey',
-    padding: 2,
-    marginVertical: 4,
-    marginHorizontal: 4,
-    width: '95%',
-    borderRadius: 6,
-    elevation: 4,
-    borderWidth: 0.25
+  listItem : {
+    backgroundColor : 'grey',
+    padding : 2,
+    marginVertical : 4,
+    marginHorizontal : 4,
+    width : '95%',
+    borderRadius : 6,
+    elevation : 4,
+    borderWidth : 0.25
   },
-  title: {
-    fontSize: 18,
+  title : {
+    fontSize : 18,
   },
-  reminder: {
-    display: 'flex',
-    width: '100%',
-    flexDirection: 'column',
-    justifyContent: 'space-around'
+  reminder : {
+    display : 'flex',
+    width : '100%',
+    flexDirection : 'column',
+    justifyContent : 'space-around'
   }
 });

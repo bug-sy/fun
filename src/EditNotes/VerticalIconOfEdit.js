@@ -6,16 +6,16 @@ import { deleteUserNote } from '../SignUpDataLayer'
 
 export default class MyComponent extends React.Component {
     state = {
-        visible: false,
-        check: false
+        visible : false,
+        check : false
     };
 
-    _openMenu = () => this.setState({ visible: true });
-    _closeMenu = () => this.setState({ visible: false });
+    _openMenu = () => this.setState({ visible : true });
+    _closeMenu = () => this.setState({ visible : false });
 
     globalChange(item)
     {
-        this.setState({check:item})
+        this.setState({check : item})
     }
 
     render() {
@@ -23,45 +23,45 @@ export default class MyComponent extends React.Component {
             <Provider >
 
                 <EditNotes
-                    navigation = {this.props.navigation}
-                     check = {this.state.check}
+                    navigation = { this.props.navigation }
+                     check = { this.state.check }
 
-                     globalChange = {this.globalChange.bind(this)}
+                     globalChange = { this.globalChange.bind(this) }
                 />
                 <View
                     style = {{
-                        bottom: 0,
-                        position: 'absolute',
-                        flexDirection: 'row',
-                        justifyContent: 'space-between',
-                        width: '100%',
-                        elevation: 40,
-                        padding: 8
+                        bottom : 0,
+                        position : 'absolute',
+                        flexDirection : 'row',
+                        justifyContent : 'space-between',
+                        width : '100%',
+                        elevation : 40,
+                        padding : 8
                     }}>
                     <TouchableOpacity  >
                         <Image
-                            style = {{ height: 30, width: 40, top: '5%' }}
+                            style = {{ height : 30, width : 40, top : '5%' }}
                             source = {require('/home/admin1/Documents/FundooApp/AwesomeProject/image/addition.png')}
                         />
                     </TouchableOpacity>
                     <Menu
-                        visible = {this.state.visible}
-                        onDismiss = {this._closeMenu}
+                        visible = { this.state.visible }
+                        onDismiss = { this._closeMenu }
                         anchor = {
-                            <TouchableOpacity onPress = {() => { this._openMenu() }} style = {{ width: '100%' }}>
+                            <TouchableOpacity onPress = {() => { this._openMenu() }} style = {{ width : '100%' }}>
                                 <Image
-                                    style = {{ height: 30, width: 30, top: '5%' }}
-                                    source = {require('/home/admin1/Documents/FundooApp/AwesomeProject/image/verticalMenu.png')}
+                                    style = {{ height : 30, width : 30, top : '5%' }}
+                                    source = { require('/home/admin1/Documents/FundooApp/AwesomeProject/image/verticalMenu.png') }
                                 />
                             </TouchableOpacity>
                         }
-                        style = {{ width: '100%', paddingBottom: 30 }}
+                        style = {{ width : '100%', paddingBottom : 30 }}
                     >
-                        <Menu.Item icon = {require('/home/admin1/Documents/FundooApp/AwesomeProject/image/trash.png')} onPress = {() => { console.log("noteIdforDeletion----->>>>>>>", this.state.noteUpdationId) }} title = "Delete" />
-                        <Menu.Item icon = {require('/home/admin1/Documents/FundooApp/AwesomeProject/image/CopyIcon.png')} onPress = {() => { }} title = "Make a copy" />
-                        <Menu.Item icon = {require('/home/admin1/Documents/FundooApp/AwesomeProject/image/SendIcon.png')} onPress = {() => { }} title = "Send" />
-                        <Menu.Item icon = {require('/home/admin1/Documents/FundooApp/AwesomeProject/image/addaccount.png')} onPress = {() => { }} title = "Collaborator" />
-                        <Menu.Item icon = {require('/home/admin1/Documents/FundooApp/AwesomeProject/image/addaccount.png')} onPress = {() => { }} title = "Labels" />
+                        <Menu.Item icon = { require('/home/admin1/Documents/FundooApp/AwesomeProject/image/trash.png') } onPress = { () => { console.log("noteIdforDeletion----->>>>>>>", this.state.noteUpdationId)} } title = "Delete" />
+                        <Menu.Item icon = { require('/home/admin1/Documents/FundooApp/AwesomeProject/image/CopyIcon.png') } onPress = { () => { } } title = "Make a copy" />
+                        <Menu.Item icon = { require('/home/admin1/Documents/FundooApp/AwesomeProject/image/SendIcon.png') } onPress = { () => { } } title = "Send" />
+                        <Menu.Item icon = { require('/home/admin1/Documents/FundooApp/AwesomeProject/image/addaccount.png') } onPress = { () => { } } title = "Collaborator" />
+                        <Menu.Item icon = { require('/home/admin1/Documents/FundooApp/AwesomeProject/image/addaccount.png') } onPress = { () => { } } title = "Labels" />
                     </Menu>
                 </View>
             

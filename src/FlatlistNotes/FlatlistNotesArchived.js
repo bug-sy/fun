@@ -7,17 +7,17 @@ export default class FlatlistNotesArchived extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      notes: '',
-      columnCount: [],
-      pinned: 'pinned',
-      columnCountAnother: []
+      notes : '',
+      columnCount : [],
+      pinned : 'pinned',
+      columnCountAnother : []
     }
   }
 
   componentDidMount() {
     getNotes((notes) => {
       this.setState({
-        notes: notes
+        notes : notes
       }, () => {
         console.log("inside the [FLATLIST callback] state of a note ----->  :", this.state.notes)
         Object.keys(this.state.notes).map((item) => {
@@ -29,7 +29,7 @@ export default class FlatlistNotesArchived extends React.Component {
   headerArchive = () => {
     return (
       <View >
-        <Text >Archive</Text>
+        <Text>Archive</Text>
       </View>);
   }
 
@@ -64,43 +64,43 @@ export default class FlatlistNotesArchived extends React.Component {
 
     const Item = ({ List, pinStatus, trashStatus, archiveStatus, noteId, title, textNote }) => {
       return (
-        <View style = {List == false
+        <View style = { List == false
           ?
           styles.gridItem
           :
           styles.listItem
         }>
-          <TouchableOpacity onPress = {() =>
+          <TouchableOpacity onPress = { () =>
             this.props.navigation.navigate('EditNotesInArchive',
               {
-                "pin": pinStatus, "trash": trashStatus,
-                "archive": archiveStatus, "noteId": noteId,
-                "titleOfCurrentNote": title, "note": textNote
+                "pin" : pinStatus, "trash" : trashStatus,
+                "archive" : archiveStatus, "noteId" : noteId,
+                "titleOfCurrentNote" : title, "note" : textNote
               })}>
-            <Text style = {styles.title}>{title}</Text>
-            <Text style = {styles.title}>{textNote}</Text>
+            <Text style = { styles.title }>{ title }</Text>
+            <Text style = { styles.title }>{ textNote }</Text>
           </TouchableOpacity>
         </View>
       )
     }
 
     return (
-      <SafeAreaView style = {styles.container}>
+      <SafeAreaView style = { styles.container }>
 
         <FlatList
-          data = {archiveNote}
-          renderItem = {({ item }) => (console.log("Pinned items are ------------->>>>>> :", item)
+          data = { archiveNote }
+          renderItem = { ({ item }) => (console.log("Pinned items are ------------->>>>>> :", item)
             ,
-            <Item List = {this.props.toggleGridOrList}
-              title = {item.title} textNote = {item.textNote}
-              noteId = {item.noteId} pinStatus = {item.pinStatus}
-              trashStatus = {item.trashStatus} archiveStatus = {item.archiveStatus}
+            <Item List = { this.props.toggleGridOrList }
+              title = { item.title } textNote = { item.textNote }
+              noteId = { item.noteId } pinStatus = { item.pinStatus }
+              trashStatus = { item.trashStatus } archiveStatus = { item.archiveStatus }
             />)
           }
-          key = {this.state.columnCount[0]}
-          numColumns = {this.state.columnCount[0]}
-          ListHeaderComponent = {this.headerArchive}
-          stickyHeaderIndices = {[0]}
+          key = { this.state.columnCount[0] }
+          numColumns = { this.state.columnCount[0] }
+          ListHeaderComponent = { this.headerArchive }
+          stickyHeaderIndices = { [0] }
         />
 
       </SafeAreaView>
@@ -109,32 +109,32 @@ export default class FlatlistNotesArchived extends React.Component {
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 2,
-    marginTop: Constants.statusBarHeight,
-    padding: 2,
+  container : {
+    flex : 2,
+    marginTop : Constants.statusBarHeight,
+    padding : 2,
   },
-  gridItem: {
-    backgroundColor: 'grey',
-    padding: 2,
-    marginVertical: 4,
-    marginHorizontal: 4,
-    width: '48%',
-    borderRadius: 6,
-    elevation: 4,
-    borderWidth: 0.25
+  gridItem : {
+    backgroundColor : 'grey',
+    padding : 2,
+    marginVertical : 4,
+    marginHorizontal : 4,
+    width : '48%',
+    borderRadius : 6,
+    elevation : 4,
+    borderWidth : 0.25
   },
-  listItem: {
-    backgroundColor: 'grey',
-    padding: 2,
-    marginVertical: 4,
-    marginHorizontal: 4,
-    width: '95%',
-    borderRadius: 6,
-    elevation: 4,
-    borderWidth: 0.25
+  listItem : {
+    backgroundColor : 'grey',
+    padding : 2,
+    marginVertical : 4,
+    marginHorizontal : 4,
+    width : '95%',
+    borderRadius : 6,
+    elevation : 4,
+    borderWidth : 0.25
   },
-  title: {
-    fontSize: 18,
+  title : {
+    fontSize : 18,
   },
 });

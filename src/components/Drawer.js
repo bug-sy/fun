@@ -6,17 +6,17 @@ import Dashboard from '../Dashboard/Dashboard'
 import Archive from '../NavigationPages/ArchivePage'
 
 const MyDrawerNavigator = createDrawerNavigator({
-    Dashboard: {
-        screen: Dashboard,
+    Dashboard : {
+        screen : Dashboard,
     },
     SignUp: {
-        screen: SignUp,
+        screen : SignUp,
     },
     Archive: {
-        screen: Archive,
+        screen : Archive,
     },
 }, {
-    initialRouteName: 'Dashboard',
+    initialRouteName : 'Dashboard',
 
 });
 
