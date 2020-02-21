@@ -5,10 +5,11 @@ import { createStackNavigator } from 'react-navigation-stack';
 import Drawer from './Drawer'
 import Login from '../components/Login'
 import SignUp from '../Signup'
-//import MyApp from './Drawer'
 import VerticalIconOfEdit from '../EditNotes/VerticalIconOfEdit'
 import EditNotesInArchive from '../EditNotes/EditNotesInArchive'
 import VerticalIcon from '../VerticalIconAddingNotes/VertialIcon'
+import BottomBarWithReminder from '../EditNotes/BottomBarWithReminder'
+import SplashScreen from './SplashScreen'
 
 class HomeScreen extends React.Component {
   render() {
@@ -23,6 +24,9 @@ class HomeScreen extends React.Component {
 const AppNavigator = createStackNavigator({
   Login : {
     screen : Login, navigationOptions: { header: null }
+  },
+  SplashScreen:{
+    screen : SplashScreen, navigationOptions: { header: null }
   },
   Drawer : {
     screen : Drawer, navigationOptions: { header: null }
@@ -42,8 +46,11 @@ const AppNavigator = createStackNavigator({
   EditNotesInArchive: {
     screen : EditNotesInArchive, navigationOptions : { header: null }
   },
+  BottomBarWithReminder: {
+    screen : BottomBarWithReminder, navigationOptions : { header: null }
+  },
 }, {
-  initialRouteName : 'Login'
+  initialRouteName : 'SplashScreen'
 });
 
 export default createAppContainer(AppNavigator);

@@ -29,7 +29,7 @@ export default class FlatlistNotesArchived extends React.Component {
   headerArchive = () => {
     return (
       <View >
-        <Text>Archive</Text>
+        <Text style={{fontSize:30}}>Archive</Text>
       </View>);
   }
 

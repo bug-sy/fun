@@ -8,6 +8,7 @@ import {
     View,
 } from 'react-native'
 import FlatlistNotesArchived from '../FlatlistNotes/FlatlistNotesArchived'
+import { ScrollView } from 'react-native-gesture-handler';
 
 export default class ArchivePage extends Component {
     constructor(props) {
@@ -67,12 +68,14 @@ export default class ArchivePage extends Component {
                     </View>
                 </View>
 
+               <ScrollView>
                 <View style = {{ justifyContent : 'center', marginBottom : 5, flex : 1 }}>
                     <FlatlistNotesArchived
                         navigation = { this.props.navigation }
                         toggleGridOrList = { this.state.toggleGridOrList }
                     />
                 </View>
+                </ScrollView>
 
             </View>
         )

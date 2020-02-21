@@ -62,12 +62,13 @@ export default class AddingNote extends Component {
                     </TouchableOpacity>
                     <View style = { styles.innerIcons }>
                         {
-                            this.state.togglePinOrUnpin != false
+                            this.state.togglePinOrUnpin
                                 ?
                                 <TouchableOpacity onPress = { () => this.setState({ togglePinOrUnpin: !this.state.togglePinOrUnpin })}>
                                     <Image
                                         style = {{ height : 30, width : 40 }}
-                                        source = { require('/home/admin1/Documents/FundooApp/AwesomeProject/image/pin.png' )}
+                                        source = { require('/home/admin1/Documents/FundooApp/AwesomeProject/image/pinned.png' )}
+                                      
                                     />
                                 </TouchableOpacity>
                                 :
@@ -75,7 +76,7 @@ export default class AddingNote extends Component {
                                 <TouchableOpacity onPress = { () => this.setState({ togglePinOrUnpin: !this.state.togglePinOrUnpin })}>
                                     <Image
                                         style = {{ height : 30, width : 30 }}
-                                        source = { require('/home/admin1/Documents/FundooApp/AwesomeProject/image/outlinedPin.png' )}
+                                        source = { require('/home/admin1/Documents/FundooApp/AwesomeProject/image/pin.png' )}
                                     />
                                 </TouchableOpacity>
                         }
@@ -99,7 +100,7 @@ export default class AddingNote extends Component {
                                 <TouchableOpacity onPress = { () => this.setState({ toggleArchive: !this.state.toggleArchive })}>
                                     <Image
                                         style = {{ height : 30, width : 30 }}
-                                        source = { require('/home/admin1/Documents/FundooApp/AwesomeProject/image/forArchive.png') }
+                                        source = { require('/home/admin1/Documents/FundooApp/AwesomeProject/image/unArchive.png') }
                                     />
                                 </TouchableOpacity>
                         }

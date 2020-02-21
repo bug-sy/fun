@@ -14,6 +14,7 @@ export default class Login extends React.Component {
         emailError : '',
         passwordError : '',
         passworderror : '',
+        auth:true,
     };
 
     handleEmailandPassword = (email, password) => {
@@ -48,9 +49,13 @@ export default class Login extends React.Component {
             SignIn(email, password, (notes) => {
                 console.log('inside callback signin email =', notes)
                 this.props.navigation.navigate('Dashboard')
-                AsyncStorage.getItem('key').then((success) => {
-                    console.log("key is =>", success);
+                AsyncStorage.setItem('authentication', "true")
+                AsyncStorage.getItem('authentication').then((auth) => {
+                    console.log("authentication is =============>", auth);
+                }).catch((error) => {
+                    console.log(error)
                 })
+            
                 console.log("end of callback Sigin = ")
             })
         }

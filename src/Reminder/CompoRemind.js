@@ -29,7 +29,7 @@ export default class CompoReminder extends React.Component {
 
           <TouchableOpacity onPress = { this.showDialog }>
             <Image
-              style = {{ height : 30, width : 24 }}
+              style = {{ height : 30, width : 30 }}
               source = { require('/home/admin1/Documents/FundooApp/AwesomeProject/image/reminderOutlined.png') }
             />
           </TouchableOpacity>

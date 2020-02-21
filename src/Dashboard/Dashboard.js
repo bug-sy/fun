@@ -21,7 +21,7 @@ export default class DashBoard extends Component {
         return (
             <View style = {{ flex : 1, flexDirection : 'column' }}>
 
-                <View style = {{ width : '100%', flexDirection : 'row', height : 45, backgroundColor: '#999966', padding : 4, elevation : 8 }}>
+                <View style = {{ width : '100%', flexDirection : 'row', height : 45, backgroundColor: '#999966', padding : 4, elevation : 20 }}>
                     <View style = {{ flexDirection : 'row', width : '80%' }}>
                         <View style = {{ flexDirection : 'row' }}>
                             <TouchableOpacity style = {{ width : '12%' }}

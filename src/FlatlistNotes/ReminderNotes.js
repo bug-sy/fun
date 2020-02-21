@@ -71,14 +71,14 @@ export default class ReminderNotes extends React.Component {
           styles.listItem
         } >
           <TouchableOpacity 
-            //   onPress = 
-            //   { () =>
-            // this.props.navigation.navigate('VerticalIconOfEdit',
-            //   {
-            //     "pin" : pinStatus, "trash" : trashStatus,
-            //     "archive" : archiveStatus, "noteId" : noteId,
-            //     "titleOfCurrentNote" : title, "note" : textNote
-            //   })}
+               onPress = 
+              { () =>
+            this.props.navigation.navigate('BottomBarWithReminder',
+              {
+                "pin" : pinStatus, "trash" : trashStatus,
+                "archive" : archiveStatus, "noteId" : noteId,
+                "titleOfCurrentNote" : title, "note" : textNote
+              })}
             >
             <Text style = { styles.title }>{ title }</Text>
             <Text style = { styles.title }>{ textNote }</Text>

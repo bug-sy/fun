@@ -8,7 +8,7 @@ import {
     TouchableOpacity,
     View,
 } from 'react-native'
-import ReminderNotes from './ReminderNotes'
+import ReminderNotes from '../FlatlistNotes/ReminderNotes'
 
 class ReminderPage extends Component {
     constructor(props) {

@@ -20,8 +20,15 @@ export function SignIn(email, password, callback) {
         password,
     ).then((success) => {
         AsyncStorage.setItem('key', success.user.uid)
-        const id = AsyncStorage.getItem('key')
-        return callback(success.user.uid)
+        // AsyncStorage.multiSet(
+        // ['key',success.user.uid] ,
+        // ['authentication', true],
+        // )
+   
+         AsyncStorage.getItem('key').then((data)=>{
+             console.log("data is",data)
+         })
+        return callback( success.user.uid)
     }).catch((err) => { console.log('err in login =>', err) })
 }
 

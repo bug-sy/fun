@@ -72,15 +72,15 @@ export default class EditNotesPinned extends Component {
                                 
                                 >
                                     <Image
-                                        style = {{ height : 30, width : 40 }}
-                                        source = { require('/home/admin1/Documents/FundooApp/AwesomeProject/image/pin.png') }
+                                        style = {{ height : 30, width : 32 }}
+                                        source = { require('/home/admin1/Documents/FundooApp/AwesomeProject/image/pinned.png') } 
                                     />
                                 </TouchableOpacity>
                                 :
                                 <TouchableOpacity onPress = { () => this.setState({ pinStatus: !this.state.pinStatus }) }>
                                     <Image
-                                        style = {{ height : 30, width : 30 }}
-                                        source = { require('/home/admin1/Documents/FundooApp/AwesomeProject/image/outlinedPin.png') }
+                                        style = {{ height : 26, width : 32 }}
+                                        source = { require('/home/admin1/Documents/FundooApp/AwesomeProject/image/pin.png') }
                                     />
                                 </TouchableOpacity>
                         }
@@ -94,15 +94,15 @@ export default class EditNotesPinned extends Component {
                                 ?
                                 <TouchableOpacity onPress = { () => this.setState({ archiveStatus: !this.state.archiveStatus }) }>
                                     <Image
-                                        style = {{ height : 30, width : 24 }}
-                                        source = { require('/home/admin1/Documents/FundooApp/AwesomeProject/image/archive.png') }
+                                        style = {{ height : 33, width : 24 }}
+                                        source = { require('/home/admin1/Documents/FundooApp/AwesomeProject/image/unArchive.png') }
                                     />
                                 </TouchableOpacity>
                                 :
                                 <TouchableOpacity onPress = { () => this.setState({ archiveStatus: !this.state.archiveStatus }) }>
                                     <Image
-                                        style = {{ height : 30, width : 30 }}
-                                        source = { require('/home/admin1/Documents/FundooApp/AwesomeProject/image/forArchive.png') }
+                                        style = {{ height : 33, width : 30  }}
+                                        source = { require('/home/admin1/Documents/FundooApp/AwesomeProject/image/archive.png') }
                                     />
                                 </TouchableOpacity>
                         }
