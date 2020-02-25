@@ -20,7 +20,6 @@ export default class FlatListNotesPinned extends React.Component {
       this.setState({
         notes : notes
       }, () => {
-        console.log("inside the [FLATLIST callback] state of a note ----->  :", this.state.notes)
         Object.keys(this.state.notes).map((item) => {
         })
       })
@@ -42,7 +41,6 @@ export default class FlatListNotesPinned extends React.Component {
       ) {
         this.state.notes[item].noteId = item
         pinnedNote.push(this.state.notes[item])
-        console.log("pinned notes are ----->", this.state.notes[item].noteId)
       }
     })
 

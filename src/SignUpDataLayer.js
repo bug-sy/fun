@@ -20,13 +20,7 @@ export function SignIn(email, password, callback) {
         password,
     ).then((success) => {
         AsyncStorage.setItem('key', success.user.uid)
-        // AsyncStorage.multiSet(
-        // ['key',success.user.uid] ,
-        // ['authentication', true],
-        // )
-   
          AsyncStorage.getItem('key').then((data)=>{
-             console.log("data is",data)
          })
         return callback( success.user.uid)
     }).catch((err) => { console.log('err in login =>', err) })
@@ -64,4 +58,25 @@ export function deleteUserNote(noteDeletionId) {
 
 
 
+export function createLabelNote(labelData) {
+    AsyncStorage.getItem('key').then((success) => {
+    console.log("uid----->",success,"labelData ------->",labelData)
+    firebaseDatabaseRef.ref('/users /' + '/labels/').push(labelData);
+    console.log("labelData entered in firebase")
+}).catch((err) => { console.log('err in deleting note =>', err) })
+}
 
+export function getLabels(callback) {
+    firebaseDatabaseRef.ref('/users /' + '/labels/').on('value', (snapshot) => {
+        console.log("get Labels", snapshot.val())
+        callback(snapshot.val())
+    })
+}
+
+export function updateTheLabel(labelKeyToUpdate,noteLabel) {
+    firebaseDatabaseRef.ref('/users /' + '/labels/' + labelKeyToUpdate).update(noteLabel)
+}
+
+export function deleteTheLabel(labelKeyToUpdate) {
+    firebaseDatabaseRef.ref('/users /' + '/labels/' + labelKeyToUpdate).remove()
+}

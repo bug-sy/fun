@@ -6,18 +6,19 @@ import { Provider } from 'react-native-paper';
 import PickTheDate from './src/Reminder/PickTheDate';
 import Selection from './src/PopOverOptions/SelectionPopOver'
 import VerticalIcon from './src/VerticalIconAddingNotes/VertialIcon'
-
+import CreateLabel from './src/NavigationPages/CreateLabel'
 
 export default class FundooApp extends Component {
   render() {
     return (    
     
-     <HomeScreen/> 
+    <HomeScreen/> 
       //<Flatlist/
       //<TodoList/>
      // <Selection/>
  //<CompoRemind/>
  //<VerticalIcon/>
+ //<CreateLabel/>
  
 
       

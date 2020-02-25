@@ -4,6 +4,7 @@ import SignUp from '../Signup'
 import Dashboard from '../Dashboard/Dashboard'
 import Archive from '../NavigationPages/ArchivePage'
 import ReminderPage from '../NavigationPages/ReminderPage'
+import CreateLabel from '../NavigationPages/CreateLabel'
 // import ReminderPage from '../Reminder/ReminderFiles/ReminderPage';
 //import ReminderPage from '/home/admin1/Documents/FundooApp/AwesomeProject/src/Reminder/ReminderFiles/ReminderPage.js'
 
@@ -11,6 +12,9 @@ const MyDrawerNavigator = createDrawerNavigator({
  
     Dashboard : {
         screen : Dashboard,
+    },
+    CreateLabel : {
+        screen : CreateLabel,
     },
     SignUp : {
         screen : SignUp,

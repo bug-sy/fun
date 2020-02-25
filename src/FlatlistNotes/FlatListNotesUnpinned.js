@@ -20,7 +20,6 @@ export default class FlatListNotesArchived extends React.Component {
       this.setState({
         notes : notes
       }, () => {
-        console.log("inside the [FLATLIST callback] state of a note ----->  :", this.state.notes)
         Object.keys(this.state.notes).map((item) => {
         })
       })
@@ -41,7 +40,6 @@ export default class FlatListNotesArchived extends React.Component {
       if (this.state.notes[item].pinStatus == false && this.state.notes[item].archiveStatus == false) {
         this.state.notes[item].noteId = item
         pinnedNote.push(this.state.notes[item])
-        console.log("pinned notes are ----->", this.state.notes[item].noteId)
       }
     })
 
@@ -50,7 +48,6 @@ export default class FlatListNotesArchived extends React.Component {
       if (this.state.notes[item].pinStatus == false) {
         this.state.notes[item].noteId = item
         unpinnedNote.push(this.state.notes[item])
-        console.log("the id are ----->", this.state.notes[item].noteId)
       }
     })
 
@@ -90,7 +87,7 @@ export default class FlatListNotesArchived extends React.Component {
                 <View style = { styles.reminder }>
                   <Chip 
                     icon = { require('/home/admin1/Documents/FundooApp/AwesomeProject/image/alarm.png') }
-                    style = { { width : 160 } } onPress = { () => console.log('Pressed') }>
+                    style = { { width : 160 } } >
                     { moment(reminderDate).format("MMM Do") },{ reminderTime }
                   </Chip>
                 </View>

@@ -20,7 +20,6 @@ export default class ReminderNotes extends React.Component {
       this.setState({
         notes : notes
       }, () => {
-        console.log("inside the [FLATLIST callback] state of a note ----->  :", this.state.notes)
         Object.keys(this.state.notes).map((item) => {
         })
       })
@@ -42,7 +41,6 @@ export default class ReminderNotes extends React.Component {
       ) {
         this.state.notes[item].noteId = item
         reminderNote.push(this.state.notes[item])
-        console.log("reminder notes are ----->", this.state.notes[item].noteId)
       }
     })
 

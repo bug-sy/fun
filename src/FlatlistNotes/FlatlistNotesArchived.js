@@ -19,7 +19,7 @@ export default class FlatlistNotesArchived extends React.Component {
       this.setState({
         notes : notes
       }, () => {
-        console.log("inside the [FLATLIST callback] state of a note ----->  :", this.state.notes)
+        
         Object.keys(this.state.notes).map((item) => {
         })
       })
@@ -42,7 +42,6 @@ export default class FlatlistNotesArchived extends React.Component {
       ) {
         this.state.notes[item].noteId = item
         archiveNote.push(this.state.notes[item])
-        console.log("the archive are ----->", archiveNote)
       }
     })
 
@@ -89,7 +88,7 @@ export default class FlatlistNotesArchived extends React.Component {
 
         <FlatList
           data = { archiveNote }
-          renderItem = { ({ item }) => (console.log("Pinned items are ------------->>>>>> :", item)
+          renderItem = { ({ item }) => (("Pinned items are ------------->>>>>> :", item)
             ,
             <Item List = { this.props.toggleGridOrList }
               title = { item.title } textNote = { item.textNote }
