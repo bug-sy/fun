@@ -7,6 +7,7 @@ import PickTheDate from './src/Reminder/PickTheDate';
 import Selection from './src/PopOverOptions/SelectionPopOver'
 import VerticalIcon from './src/VerticalIconAddingNotes/VertialIcon'
 import CreateLabel from './src/NavigationPages/CreateLabel'
+import Search from './src/components/Search'
 
 export default class FundooApp extends Component {
   render() {
@@ -19,6 +20,8 @@ export default class FundooApp extends Component {
  //<CompoRemind/>
  //<VerticalIcon/>
  //<CreateLabel/>
+ //<Search/>
+
  
 
       

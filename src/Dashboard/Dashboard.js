@@ -32,7 +32,8 @@ export default class DashBoard extends Component {
                                     source = { require('/home/admin1/Documents/FundooApp/AwesomeProject/image/menuIcon2.png') }
                                 />
                             </TouchableOpacity>
-                            <TouchableOpacity style = {{ width : '87%', height : '100%', justifyContent : 'center', flexDirection : 'row' }}>
+                            <TouchableOpacity style = {{ width : '87%', height : '100%', justifyContent : 'center', flexDirection : 'row' }}
+                            onPress = { () => this.props.navigation.navigate('SearchNotes') }>
                                 <Text
                                     style = {{ fontSize : 25 }}
                                 >

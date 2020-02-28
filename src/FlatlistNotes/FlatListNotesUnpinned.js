@@ -82,7 +82,7 @@ export default class FlatListNotesArchived extends React.Component {
             <Text style = { styles.title }>{ title }</Text>
             <Text style = { styles.title }>{ textNote }</Text>
             {
-              (reminderDate != undefined && reminderTime != undefined)
+              reminderDate 
                 ?
                 <View style = { styles.reminder }>
                   <Chip 

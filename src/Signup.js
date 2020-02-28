@@ -40,14 +40,11 @@ export default class SignUpBeforeLogin extends React.Component {
                     passworderror : "please enter password",
                     passwordError : true
                 })
-                console.log("password")
             }
         }
 
         else {
-            console.log('email=', email)
             SignUp(firstName, lastName, email, password, (notes) => {
-                console.log('inside callback signup firstName =', notes)
                 this.props.navigation.navigate('Login')
             })
         }

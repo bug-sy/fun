@@ -62,12 +62,9 @@ export default class ArchivePage extends Component {
                                 </TouchableOpacity>
         
                                 <TextInput
-                                   // style={styles.textLabel}
-                                   // label = {this.state.displayLabel[key].labelName}
                                     multiline={true}
                                     value={ this.state.editLabel === '' ? this.props.labelName : this.state.editLabel }
                                     onChangeText = {(text) => this.changeLabel(text)}
-                                    // onChangeText={(event) => this.labelModification(this.state.displayLabel[key].labelName)}
                                 />
         
                                 <TouchableOpacity
@@ -94,11 +91,6 @@ export default class ArchivePage extends Component {
 
                     <Text
                         style={styles.textLabel}
-                       // label = {this.state.displayLabel[key].labelName}
-                        //multiline={true}
-                       
-                        //onChangeText = {(text) => this.changeLabel(text)}
-                        // onChangeText={(event) => this.labelModification(this.state.displayLabel[key].labelName)}
                     >{this.props.labelName }</Text>
 
                     <TouchableOpacity
@@ -167,7 +159,6 @@ const styles = StyleSheet.create({
         fontSize: 20,
         height: '80%',
         width: '70%',
-        //backgroundColor: 'blue',
         alignSelf : 'flex-end',
         justifyContent : 'center'
     },

@@ -10,6 +10,7 @@ import EditNotesInArchive from '../EditNotes/EditNotesInArchive'
 import VerticalIcon from '../VerticalIconAddingNotes/VertialIcon'
 import BottomBarWithReminder from '../EditNotes/BottomBarWithReminder'
 import SplashScreen from './SplashScreen'
+import SearchNotes from '../FlatlistNotes/SearchNotes'
 
 class HomeScreen extends React.Component {
   render() {
@@ -30,6 +31,9 @@ const AppNavigator = createStackNavigator({
   },
   Drawer : {
     screen : Drawer, navigationOptions: { header: null }
+  },
+  SearchNotes : {
+    screen : SearchNotes, navigationOptions: { header: null }
   },
   Login : {
     screen: Login, navigationOptions: { header: null }

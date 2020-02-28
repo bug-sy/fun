@@ -78,7 +78,7 @@ export default class FlatListNotesPinned extends React.Component {
             <Text style = { styles.title }>{ title }</Text>
             <Text style = { styles.title }>{ textNote }</Text>
             {
-              reminderDate != undefined
+              reminderDate 
                 ?
                 <Chip icon = { require('/home/admin1/Documents/FundooApp/AwesomeProject/image/alarm.png') } 
                   style = {{ width : 160 }} onPress = { () => console.log('Pressed') }>

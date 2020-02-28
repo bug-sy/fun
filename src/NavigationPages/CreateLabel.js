@@ -30,7 +30,6 @@ export default class ArchivePage extends Component {
     }
 
     changeLabel = (text) => {
-        console.log("12345678i9o", text)
         if (text !== null) {
             this.setState({
                 editLabel : text
@@ -109,7 +108,6 @@ export default class ArchivePage extends Component {
                                     </TouchableOpacity>
 
                                     <TextInput
-                                        //style={styles.textLabel}
                                         placeholder = "Create New Label"
                                         multiline = { true }
                                         value = { this.state.label }
@@ -152,7 +150,6 @@ const styles = StyleSheet.create({
         flexDirection : 'column',
         position : 'relative',
         justifyContent : 'flex-start',
-       // backgroundColor : 'grey',
         flex:1
     },
     topBar : {
