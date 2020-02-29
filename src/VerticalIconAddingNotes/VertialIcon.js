@@ -2,21 +2,37 @@ import * as React from 'react';
 import { View, TouchableOpacity, Image, Text } from 'react-native';
 import { Button, Paragraph, Menu, Divider, Provider } from 'react-native-paper';
 import AddingNote from '../Dashboard/AddingNote'
+import ColorPalette from 'react-native-color-palette'
+import { Icon } from 'react-native-vector-icons' 
+import { log } from 'react-native-reanimated';
 
 export default class VerticalIcon extends React.Component {
   state = {
     visible : false,
+    checkToggle : null,
   };
 
   _openMenu = () => this.setState({ visible : true });
   _closeMenu = () => this.setState({ visible : false });
+
+  globalChange(item){
+    this.setState({checkToggle : item},()=>{
+      console.log("Hi there checkToggle  ----->",this.state.checkToggle)
+    })
+  }
+
+  handleBgColour = (col) => {
+    console.log("is color ",col)
+  }
 
   render() {
     return (
       <Provider >
 
         <AddingNote
-          navigation = {this.props.navigation} 
+          navigation = { this.props.navigation } 
+          checkToggle = { this.state.checkToggle }
+          globalChange = { this.globalChange.bind(this) }
         />
 
         <View
@@ -52,7 +68,20 @@ export default class VerticalIcon extends React.Component {
             <Menu.Item icon = { require('/home/admin1/Documents/FundooApp/AwesomeProject/image/CopyIcon.png') } onPress = { () => { } } title = "Make a copy" />
             <Menu.Item icon = { require('/home/admin1/Documents/FundooApp/AwesomeProject/image/SendIcon.png') } onPress = { () => { } } title = "Send" />
             <Menu.Item icon = { require('/home/admin1/Documents/FundooApp/AwesomeProject/image/addaccount.png') } onPress = { () => { } } title = "Collaborator" />
-            <Menu.Item icon = { require('/home/admin1/Documents/FundooApp/AwesomeProject/image/outline_label_black_48dp.png') } onPress = { () => { } } title = "Labels" />
+            <Menu.Item icon = { require('/home/admin1/Documents/FundooApp/AwesomeProject/image/outline_label_black_48dp.png')} onPress = { () => { } }  title = "Labels" />
+            <ColorPalette
+              title = ''
+              onChange =  { color => this.setState({ bgColor: color }, () => { this.handleBgColour(this.state.bgColor) }) }
+              defaultColor = { '#ffff' }
+              colors={[
+                '#ffffff', '#f28b82', 
+                '#fbbc04', '#fff475',
+                '#ccff90', '#a7ffeb', 
+                '#d7aefb', 
+              ]}
+           
+            />
+          
           </Menu>
         </View>
 

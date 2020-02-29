@@ -11,6 +11,7 @@ import CompoRemind from '../Reminder/CompoRemind'
 export default class EditNotesPinned extends Component {
     constructor(props) {
         super(props)
+
         this.state = {
             archiveStatus : false,
             trashStatus : false,
@@ -20,7 +21,10 @@ export default class EditNotesPinned extends Component {
             toggleAlertion : false,
             toggleArchive : false,
         }
+
     }
+
+  
 
     handlePinResult = () => {
         this.state.archiveStatus == true

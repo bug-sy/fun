@@ -90,14 +90,14 @@ export default class AddingNote extends Component {
                         {
                             this.state.toggleArchive != false
                                 ?
-                                <TouchableOpacity onPress = { () => this.setState({ toggleArchive : !this.state.toggleArchive })}>
+                                <TouchableOpacity onPress = { (e) => {this.setState({ toggleArchive : !this.state.toggleArchive }),this.props.globalChange(!this.props.checkToggle)}}>
                                     <Image
                                         style = {{ height : 30, width : 24 }}
                                         source = { require('/home/admin1/Documents/FundooApp/AwesomeProject/image/archive.png' )}
                                     />
                                 </TouchableOpacity>
                                 :
-                                <TouchableOpacity onPress = { () => this.setState({ toggleArchive: !this.state.toggleArchive })}>
+                                <TouchableOpacity onPress = { (e) => {this.setState({ toggleArchive : !this.state.toggleArchive }),this.props.globalChange(!this.props.checkToggle)}}>
                                     <Image
                                         style = {{ height : 30, width : 30 }}
                                         source = { require('/home/admin1/Documents/FundooApp/AwesomeProject/image/unArchive.png') }

@@ -20,7 +20,6 @@ export default class ArchivePage extends Component {
     }
 
     changeLabel = (text) => {
-        console.log("12345678i9o",text)
          if(text !== null){
              this.setState({
                  editLabel : text

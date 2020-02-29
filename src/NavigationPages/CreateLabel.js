@@ -92,7 +92,7 @@ export default class ArchivePage extends Component {
 
                                     <Text style = {{ fontSize: 28 }}>
                                         Create New Label
-                        </Text>
+                                    </Text>
 
                                 </View>
                                 :
