@@ -15,7 +15,6 @@ export default class AddingNote extends Component {
             pinStatus : false,
             archiveStatus : false,
             trashStatus : false,
-            title : '',
             textNote : '',
             togglePinOrUnpin : false,
             toggleAlertion : false,
@@ -53,7 +52,7 @@ export default class AddingNote extends Component {
 
                 <View style = { styles.topBar }>
                     <TouchableOpacity style = {{ width : '30%' }} onPress = {() => {
-                        this.props.navigation.navigate('Dashboard'), this.handleUserNote()
+                        this.props.navigation.navigate('Dashboard'), this.props.handleUserNote()
                     }}>
                         <Image
                             style = {{ height : 30, width : 40 }}
@@ -62,18 +61,17 @@ export default class AddingNote extends Component {
                     </TouchableOpacity>
                     <View style = { styles.innerIcons }>
                         {
-                            this.state.togglePinOrUnpin
+                            this.props.pin
                                 ?
-                                <TouchableOpacity onPress = { () => this.setState({ togglePinOrUnpin: !this.state.togglePinOrUnpin })}>
+                                <TouchableOpacity onPress = { (e) => this.props.globalChangePin(!this.props.pin)}>
                                     <Image
-                                        style = {{ height : 30, width : 40 }}
-                                        source = { require('/home/admin1/Documents/FundooApp/AwesomeProject/image/pinned.png' )}
-                                      
+                                        style = {{ height : 30, width : 30 }}
+                                        source = { require('/home/admin1/Documents/FundooApp/AwesomeProject/image/pinned.png' )}  
                                     />
                                 </TouchableOpacity>
                                 :
 
-                                <TouchableOpacity onPress = { () => this.setState({ togglePinOrUnpin: !this.state.togglePinOrUnpin })}>
+                                <TouchableOpacity onPress = { (e) => this.props.globalChangePin(!this.props.pin)}>
                                     <Image
                                         style = {{ height : 30, width : 30 }}
                                         source = { require('/home/admin1/Documents/FundooApp/AwesomeProject/image/pin.png' )}
@@ -83,26 +81,29 @@ export default class AddingNote extends Component {
 
                         {
                             <CompoRemind
-                                handleDateTime = { this.handleDateTime }
+                                handleDateTime = { this.props.handleDateTime }
                             />
                         }
 
                         {
-                            this.state.toggleArchive != false
+                            this.props.archive 
                                 ?
-                                <TouchableOpacity onPress = { (e) => {this.setState({ toggleArchive : !this.state.toggleArchive }),this.props.globalChange(!this.props.checkToggle)}}>
-                                    <Image
-                                        style = {{ height : 30, width : 24 }}
-                                        source = { require('/home/admin1/Documents/FundooApp/AwesomeProject/image/archive.png' )}
-                                    />
-                                </TouchableOpacity>
+                                <TouchableOpacity onPress ={(e) => this.props.globalChangeArchive(!this.props.archive)}>
+                                <Image
+                                    style = {{ height : 30, width : 30 }}
+                                    source = { require('/home/admin1/Documents/FundooApp/AwesomeProject/image/unArchive.png') }
+                                />
+                            </TouchableOpacity>
+  
                                 :
-                                <TouchableOpacity onPress = { (e) => {this.setState({ toggleArchive : !this.state.toggleArchive }),this.props.globalChange(!this.props.checkToggle)}}>
-                                    <Image
-                                        style = {{ height : 30, width : 30 }}
-                                        source = { require('/home/admin1/Documents/FundooApp/AwesomeProject/image/unArchive.png') }
-                                    />
-                                </TouchableOpacity>
+                            
+
+                            <TouchableOpacity onPress = { (e) => this.props.globalChangeArchive(!this.props.archive)}>
+                            <Image
+                                style = {{ height : 30, width : 24 }}
+                                source = { require('/home/admin1/Documents/FundooApp/AwesomeProject/image/archive.png' )}
+                            />
+                            </TouchableOpacity>
                         }
                     </View>
                 </View>
@@ -112,15 +113,15 @@ export default class AddingNote extends Component {
                         style = {{ fontSize: 40 }}
                         placeholder = "Title"
                         multiline = { true }
-                        value = { this.state.title }
-                        onChangeText = { title => this.setState({ title: title }) }
+                        value = { this.props.title }
+                        onChangeText = { (title) => this.props.globalChangeTitle(title)}
                     />
                     <TextInput
                         style = { styles.note }
                         placeholder = "Note"
                         multiline = { true }
-                        value = { this.state.textNote }
-                        onChangeText = { textNote => this.setState({ textNote: textNote }) }
+                        value = { this.props.textNote }
+                        onChangeText = { (textNote) => this.props.globalChangeTextNote(textNote) }
                     />
                 </View>
 

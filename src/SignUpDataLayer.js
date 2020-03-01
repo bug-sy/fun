@@ -53,6 +53,7 @@ export function updateUserNote(obj, noteUpdationId) {
 export function deleteUserNote(noteDeletionId) {
     AsyncStorage.getItem('key').then((success) => {
         firebaseDatabaseRef.ref('/users /' + success + '/notes/' + noteDeletionId).remove();
+        console.log("==========deleted==============",noteDeletionId)
     }).catch((err) => { console.log('err in deleting note =>', err) })
 }
 

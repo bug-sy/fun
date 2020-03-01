@@ -2,19 +2,32 @@ import * as React from 'react';
 import { View, TouchableOpacity, Image } from 'react-native';
 import { Menu, Provider } from 'react-native-paper';
 import EditNotes from '../EditNotes/EditNotes'
+import { deleteUserNote } from '../SignUpDataLayer'
 
 export default class VerticalIconOfEdit extends React.Component {
     state = {
         visible : false,
-        check : false
+        check : false,
+        keyForDeletion : null
     };
 
     _openMenu = () => this.setState({ visible : true });
     _closeMenu = () => this.setState({ visible : false });
 
-    globalChange(item)
+    globalDeletion(keyForDeletion)
     {
-        this.setState({check : item})
+        this.setState({keyForDeletion : keyForDeletion})
+    }
+
+    componentDidMount() {
+        
+        this.setState({
+            noteId : this.props.navigation.state.params.noteId,
+            pinStatus : this.props.navigation.state.params.pin,
+            title : this.props.navigation.state.params.titleOfCurrentNote,
+            textNote : this.props.navigation.state.params.note,
+            archiveStatus : this.props.navigation.state.params.archive
+        })
     }
 
     render() {
@@ -25,7 +38,7 @@ export default class VerticalIconOfEdit extends React.Component {
                     navigation = { this.props.navigation }
                      check = { this.state.check }
 
-                     globalChange = { this.globalChange.bind(this) }
+                     globalDeletion = { this.globalDeletion.bind(this) }
                 />
                 <View
                     style = {{
@@ -56,7 +69,7 @@ export default class VerticalIconOfEdit extends React.Component {
                         }
                         style = {{ width : '100%', paddingBottom : 30 }}
                     >
-                        <Menu.Item icon = { require('/home/admin1/Documents/FundooApp/AwesomeProject/image/trash.png') } onPress = { () => { console.log("noteIdforDeletion----->>>>>>>", this.state.noteUpdationId)} } title = "Delete" />
+                        <Menu.Item icon = { require('/home/admin1/Documents/FundooApp/AwesomeProject/image/trash.png') } onPress = { () => { deleteUserNote(this.state.noteId),this.props.navigation.navigate('Dashboard') }} title = "Delete" />
                         <Menu.Item icon = { require('/home/admin1/Documents/FundooApp/AwesomeProject/image/CopyIcon.png') } onPress = { () => { } } title = "Make a copy" />
                         <Menu.Item icon = { require('/home/admin1/Documents/FundooApp/AwesomeProject/image/SendIcon.png') } onPress = { () => { } } title = "Send" />
                         <Menu.Item icon = { require('/home/admin1/Documents/FundooApp/AwesomeProject/image/addaccount.png') } onPress = { () => { } } title = "Collaborator" />

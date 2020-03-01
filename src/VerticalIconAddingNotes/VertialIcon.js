@@ -5,19 +5,74 @@ import AddingNote from '../Dashboard/AddingNote'
 import ColorPalette from 'react-native-color-palette'
 import { Icon } from 'react-native-vector-icons' 
 import { log } from 'react-native-reanimated';
+import { createUserNote } from '../SignUpDataLayer'
 
 export default class VerticalIcon extends React.Component {
-  state = {
+  constructor(props) {
+    super(props)
+    this.state = {
     visible : false,
-    checkToggle : null,
-  };
+    pin : false,
+    text : '',
+    pinStatus : false,
+    archiveStatus : false,
+    trashStatus : false,
+    title : '',
+    textNote : '',
+    togglePinOrUnpin : false,
+    toggleAlertion : false,
+    archive : false,
+    reminderDate : '',
+    reminderTime : '',
+  }
+}
+
+  handleUserNote = () => {
+    const note = {
+        pinStatus : this.state.pinStatus,
+        archiveStatus : this.state.archiveStatus,
+        trashStatus : this.state.trashStatus,
+        title : this.state.title,
+        textNote : this.state.textNote,
+        reminderDate : this.state.reminderDate,
+        reminderTime : this.state.reminderTime
+    }
+    if (note.title && note.textNote) {
+        createUserNote(note)
+    }
+  }
 
   _openMenu = () => this.setState({ visible : true });
   _closeMenu = () => this.setState({ visible : false });
 
-  globalChange(item){
-    this.setState({checkToggle : item},()=>{
-      console.log("Hi there checkToggle  ----->",this.state.checkToggle)
+  globalChangePin(pin){
+    this.setState({ pin : pin },()=>{
+      console.log("Hi there checkToggle  ----->", this.state.pin)
+    })
+  }
+
+  globalChangeArchive(archive){
+    this.setState({ archive : archive },()=>{
+      console.log("archive status is  ----->", this.state.archive)
+    })
+  }
+
+  globalChangeTitle(title){
+    this.setState({ title : title },()=>{
+      console.log("text is  ----->", this.state.title)
+    })
+  }
+
+  globalChangeTextNote(textNote){
+    this.setState({ textNote : textNote },()=>{
+      console.log("textNote is  ----->",this.state.textNote)
+    })
+  }
+
+  handleDateTime = (date, time) => {
+    console.log("jhjhjh->", date, time)
+    this.setState({ reminderDate: date, reminderTime: time }, () => {
+        console.log("what time this time ------->>>>", this.state.reminderDate, this.state.reminderTime)
     })
   }
 
@@ -31,8 +86,16 @@ export default class VerticalIcon extends React.Component {
 
         <AddingNote
           navigation = { this.props.navigation } 
-          checkToggle = { this.state.checkToggle }
-          globalChange = { this.globalChange.bind(this) }
+          pin = { this.state.pin }
+          globalChangePin = { this.globalChangePin.bind(this) }
+          archive = { this.state.archive }
+          globalChangeArchive = { this.globalChangeArchive.bind(this) }
+          title = { this.state.title }
+          globalChangeTitle = { this.globalChangeTitle.bind(this)}
+          textNote = { this.state.textNote }
+          globalChangeTextNote = { this.globalChangeTextNote.bind(this)}
+          handleUserNote = { this.handleUserNote }
+          handleDateTime = { this.handleDateTime }
         />
 
         <View

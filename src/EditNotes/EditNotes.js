@@ -45,6 +45,7 @@ export default class EditNotesPinned extends Component {
     }
 
     componentDidMount() {
+        
         this.setState({
             noteUpdationId : this.props.navigation.state.params.noteId,
             pinStatus : this.props.navigation.state.params.pin,
