@@ -26,7 +26,8 @@ export default class VerticalIconOfEdit extends React.Component {
             pinStatus : this.props.navigation.state.params.pin,
             title : this.props.navigation.state.params.titleOfCurrentNote,
             textNote : this.props.navigation.state.params.note,
-            archiveStatus : this.props.navigation.state.params.archive
+            archiveStatus : this.props.navigation.state.params.archive,
+            label : this.props.navigation.state.params.label
         })
     }
 
@@ -73,7 +74,7 @@ export default class VerticalIconOfEdit extends React.Component {
                         <Menu.Item icon = { require('/home/admin1/Documents/FundooApp/AwesomeProject/image/CopyIcon.png') } onPress = { () => { } } title = "Make a copy" />
                         <Menu.Item icon = { require('/home/admin1/Documents/FundooApp/AwesomeProject/image/SendIcon.png') } onPress = { () => { } } title = "Send" />
                         <Menu.Item icon = { require('/home/admin1/Documents/FundooApp/AwesomeProject/image/addaccount.png') } onPress = { () => { } } title = "Collaborator" />
-                        <Menu.Item icon = { require('/home/admin1/Documents/FundooApp/AwesomeProject/image/outline_label_black_48dp.png') } onPress = { () => { } } title = "Labels" />
+                        <Menu.Item icon = { require('/home/admin1/Documents/FundooApp/AwesomeProject/image/outline_label_black_48dp.png') } onPress = { () => {this.props.navigation.navigate('LabelInNote',{"noteId" :this.state.noteId,"label":this.state.label}),console.log("---------------------------",this.state.noteId)} } title = "Labels" />
                     </Menu>
                 </View>
             

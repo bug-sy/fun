@@ -64,7 +64,7 @@ export default class FlatListNotesArchived extends React.Component {
         this.state.columnCountAnother[0] = 2 : this.state.columnCountAnother[0] = 1
     }
 
-    const Item = ({ List, pinStatus, trashStatus, archiveStatus, noteId, title, textNote, reminderDate, reminderTime }) => {
+    const Item = ({ label, List, pinStatus, trashStatus, archiveStatus, noteId, title, textNote, reminderDate, reminderTime }) => {
       return (
         <View style = {List == false
           ?
@@ -94,6 +94,20 @@ export default class FlatListNotesArchived extends React.Component {
                 :
                 null
             }
+            
+               {
+              label 
+                ?
+              Object.getOwnPropertyNames(label).map((keyOfLabelName) => (
+                <Chip  style = {{ width : 100,marginTop : 4 }} >            
+                {label[keyOfLabelName].labelName}
+                </Chip>             
+              ))
+                :
+              null   
+              
+            }
+            
           </TouchableOpacity>
         </View>
       )
@@ -111,6 +125,7 @@ export default class FlatListNotesArchived extends React.Component {
               noteId = { item.noteId } pinStatus = { item.pinStatus }
               trashStatus = { item.trashStatus } archiveStatus = { item.archiveStatus }
               reminderDate = { item.reminderDate } reminderTime = { item.reminderTime }
+              label = { item.noteLabel  ? item.noteLabel  : null }
             />)
           }
           key = { this.state.columnCount[0] }

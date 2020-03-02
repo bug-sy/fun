@@ -11,6 +11,7 @@ import VerticalIcon from '../VerticalIconAddingNotes/VertialIcon'
 import BottomBarWithReminder from '../EditNotes/BottomBarWithReminder'
 import SplashScreen from './SplashScreen'
 import SearchNotes from '../FlatlistNotes/SearchNotes'
+import LabelInNote from '../UpdateLabel/labelInNote'
 
 class HomeScreen extends React.Component {
   render() {
@@ -25,6 +26,9 @@ class HomeScreen extends React.Component {
 const AppNavigator = createStackNavigator({
   Login : {
     screen : Login, navigationOptions: { header: null }
+  },
+  LabelInNote : {
+    screen : LabelInNote, navigationOptions: { header: null }
   },
   SplashScreen:{
     screen : SplashScreen, navigationOptions: { header: null }

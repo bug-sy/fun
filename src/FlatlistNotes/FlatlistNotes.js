@@ -60,7 +60,7 @@ export default class FlatListNotesPinned extends React.Component {
         this.state.columnCountAnother[0] = 1
     }
 
-    const Item = ({ List, pinStatus, trashStatus, archiveStatus, noteId, title, textNote, reminderDate, reminderTime }) => {
+    const Item = ({label, List, pinStatus, trashStatus, archiveStatus, noteId, title, textNote, reminderDate, reminderTime }) => {
       return (
         <View style = {List == false
           ?
@@ -73,7 +73,8 @@ export default class FlatListNotesPinned extends React.Component {
               {
                 "pin" : pinStatus, "trash" : trashStatus,
                 "archive" : archiveStatus, "noteId" : noteId,
-                "titleOfCurrentNote" : title, "note" : textNote
+                "titleOfCurrentNote" : title, "note" : textNote,
+                "label" : label
               })}>
             <Text style = { styles.title }>{ title }</Text>
             <Text style = { styles.title }>{ textNote }</Text>
@@ -87,6 +88,19 @@ export default class FlatListNotesPinned extends React.Component {
                 :
                 null
             }
+            
+            {
+              label 
+                ?
+              Object.getOwnPropertyNames(label).map((keyOfLabelName) => (
+                <Chip  style = {{ width : 100,marginTop : 4 }} >            
+                {label[keyOfLabelName].labelName}
+                </Chip>             
+              ))
+                :
+              null   
+            }
+             
           </TouchableOpacity>
         </View>
       )
@@ -104,6 +118,7 @@ export default class FlatListNotesPinned extends React.Component {
               noteId = { item.noteId } pinStatus = { item.pinStatus }
               trashStatus = { item.trashStatus } archiveStatus = { item.archiveStatus }
               reminderDate = { item.reminderDate } reminderTime = { item.reminderTime }
+              label = { item.noteLabel  ? item.noteLabel  : null }
             />)
           }
           key = { this.state.columnCount[0] }

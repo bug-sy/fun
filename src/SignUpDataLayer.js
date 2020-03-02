@@ -50,6 +50,22 @@ export function updateUserNote(obj, noteUpdationId) {
     }).catch((err) => { console.log('err in updation note =>', err) })
 }
 
+export function createLabelNoteInNotes(KeyOfNoteCard,labelKeyData) {
+    AsyncStorage.getItem('key').then((success) => {
+        console.log("uid----->", success, "labelData ------->", labelKeyData)
+        firebaseDatabaseRef.ref('/users /' + success + '/notes/' + KeyOfNoteCard+'/noteLabel/').push(labelKeyData);
+        console.log("labelData entered in firebase")
+        console.log("key in method createLabel ------->",KeyOfNoteCard)
+    }).catch((err) => { console.log('err in adding label in  note =>', err) })
+}
+
+export function deleteLabelNoteInNotes(KeyOfNoteCard, labelKey){
+    AsyncStorage.getItem('key').then((success) => {
+    console.log("uid----->", uid, "labelData ------->", labelKey)
+    firebaseDatabaseRef.ref('/users /' + uid + '/notes/' + KeyOfNoteCard + '/noteLabel/' + labelKey).remove();
+    })
+}
+
 export function deleteUserNote(noteDeletionId) {
     AsyncStorage.getItem('key').then((success) => {
         firebaseDatabaseRef.ref('/users /' + success + '/notes/' + noteDeletionId).remove();

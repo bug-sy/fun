@@ -4,9 +4,9 @@ import { Text, Image, StyleSheet, TouchableOpacity, View, TextInput } from 'reac
 import { Divider, } from 'react-native-paper';
 import { ScrollView } from 'react-native-gesture-handler';
 import { createLabelNote, getLabels } from '../SignUpDataLayer'
-import UpdateLabel from '../UpdateLabel/UpdateLabel'
+import CreateLabelInNote from '../UpdateLabel/CreateLabelInNote'
 
-export default class CreateLabel extends Component {
+export default class LabelInNote extends Component {
     constructor(props) {
         super(props)
         this.state =
@@ -16,6 +16,17 @@ export default class CreateLabel extends Component {
             displayLabel : null,
             editLabel : ''
         }
+    }
+
+    componentDidMount() {
+        
+        this.setState({
+            noteId : this.props.navigation.state.params.noteId,
+            pinStatus : this.props.navigation.state.params.pin,
+            title : this.props.navigation.state.params.titleOfCurrentNote,
+            textNote : this.props.navigation.state.params.note,
+            archiveStatus : this.props.navigation.state.params.archive
+        })
     }
 
 
@@ -48,95 +59,48 @@ export default class CreateLabel extends Component {
     }
 
     render() {
+        const { navigation } = this.props
+        const noteId = navigation.getParam('noteId','no value')
+        const label = navigation.getParam('label','no value')
+        console.log("--------------------------------------------------------------------------------------------------now",noteId)
         return (
             <ScrollView>
                 <View style = { styles.container }>
-                    <View style={ styles.editFullLabel }>
-
-                        <TouchableOpacity
-                            onPress={ () => this.props.navigation.navigate('Dashboard') }
-                            style={{ width: '15%' }}
-                        >
-                            <Image
-                                style = {{ height: 50, width: 32 }}
-                                source = { require('/home/admin1/Documents/FundooApp/AwesomeProject/image/outline_arrow_bac.png') }
-                            />
-                        </TouchableOpacity>
-
-                        <Text style = { styles.editLabel }>
-                            Edit Labels
-                        </Text>
-
-
-
-                    </View>
+             
                     <Divider/>
-                    <View>
-                        {
-                            this.state.addLabel
-                                ?
-
-
-
-                                <View style = { styles.createLabelToggled }>
-
-                                    <TouchableOpacity
-                                        style = {{ width : '15%' }}
-                                        onPress = { () => this.setState({ addLabel : !this.state.addLabel }) }
-                                    >
-                                        <Image
-                                            style = {{ height : 50, width : 32 }}
-                                            source = { require('/home/admin1/Documents/FundooApp/AwesomeProject/image/outline_add_black_.png') }
-                                        />
-                                    </TouchableOpacity>
-
-                                    <Text style = {{ fontSize: 28 }}>
-                                        Create New Label
-                                    </Text>
-
-                                </View>
-                                :
-
+                    
                                 <View style = { styles.createLabel }>
                                     <TouchableOpacity
-                                       onPress = { () => this.setState({ addLabel : !this.state.addLabel }) }              
+                                        onPress={ () => {this.props.navigation.navigate('Dashboard'),console.log("---------------------------------------------------",this.state.noteId)} }
+                                        style={{ width: '15%' }}
                                     >
-                                        <Image
-                                            style = {{ height: 50, width: 32 }}
-                                            source = {require('/home/admin1/Documents/FundooApp/AwesomeProject/image/outline_close_black.png')}
-                                        />
+                                    <Image
+                                    style = {{ height: 50, width: 32 }}
+                                    source = { require('/home/admin1/Documents/FundooApp/AwesomeProject/image/outline_arrow_bac.png') }
+                                    />
                                     </TouchableOpacity>
 
                                     <TextInput
-                                        placeholder = "Create New Label"
+                                         style = {{ height: 50, width: 332, }}
+                                        placeholder = "Enter Label Name"
                                         multiline = { true }
                                         value = { this.state.label }
                                         onChangeText = { label => this.setState({ label: label }) }
-                                    />
-
-                                    <TouchableOpacity
-                                        onPress = { () => { this.setState({ addLabel: !this.state.addLabel }), this.createNewLabel(this.state.label) }}
-                                    >
-                                        <Image
-                                            style = {{ height: 50, width: 32 }}
-                                            source = { require('/home/admin1/Documents/FundooApp/AwesomeProject/image/outline_done_black.png') }
-                                        />
-                                    </TouchableOpacity>
+                                    />                                
                                 </View>
 
-
-                        }
-
-                    </View>
+                    
                     <Divider />
                     { this.state.displayLabel !== null &&
                         Object.getOwnPropertyNames(this.state.displayLabel).map((key) => (
-                            <UpdateLabel
+                            <CreateLabelInNote
                                 labelName = { this.state.displayLabel[key].labelName }
                                 labelKey = { key }
+                                navigation = { this.props.navigation }
+                                noteId = { noteId }
+                                label = { label }
                             />
                         ))}
-
                     <Divider />
                 </View>
             </ScrollView>
@@ -160,7 +124,7 @@ const styles = StyleSheet.create({
     },
     createLabel : {
         flexDirection : 'row',
-        justifyContent : 'space-between',
+        //justifyContent : 'space-betw',
         padding : 8,
     },
     createLabelToggled : {
@@ -194,7 +158,7 @@ const styles = StyleSheet.create({
         backgroundColor : 'blue'
     },
     editLabel : {
-        fontSize : 35,
+        fontSize : 25,
         height : '100%',
         width : '70%',
         alignItems : 'center'
