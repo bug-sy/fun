@@ -30,29 +30,22 @@ export default class ArchivePage extends Component {
     }
     }
 
-    labelStateChange = (labelName) => {
-        Object.getOwnPropertyNames(this.props.label).map((key) => (
-         ( this.props.label[key].labelName == labelName ) 
-         ?
-            this.setState({label : !this.state.props.label[key].label})
-         :
+    deleteNewLabel =  (labelNameToBeDeleted) => {
+        if(this.props.label ){
+              Object.getOwnPropertyNames(this.props.label).map((keyOfLabel) => (
+                    this.props.label[keyOfLabel].labelName === labelNameToBeDeleted
+                    ?
+                    deleteLabelNoteInNotes(this.props.noteId, keyOfLabel)  
+                    :
+                    null  
+              ))
+        }
+        else{
             null
-          
-        ))
-        console.log("label=================================================================",noteKey)
-        const noteLabel = {
-            labelName : this.props.labelName,
-            label : this.state.label
         }
-        if (noteLabel.labelName) {
-            createLabelNoteInNotes(noteKey, noteLabel)
-        }
-       // console.log("----->", this.state.labelChecked)
-    
     }
 
     labelInNote = (noteKey) => {
-        console.log("label=================================================================",noteKey)
         const noteLabel = {
             labelName : this.props.labelName,
             label : this.state.label
@@ -60,11 +53,7 @@ export default class ArchivePage extends Component {
         if (noteLabel.labelName) {
             createLabelNoteInNotes(noteKey, noteLabel)
         }
-       // console.log("----->", this.state.labelChecked)
-    
     }
-
-
 
     render(){
         return(
@@ -86,24 +75,22 @@ export default class ArchivePage extends Component {
                         this.state.label 
                         ?
                         <TouchableOpacity
-                        onPress = { () => {this.labelInNote(this.props.noteId),this.labelStateChange(this.props.labelName)} } 
-                        //this.state.noteId    this.setState({label : !this.state.label})        
+                        onPress = { () => {this.deleteNewLabel(this.props.labelName), this.setState({label : !this.state.label}) } }       
                            >
                                <Image
-                                   style={{ height: 40, width: 28 }}
-                                   source={require('/home/admin1/Documents/FundooApp/AwesomeProject/image/outline_check_box_black_48dp.png')}
+                                   style = {{ height: 40, width: 28 }}
+                                   source = {require('/home/admin1/Documents/FundooApp/AwesomeProject/image/outline_check_box_black_48dp.png')}
                                />
                            </TouchableOpacity>
                         :
-                    <TouchableOpacity
-                 onPress = { () => {this.labelInNote(this.props.noteId),this.labelStateChange(this.props.labelName)}}  
-                 //this.state.noteId      ,this.setState({label : !this.state.label})      
+                        <TouchableOpacity
+                        onPress = { () => {this.labelInNote(this.props.noteId), this.setState({label : !this.state.label})} }    
                     >
                         <Image
-                            style={{ height: 40, width: 28 }}
-                            source={require('/home/admin1/Documents/FundooApp/AwesomeProject/image/outline_check_box.png')}
+                            style = {{ height: 40, width: 28 }}
+                            source = {require('/home/admin1/Documents/FundooApp/AwesomeProject/image/outline_check_box.png')}
                         />
-                    </TouchableOpacity>
+                        </TouchableOpacity>
                     }
                     </View>
         )

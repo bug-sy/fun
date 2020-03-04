@@ -61,8 +61,8 @@ export function createLabelNoteInNotes(KeyOfNoteCard,labelKeyData) {
 
 export function deleteLabelNoteInNotes(KeyOfNoteCard, labelKey){
     AsyncStorage.getItem('key').then((success) => {
-    console.log("uid----->", uid, "labelData ------->", labelKey)
-    firebaseDatabaseRef.ref('/users /' + uid + '/notes/' + KeyOfNoteCard + '/noteLabel/' + labelKey).remove();
+    
+    firebaseDatabaseRef.ref('/users /' + success + '/notes/' + KeyOfNoteCard + '/noteLabel/' + labelKey).remove();
     })
 }
 

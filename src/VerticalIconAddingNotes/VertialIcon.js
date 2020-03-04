@@ -35,7 +35,8 @@ export default class VerticalIcon extends React.Component {
         title : this.state.title,
         textNote : this.state.textNote,
         reminderDate : this.state.reminderDate,
-        reminderTime : this.state.reminderTime
+        reminderTime : this.state.reminderTime,
+        bgColor : this.state.bgColor
     }
     if (note.title && note.textNote) {
         createUserNote(note)
@@ -77,13 +78,14 @@ export default class VerticalIcon extends React.Component {
   }
 
   handleBgColour = (col) => {
-    console.log("is color ",col)
+    console.log(" color is ",col)
   }
 
   render() {
     return (
-      <Provider >
-
+      
+      <Provider  >
+        
         <AddingNote
           navigation = { this.props.navigation } 
           pin = { this.state.pin }
@@ -96,8 +98,9 @@ export default class VerticalIcon extends React.Component {
           globalChangeTextNote = { this.globalChangeTextNote.bind(this)}
           handleUserNote = { this.handleUserNote }
           handleDateTime = { this.handleDateTime }
+          bgColor = { this.state.bgColor }
         />
-
+      
         <View
           style = {{
             bottom : 0,
@@ -149,6 +152,7 @@ export default class VerticalIcon extends React.Component {
         </View>
 
       </Provider>
+    
     );
   }
 }

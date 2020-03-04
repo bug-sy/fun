@@ -3,6 +3,7 @@ import { View, TouchableOpacity, Image } from 'react-native';
 import { Menu, Provider } from 'react-native-paper';
 import EditNotes from '../EditNotes/EditNotes'
 import { deleteUserNote } from '../SignUpDataLayer'
+import ColorPalette from 'react-native-color-palette'
 
 export default class VerticalIconOfEdit extends React.Component {
     state = {
@@ -19,6 +20,10 @@ export default class VerticalIconOfEdit extends React.Component {
         this.setState({keyForDeletion : keyForDeletion})
     }
 
+    handleBgColour = (col) => {
+        console.log(" color in updation ",col)
+    }
+
     componentDidMount() {
         
         this.setState({
@@ -27,7 +32,8 @@ export default class VerticalIconOfEdit extends React.Component {
             title : this.props.navigation.state.params.titleOfCurrentNote,
             textNote : this.props.navigation.state.params.note,
             archiveStatus : this.props.navigation.state.params.archive,
-            label : this.props.navigation.state.params.label
+            label : this.props.navigation.state.params.label,
+            bgColor : this.props.navigation.state.params.bgColor
         })
     }
 
@@ -38,7 +44,7 @@ export default class VerticalIconOfEdit extends React.Component {
                 <EditNotes
                     navigation = { this.props.navigation }
                      check = { this.state.check }
-
+                     bgColor = { this.state.bgColor }
                      globalDeletion = { this.globalDeletion.bind(this) }
                 />
                 <View
@@ -75,6 +81,16 @@ export default class VerticalIconOfEdit extends React.Component {
                         <Menu.Item icon = { require('/home/admin1/Documents/FundooApp/AwesomeProject/image/SendIcon.png') } onPress = { () => { } } title = "Send" />
                         <Menu.Item icon = { require('/home/admin1/Documents/FundooApp/AwesomeProject/image/addaccount.png') } onPress = { () => { } } title = "Collaborator" />
                         <Menu.Item icon = { require('/home/admin1/Documents/FundooApp/AwesomeProject/image/outline_label_black_48dp.png') } onPress = { () => {this.props.navigation.navigate('LabelInNote',{"noteId" :this.state.noteId,"label":this.state.label}),console.log("---------------------------",this.state.noteId)} } title = "Labels" />
+                        <ColorPalette
+              title = ''
+              onChange =  { color => this.setState({ bgColor: color }, () => { this.handleBgColour(this.state.bgColor) }) }
+              defaultColor = { '#ffff' }
+              colors={[
+                '#ffffff', '#f28b82', 
+                '#fbbc04', '#fff475',
+                '#ccff90', '#a7ffeb', 
+                '#d7aefb', 
+              ]}/>
                     </Menu>
                 </View>
             

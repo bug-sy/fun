@@ -64,20 +64,38 @@ export default class FlatListNotesArchived extends React.Component {
         this.state.columnCountAnother[0] = 2 : this.state.columnCountAnother[0] = 1
     }
 
-    const Item = ({ label, List, pinStatus, trashStatus, archiveStatus, noteId, title, textNote, reminderDate, reminderTime }) => {
+    const Item = ({ label,bgColor, List, pinStatus, trashStatus, archiveStatus, noteId, title, textNote, reminderDate, reminderTime }) => {
       return (
         <View style = {List == false
           ?
-          styles.gridItem
+          {
+          backgroundColor : bgColor ? bgColor : 'grey',
+          padding : 2,
+          marginVertical : 4,
+          marginHorizontal : 4,
+          width : '48%',
+          borderRadius : 6,
+          elevation : 4,
+          borderWidth : 0.25}
           :
-          styles.listItem
+          {
+            backgroundColor :  bgColor ? bgColor : 'grey',
+            padding : 2,
+            marginVertical : 4,
+            marginHorizontal : 4,
+            width : '95%',
+            borderRadius : 6,
+            elevation : 4,
+            borderWidth : 0.25
+          }
         }>
           <TouchableOpacity onPress = {() =>
             this.props.navigation.navigate('VerticalIconOfEdit',
               {
                 "pin" : pinStatus, "trash" : trashStatus,
                 "archive" : archiveStatus, "noteId" : noteId,
-                "titleOfCurrentNote" : title, "note" : textNote
+                "titleOfCurrentNote" : title, "note" : textNote,
+                "bgColor" : bgColor
               })}>
             <Text style = { styles.title }>{ title }</Text>
             <Text style = { styles.title }>{ textNote }</Text>
@@ -125,7 +143,8 @@ export default class FlatListNotesArchived extends React.Component {
               noteId = { item.noteId } pinStatus = { item.pinStatus }
               trashStatus = { item.trashStatus } archiveStatus = { item.archiveStatus }
               reminderDate = { item.reminderDate } reminderTime = { item.reminderTime }
-              label = { item.noteLabel  ? item.noteLabel  : null }
+              label = { item.noteLabel ? item.noteLabel : null }
+              bgColor = { item.bgColor ? item.bgColor : null }
             />)
           }
           key = { this.state.columnCount[0] }

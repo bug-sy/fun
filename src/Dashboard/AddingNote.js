@@ -47,6 +47,7 @@ export default class AddingNote extends Component {
     }
 
     render() {
+    console.log('cccccccccccccc--------->',this.props.bgColor) 
         return (
             <View style = { styles.topAndBottomBar }>
 
@@ -108,7 +109,10 @@ export default class AddingNote extends Component {
                     </View>
                 </View>
 
-                <View style = { styles.titleAndNote } >
+                <View style = {{    flexDirection : 'column',
+                                    width : '100%',
+                                    height : '100%',
+                                    backgroundColor : this.props.bgColor }} >
                     <TextInput
                         style = {{ fontSize: 40 }}
                         placeholder = "Title"
@@ -162,7 +166,8 @@ const styles = StyleSheet.create({
     },
     titleAndNote : {
         flexDirection : 'column',
-        width : '80%',
+        width : '100%',
+       // backgroundColor : 
     },
     note : {
         height : '60%',

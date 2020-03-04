@@ -34,6 +34,7 @@ export default class EditNotesPinned extends Component {
                 archiveStatus : this.state.archiveStatus,
                 title : this.state.title,
                 textNote : this.state.textNote,
+                bgColor : this.props.bgColor
             }, this.state.noteUpdationId)
             :
             updateUserNote({
@@ -41,17 +42,19 @@ export default class EditNotesPinned extends Component {
                 archiveStatus : this.state.archiveStatus,
                 title : this.state.title,
                 textNote : this.state.textNote,
+                bgColor : this.props.bgColor,
             }, this.state.noteUpdationId)
     }
 
     componentDidMount() {
-        
+
         this.setState({
             noteUpdationId : this.props.navigation.state.params.noteId,
             pinStatus : this.props.navigation.state.params.pin,
             title : this.props.navigation.state.params.titleOfCurrentNote,
             textNote : this.props.navigation.state.params.note,
-            archiveStatus : this.props.navigation.state.params.archive
+            archiveStatus : this.props.navigation.state.params.archive,
+            bgColor : this.props.navigation.state.params.bgColor,
         })
     }
 
@@ -114,7 +117,11 @@ export default class EditNotesPinned extends Component {
                     </View>
                 </View>
 
-                <View style = { styles.titleAndNote } >
+                <View style =   {{
+                        flexDirection : 'column',
+                        width : '100%',
+                        backgroundColor : this.props.bgColor
+                        }} >
                     <TextInput
                         style = {{ fontSize: 40 }}
                         placeholder = "Title"
