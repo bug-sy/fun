@@ -1,7 +1,9 @@
 import React from 'react';
 import { SafeAreaView, View, FlatList, StyleSheet, Text, TouchableOpacity } from 'react-native';
 import Constants from 'expo-constants';
-import { getNotes } from '../SignUpDataLayer/'
+import { getNotes, countOfNotesTypes } from '../SignUpDataLayer/'
+
+
 
 export default class FlatlistNotesArchived extends React.Component {
   constructor(props) {
@@ -9,7 +11,7 @@ export default class FlatlistNotesArchived extends React.Component {
     this.state = {
       notes : '',
       columnCount : [],
-      pinned : 'pinned',
+      archive : 'Archive',
       columnCountAnother : []
     }
   }
@@ -19,9 +21,21 @@ export default class FlatlistNotesArchived extends React.Component {
       this.setState({
         notes : notes
       }, () => {
-        
+        var archiveCount = 0 ;
         Object.keys(this.state.notes).map((item) => {
+          this.state.notes[item].archiveStatus == true
+          ?
+          archiveCount = ++archiveCount
+          :
+          null
+          
         })
+        console.log("=========ARCHIVED================")
+          console.log("=========================")
+          console.log("=========================")
+          console.log("=========================")
+          console.log(archiveCount)
+          countOfNotesTypes(this.state.archive, {archivedCount : archiveCount })
       })
     })
   }

@@ -61,9 +61,28 @@ export function createLabelNoteInNotes(KeyOfNoteCard,labelKeyData) {
 
 export function deleteLabelNoteInNotes(KeyOfNoteCard, labelKey){
     AsyncStorage.getItem('key').then((success) => {
-    
     firebaseDatabaseRef.ref('/users /' + success + '/notes/' + KeyOfNoteCard + '/noteLabel/' + labelKey).remove();
     })
+}
+
+
+export function countOfNotesTypes(noteType,countOfNote) {
+    AsyncStorage.getItem('key').then((success) => {
+        if(noteType === 'pinned' )
+        {
+        firebaseDatabaseRef.ref('/users /' + success + '/countOfNoteType/' ).update(countOfNote);
+        }
+        else if(noteType === 'Others')
+        {
+            firebaseDatabaseRef.ref('/users /' + success + '/countOfNoteType/' ).update(countOfNote);
+        }
+        else if(noteType === 'Archive'){
+            firebaseDatabaseRef.ref('/users /' + success + '/countOfNoteType/' ).update(countOfNote);
+        }
+    console.log("======================================================================================")
+    console.log(countOfNote)
+    console.log("======================================================================================")
+    }).catch((err)=>{ console.log('err in creating count =>', err)})
 }
 
 export function deleteUserNote(noteDeletionId) {

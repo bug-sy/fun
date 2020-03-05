@@ -14,9 +14,43 @@ const styles = StyleSheet.create({
 });
  
 export default class test extends Component {
+
+
+  componentDidMount() {
+    getNotes((notes) => {
+      this.setState({
+        notes : notes
+      }, () => {
+        var reminderCount = 0;
+        var archiveCount = 0 ;
+        var pinnedCount = 0;
+        var unpinCount = 0 ;
+        Object.keys(this.state.notes).map((item) => {
+          if(true){
+          this.state.notes[item].reminderDate !== undefined
+          ?
+          reminderCount = ++reminderCount
+          :
+          null
+          }
+          {
+            
+          }
+        
+        })
+        console.log("=========ReminderCount================")
+          console.log("=========================")
+          console.log("=========================")
+          console.log("=========================")
+          console.log(reminderCount)
+          countOfNotesTypes(this.state.reminder,{remindCount:reminderCount})
+      })
+    })
+  }
+
   render() {
     const chart_wh = 250
-    const series = [123, 321, 123, 789, 537]
+    const series = [123, 123, 123, 123, 123]
     const sliceColor = ['#F44336','#2196F3','#FFEB3B', '#4CAF50', '#FF9800']
  
     return (
@@ -31,7 +65,7 @@ export default class test extends Component {
             series={series}
             sliceColor={sliceColor}
           />
-          <Text style={styles.title}>Doughnut</Text>
+          {/* <Text style={styles.title}>Doughnut</Text>
           <PieChart
             chart_wh={chart_wh}
             series={series}
@@ -39,7 +73,7 @@ export default class test extends Component {
             doughnut={true}
             coverRadius={0.45}
             coverFill={'#FFF'}
-          />
+          /> */}
         </View>
       </ScrollView>
     );

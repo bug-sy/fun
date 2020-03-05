@@ -1,8 +1,10 @@
 import React from 'react';
 import { SafeAreaView, View, FlatList, StyleSheet, Text, TouchableOpacity } from 'react-native';
 import Constants from 'expo-constants';
-import { getNotes } from '../SignUpDataLayer/'
+import { getNotes, countOfNotesTypes } from '../SignUpDataLayer/'
 import { Chip } from 'react-native-paper';
+
+
 
 export default class FlatListNotesArchived extends React.Component {
   constructor(props) {
@@ -10,7 +12,7 @@ export default class FlatListNotesArchived extends React.Component {
     this.state = {
       notes : '',
       columnCount : [],
-      pinned : 'pinned',
+      Others : 'Others',
       columnCountAnother : []
     }
   }
@@ -20,8 +22,21 @@ export default class FlatListNotesArchived extends React.Component {
       this.setState({
         notes : notes
       }, () => {
+        var unpinCount = 0 ;
         Object.keys(this.state.notes).map((item) => {
+          this.state.notes[item].pinStatus == false
+          ?
+          unpinCount = ++unpinCount
+          :
+          null
+          
         })
+        console.log("=========UNPIN================")
+          console.log("=========================")
+          console.log("=========================")
+          console.log("=========================")
+          console.log(unpinCount)
+          countOfNotesTypes(this.state.Others,{unpinedCount:unpinCount})
       })
     })
   }

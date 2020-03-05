@@ -5,14 +5,11 @@ import Dashboard from '../Dashboard/Dashboard'
 import Archive from '../NavigationPages/ArchivePage'
 import ReminderPage from '../NavigationPages/ReminderPage'
 import CreateLabel from '../NavigationPages/CreateLabel'
-import Timer from '/home/admin1/Documents/FundooApp/AwesomeProject/src/components/Timer.js'
+import Piechart from './Piechart.js'
 // import ReminderPage from '../Reminder/ReminderFiles/ReminderPage';
 //import ReminderPage from '/home/admin1/Documents/FundooApp/AwesomeProject/src/Reminder/ReminderFiles/ReminderPage.js'
 
 const MyDrawerNavigator = createDrawerNavigator({
-    Timer : {
-        screen : Timer,
-    },
     Dashboard : {
         screen : Dashboard,
     },
@@ -28,6 +25,9 @@ const MyDrawerNavigator = createDrawerNavigator({
     ReminderPage : {
         screen : ReminderPage,
      },
+    Piechart : {
+        screen : Piechart,
+    },
      
 }, {
     initialRouteName : 'Dashboard',

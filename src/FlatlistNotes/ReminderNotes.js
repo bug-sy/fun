@@ -4,6 +4,8 @@ import Constants from 'expo-constants';
 import { getNotes } from '../SignUpDataLayer/'
 import { Chip } from 'react-native-paper';
 
+var reminderCount = 0
+
 export default class ReminderNotes extends React.Component {
   constructor(props) {
     super(props)
@@ -21,7 +23,17 @@ export default class ReminderNotes extends React.Component {
         notes : notes
       }, () => {
         Object.keys(this.state.notes).map((item) => {
+          this.state.notes[item].reminderDate !== undefined
+          ?
+          reminderCount = ++reminderCount
+          :
+          null
         })
+        console.log("=========ReminderCount================")
+          console.log("=========================")
+          console.log("=========================")
+          console.log("=========================")
+          console.log(reminderCount)
       })
     })
   }
