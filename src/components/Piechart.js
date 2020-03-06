@@ -1,82 +1,141 @@
 import React, { Component } from 'react';
-import { AppRegistry, StyleSheet, ScrollView , StatusBar, Text, View } from 'react-native';
+import { AppRegistry, StyleSheet, ScrollView, StatusBar, Text, View } from 'react-native';
 import PieChart from 'react-native-pie-chart';
- 
+import { getNotes, countOfNotesTypes } from '../SignUpDataLayer/'
+
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    alignItems: 'center'
+    flex : 1,
+    alignItems : 'center',
+    marginTop : 80,
   },
-  title: {
-    fontSize: 24,
-    margin: 10
+  title : {
+    fontSize : 24,
+    margin : 10
+  },
+  pieText : {
+    fontSize : 44,
+    margin : 10,
+  },
+  colorAllot : {
+    flexDirection : 'row',
+    backgroundColor : 'red',
+    height : 30,
+    width : 30
+  },
+  boxStyle : {
+    height : 30,
+    width : 30
   }
 });
- 
-export default class test extends Component {
 
+
+
+export default class test extends Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      notes : '',
+      columnCount : [],
+      pinned : 'pinned',
+      columnCountAnother : [],
+      remindCount : 0,
+      archiveCount : 0,
+      pinCount : 0,
+      others : 0
+    }
+  }
 
   componentDidMount() {
     getNotes((notes) => {
       this.setState({
-        notes : notes
+        notes: notes
       }, () => {
-        var reminderCount = 0;
-        var archiveCount = 0 ;
-        var pinnedCount = 0;
-        var unpinCount = 0 ;
+        this.setState({
+          remindCount : 0,
+          archiveCount : 0,
+          pinCount : 0,
+          others : 0,
+        })
+
         Object.keys(this.state.notes).map((item) => {
-          if(true){
-          this.state.notes[item].reminderDate !== undefined
-          ?
-          reminderCount = ++reminderCount
-          :
-          null
+          {
+            this.state.notes[item].archiveStatus == true
+              ?
+              this.setState({ archiveCount: ++this.state.archiveCount })
+              :
+              null
           }
           {
-            
+            this.state.notes[item].reminderDate !== undefined
+              ?
+              this.setState({ remindCount: ++this.state.remindCount })
+              :
+              null
           }
-        
+          {
+            this.state.notes[item].pinStatus == true
+              ?
+              this.setState({ pinCount: ++this.state.pinCount })
+              :
+              null
+          }
+          {
+            this.state.notes[item].pinStatus == false
+              ?
+              this.setState({ others: ++this.state.others })
+              :
+              null
+          }
         })
-        console.log("=========ReminderCount================")
-          console.log("=========================")
-          console.log("=========================")
-          console.log("=========================")
-          console.log(reminderCount)
-          countOfNotesTypes(this.state.reminder,{remindCount:reminderCount})
       })
     })
   }
 
+
   render() {
     const chart_wh = 250
-    const series = [123, 123, 123, 123, 123]
-    const sliceColor = ['#F44336','#2196F3','#FFEB3B', '#4CAF50', '#FF9800']
- 
+    const series = [this.state.archiveCount, this.state.remindCount, this.state.pinCount, this.state.others]
+    const sliceColor = ['#F44336', '#2196F3', '#FF9800', '#4CAF50']
+
     return (
-      <ScrollView style={{flex: 1}}>
-        <View style={styles.container}>
+      <ScrollView style = {{ flex: 1 }}>
+        <View style = { styles.container }>
           <StatusBar
-            hidden={true}
+            hidden = { true }
           />
-          <Text style={styles.title}>Basic</Text>
+
           <PieChart
-            chart_wh={chart_wh}
-            series={series}
-            sliceColor={sliceColor}
+            chart_wh = { chart_wh }
+            series = { this.state.others == 0 ? [100, 20, 30, 40] : series }
+            sliceColor = { sliceColor }
           />
-          {/* <Text style={styles.title}>Doughnut</Text>
-          <PieChart
-            chart_wh={chart_wh}
-            series={series}
-            sliceColor={sliceColor}
-            doughnut={true}
-            coverRadius={0.45}
-            coverFill={'#FFF'}
-          /> */}
+        </View>
+        <View style = {{ flexDirection: 'column', justifyContent: 'space-around', height: 200, width: 180, marginTop: 60, marginBottom: 60 }}>
+          <Text style = { styles.title }>Distribution</Text>
+          <View style = {{ flexDirection: 'row', justifyContent: 'space-around' }}>
+            <Text>Archive : </Text>
+            <Text style = {{ height: 20, width: 30, backgroundColor: '#F44336' }}></Text>
+          </View>
+          <View style = {{ flexDirection: 'row', justifyContent: 'space-around' }}>
+            <Text>Remind : </Text>
+            <Text style = {{ height: 20, width: 30, backgroundColor: '#2196F3' }}></Text>
+          </View>
+          <View style = {{ flexDirection: 'row', justifyContent: 'space-around' }}>
+            <Text>Pin : </Text>
+            <Text style = {{ height: 20, width: 30, backgroundColor: '#FF9800' }}></Text>
+          </View>
+          <View style = {{ flexDirection: 'row', justifyContent: 'space-around' }}>
+            <Text >Others : </Text>
+            <Text style = {{ height: 20, width: 30, backgroundColor: '#4CAF50' }}></Text>
+          </View>
+
+        </View>
+        <View style = {{ alignItems: 'center' }}>
+          <Text style = { styles.pieText }>Pie Chart </Text>
         </View>
       </ScrollView>
     );
   }
 }
- 
+
