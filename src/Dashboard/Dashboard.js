@@ -1,5 +1,6 @@
 
 import { Avatar } from 'react-native-elements';
+import ImagePicker from 'react-native-image-picker';
 import React, { Component } from 'react'
 import { Text, Image, ScrollView } from 'react-native';
 import Drawer from '../components/Drawer'
@@ -11,11 +12,43 @@ import {
 import FlatlistNotes from '../FlatlistNotes/FlatlistNotes'
 import FlatListNotesUnpinned from '../FlatlistNotes/FlatListNotesUnpinned'
 
+const options = {
+    title: 'Select Avatar',
+    customButtons: [{ name: 'fb', title: 'Choose Photo from Facebook' }],
+    storageOptions: {
+      skipBackup: true,
+      path: 'images',
+    },
+  };
+
 export default class DashBoard extends Component {
     constructor(props) {
         super(props)
-        this.state = { toggleGridOrList : false }
+        this.state = { 
+            toggleGridOrList : false ,
+            avatarSource : '',
+        }
     }
+
+    handleImage = () => {
+        ImagePicker.showImagePicker(options, (response) => {
+            if (response.didCancel) {
+              console.log('User cancelled image picker');
+            } else if (response.error) {
+              console.log('ImagePicker Error: ', response.error);
+            } else if (response.customButton) {
+              console.log('User tapped custom button: ', response.customButton);
+            } else {
+                const source = { uri: response.uri };
+                console.log("profile pic",source)
+              this.setState({
+                avatarSource:  source 
+              })
+        console.log("avatar source",this.state.avatarSource)
+            }
+          });
+        
+        }
 
     render() {
         return (
@@ -61,7 +94,12 @@ export default class DashBoard extends Component {
                             }
                             <TouchableOpacity
                             >
-                                <Avatar rounded title = "MD" />
+                                <Avatar rounded title = "MD"  
+                                onPress = { () => this.handleImage() } 
+                                source={
+                                    this.state.avatarSource
+                                  }
+                                />
                             </TouchableOpacity>
                         </View>
                     </View>

@@ -31,24 +31,31 @@ export default class ArchivePage extends Component {
     }
 
     deleteNewLabel =  (labelNameToBeDeleted) => {
+        console.log("**************************************************************************************");
+        console.log("not deletzRRRRR",this.props.labeInNotel);
+        console.log("*******************************************************************************") ; 
         if(this.props.label ){
               Object.getOwnPropertyNames(this.props.label).map((keyOfLabel) => (
                     this.props.label[keyOfLabel].labelName === labelNameToBeDeleted
                     ?
-                    deleteLabelNoteInNotes(this.props.noteId, keyOfLabel)  
+                    deleteLabelNoteInNotes(this.props.noteId, keyOfLabel)
+                    
+                  
                     :
                     null  
               ))
         }
         else{
-            null
+            console.log("**************************************************************************************")
+            console.log("not delet",this.props.label)
+            console.log("*******************************************************************************")
         }
     }
 
     labelInNote = (noteKey) => {
         const noteLabel = {
             labelName : this.props.labelName,
-            label : this.state.label
+            labelId : this.props.labelKey
         }
         if (noteLabel.labelName) {
             createLabelNoteInNotes(noteKey, noteLabel)

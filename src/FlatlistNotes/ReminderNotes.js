@@ -1,10 +1,10 @@
 import React from 'react';
 import { SafeAreaView, View, FlatList, StyleSheet, Text, TouchableOpacity } from 'react-native';
 import Constants from 'expo-constants';
-import { getNotes } from '../SignUpDataLayer/'
+import { getNotes, countOfNotesTypes } from '../SignUpDataLayer/'
 import { Chip } from 'react-native-paper';
 
-var reminderCount = 0
+
 
 export default class ReminderNotes extends React.Component {
   constructor(props) {
@@ -12,7 +12,7 @@ export default class ReminderNotes extends React.Component {
     this.state = {
       notes : '',
       columnCount : [],
-      pinned : 'Reminder',
+      reminder : 'Reminder',
       columnCountAnother : []
     }
   }
@@ -22,6 +22,7 @@ export default class ReminderNotes extends React.Component {
       this.setState({
         notes : notes
       }, () => {
+        var reminderCount = 0
         Object.keys(this.state.notes).map((item) => {
           this.state.notes[item].reminderDate !== undefined
           ?
@@ -34,6 +35,7 @@ export default class ReminderNotes extends React.Component {
           console.log("=========================")
           console.log("=========================")
           console.log(reminderCount)
+          countOfNotesTypes(this.state.reminder,{remindCount:reminderCount})
       })
     })
   }

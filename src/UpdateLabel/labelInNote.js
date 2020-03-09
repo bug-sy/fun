@@ -11,7 +11,7 @@ export default class LabelInNote extends Component {
         super(props)
         this.state =
         {
-            label : '',
+            
             addLabel : false,
             displayLabel : null,
             editLabel : ''
@@ -25,7 +25,7 @@ export default class LabelInNote extends Component {
             pinStatus : this.props.navigation.state.params.pin,
             title : this.props.navigation.state.params.titleOfCurrentNote,
             textNote : this.props.navigation.state.params.note,
-            archiveStatus : this.props.navigation.state.params.archive
+            archiveStatus : this.props.navigation.state.params.archive,
         })
     }
 
@@ -93,14 +93,23 @@ export default class LabelInNote extends Component {
                     <Divider />
                     { this.state.displayLabel !== null &&
                         Object.getOwnPropertyNames(this.state.displayLabel).map((key) => (
-                            <CreateLabelInNote
-                                labelName = { this.state.displayLabel[key].labelName }
-                                labelKey = { key }
-                                navigation = { this.props.navigation }
-                                noteId = { noteId }
-                                label = { label }
-                            />
-                        ))}
+                           // label !== null &&
+                           // Object.getOwnPropertyNames(label).map((keyOfEnteredLabel) => (
+                               // this.state.displayLabel[key] == label[keyOfEnteredLabel].labelId &&
+                                <CreateLabelInNote
+                                    labelName = { this.state.displayLabel[key].labelName }
+                                    labelKey = { key }
+                                    navigation = { this.props.navigation }
+                                    noteId = { noteId }
+                                    label ={ label }
+                                    //labelInNote = { label[keyOfEnteredLabel].labelName   }
+                                />
+                          //  )
+                        
+                        // ) 
+                         )
+                         )
+                    }        
                     <Divider />
                 </View>
             </ScrollView>

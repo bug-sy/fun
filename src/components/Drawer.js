@@ -6,8 +6,7 @@ import Archive from '../NavigationPages/ArchivePage'
 import ReminderPage from '../NavigationPages/ReminderPage'
 import CreateLabel from '../NavigationPages/CreateLabel'
 import Piechart from './Piechart.js'
-// import ReminderPage from '../Reminder/ReminderFiles/ReminderPage';
-//import ReminderPage from '/home/admin1/Documents/FundooApp/AwesomeProject/src/Reminder/ReminderFiles/ReminderPage.js'
+import Drag from './Draggable'
 
 const MyDrawerNavigator = createDrawerNavigator({
     Dashboard : {
@@ -15,6 +14,9 @@ const MyDrawerNavigator = createDrawerNavigator({
     },
     CreateLabel : {
         screen : CreateLabel,
+    },
+    Drag : {
+        screen : Drag,
     },
     SignUp : {
         screen : SignUp,

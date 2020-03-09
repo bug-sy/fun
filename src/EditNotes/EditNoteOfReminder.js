@@ -26,7 +26,7 @@ export default class EditNotesPinned extends Component {
         this.state.archiveStatus == true
             ?
             updateUserNote( {
-                pinStatus : !this.state.pinStatus,
+                pinStatus : this.state.pinStatus,
                 archiveStatus : this.state.archiveStatus,
                 title : this.state.title,
                 textNote : this.state.textNote,

@@ -79,7 +79,7 @@ export default class FlatListNotesArchived extends React.Component {
         this.state.columnCountAnother[0] = 2 : this.state.columnCountAnother[0] = 1
     }
 
-    const Item = ({ label,bgColor, List, pinStatus, trashStatus, archiveStatus, noteId, title, textNote, reminderDate, reminderTime }) => {
+    const Item = ({ label, bgColor, List, pinStatus, trashStatus, archiveStatus, noteId, title, textNote, reminderDate, reminderTime }) => {
       return (
         <View style = {List == false
           ?
