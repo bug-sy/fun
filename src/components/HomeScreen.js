@@ -12,6 +12,7 @@ import BottomBarWithReminder from '../EditNotes/BottomBarWithReminder'
 import SplashScreen from './SplashScreen'
 import SearchNotes from '../FlatlistNotes/SearchNotes'
 import LabelInNote from '../UpdateLabel/labelInNote'
+import Deletion from '../EditNotes/deletionOperation'
 
 class HomeScreen extends React.Component {
   render() {
@@ -26,6 +27,9 @@ class HomeScreen extends React.Component {
 const AppNavigator = createStackNavigator({
   Login : {
     screen : Login, navigationOptions: { header: null }
+  },
+  Deletion : {
+    screen : Deletion, navigationOptions: { header: null }
   },
   LabelInNote : {
     screen : LabelInNote, navigationOptions: { header: null }

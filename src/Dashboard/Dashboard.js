@@ -11,6 +11,7 @@ import {
 } from 'react-native'
 import FlatlistNotes from '../FlatlistNotes/FlatlistNotes'
 import FlatListNotesUnpinned from '../FlatlistNotes/FlatListNotesUnpinned'
+import { handleProfilePic, getProfilePic } from '../SignUpDataLayer'
 
 const options = {
     title: 'Select Avatar',
@@ -27,8 +28,23 @@ export default class DashBoard extends Component {
         this.state = { 
             toggleGridOrList : false ,
             avatarSource : '',
+            profilePic : ''
         }
     }
+
+
+  componentDidMount() {
+    getProfilePic((profilePic) => {
+      this.setState({
+        profilePic : profilePic
+      }, () => {
+      console.log("*******************************")
+   console.log("*******************************")
+   console.log("*******************************")
+   console.log(this.state.profilePic)
+      })
+    })
+  }
 
     handleImage = () => {
         ImagePicker.showImagePicker(options, (response) => {
@@ -44,6 +60,7 @@ export default class DashBoard extends Component {
               this.setState({
                 avatarSource:  source 
               })
+              handleProfilePic({ imageUrl : this.state.avatarSource })
         console.log("avatar source",this.state.avatarSource)
             }
           });
@@ -96,8 +113,8 @@ export default class DashBoard extends Component {
                             >
                                 <Avatar rounded title = "MD"  
                                 onPress = { () => this.handleImage() } 
-                                source={
-                                    this.state.avatarSource
+                                source = {
+                                    this.state.profilePic
                                   }
                                 />
                             </TouchableOpacity>

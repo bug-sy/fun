@@ -44,6 +44,16 @@ export function getNotes(callback) {
     })
 }
 
+export function getProfilePic(callback) {
+    AsyncStorage.getItem('key').then((success) => {
+        firebaseDatabaseRef.ref('/users /' + success + '/imageUrl/').on('value', (snapshot) => {
+            if (snapshot.val() != null) {
+                return callback(snapshot.val())
+            }
+        })
+    })
+}
+
 export function updateUserNote(obj, noteUpdationId) {
     AsyncStorage.getItem('key').then((success) => {
         firebaseDatabaseRef.ref('/users /' + success + '/notes/' + noteUpdationId).update(obj);
@@ -66,23 +76,13 @@ export function deleteLabelNoteInNotes(KeyOfNoteCard, labelKey){
 }
 
 
-export function countOfNotesTypes(noteType,countOfNote) {
+export function handleProfilePic(imageUrl) {
     AsyncStorage.getItem('key').then((success) => {
-        if(noteType === 'pinned' )
-        {
-        firebaseDatabaseRef.ref('/users /' + success + '/countOfNoteType/' ).update(countOfNote);
-        }
-        else if(noteType === 'Others')
-        {
-            firebaseDatabaseRef.ref('/users /' + success + '/countOfNoteType/' ).update(countOfNote);
-        }
-        else if(noteType === 'Archive'){
-            firebaseDatabaseRef.ref('/users /' + success + '/countOfNoteType/' ).update(countOfNote);
-        }
+        firebaseDatabaseRef.ref('/users /' + success  ).update(imageUrl);
     console.log("======================================================================================")
-    console.log(countOfNote)
+    console.log("image url is =>", imageUrl) 
     console.log("======================================================================================")
-    }).catch((err)=>{ console.log('err in creating count =>', err)})
+    }).catch((err)=>{ console.log('err in uploading profile pic =>', imageUrl)})
 }
 
 export function deleteUserNote(noteDeletionId) {
@@ -91,8 +91,6 @@ export function deleteUserNote(noteDeletionId) {
         console.log("==========deleted==============",noteDeletionId)
     }).catch((err) => { console.log('err in deleting note =>', err) })
 }
-
-
 
 export function createLabelNote(labelData) {
     AsyncStorage.getItem('key').then((success) => {

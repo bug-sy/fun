@@ -91,21 +91,10 @@ export default class VerticalIconOfEdit extends React.Component {
                         style = {{ width : '100%', paddingBottom : 30 }}
                     >
 
-                        <Menu.Item icon = { require('/home/admin1/Documents/FundooApp/AwesomeProject/image/trash.png') } onPress = { () => { this.handleTrashStatus(),this.props.navigation.navigate('Dashboard') }} title = "Delete" />
+                        <Menu.Item icon = { require('/home/admin1/Documents/FundooApp/AwesomeProject/image/trash.png') } onPress = { () => { deleteUserNote(this.state.noteUpdationId),this.props.navigation.navigate('Dashboard') }} title = "Delete" />
                         <Menu.Item icon = { require('/home/admin1/Documents/FundooApp/AwesomeProject/image/CopyIcon.png') } onPress = { () => { } } title = "Make a copy" />
                         <Menu.Item icon = { require('/home/admin1/Documents/FundooApp/AwesomeProject/image/SendIcon.png') } onPress = { () => { } } title = "Send" />
-                        <Menu.Item icon = { require('/home/admin1/Documents/FundooApp/AwesomeProject/image/addaccount.png') } onPress = { () => { } } title = "Collaborator" />
-                        <Menu.Item icon = { require('/home/admin1/Documents/FundooApp/AwesomeProject/image/outline_label_black_48dp.png') } onPress = { () => {this.props.navigation.navigate('LabelInNote',{"noteId" :this.state.noteId,"label":this.state.label}),console.log("---------------------------",this.state.noteId)} } title = "Labels" />
-                        <ColorPalette
-                            title = ''
-                            onChange =  { color => this.setState({ bgColor: color }, () => { this.handleBgColour(this.state.bgColor) }) }
-                            defaultColor = { '#ffff' }
-                            colors={[
-                                '#ffffff', '#f28b82', 
-                                '#fbbc04', '#fff475',
-                                '#ccff90', '#a7ffeb', 
-                                '#d7aefb', 
-                            ]}/>
+                     
               </Menu>
                 </View>
             

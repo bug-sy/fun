@@ -21,10 +21,7 @@ export default class EditNotesPinned extends Component {
             toggleAlertion : false,
             toggleArchive : false,
         }
-
     }
-
-  
 
     handlePinResult = () => {
         this.state.archiveStatus == true

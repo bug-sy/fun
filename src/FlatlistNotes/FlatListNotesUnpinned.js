@@ -4,8 +4,6 @@ import Constants from 'expo-constants';
 import { getNotes, countOfNotesTypes } from '../SignUpDataLayer/'
 import { Chip } from 'react-native-paper';
 
-
-
 export default class FlatListNotesArchived extends React.Component {
   constructor(props) {
     super(props)
@@ -22,21 +20,6 @@ export default class FlatListNotesArchived extends React.Component {
       this.setState({
         notes : notes
       }, () => {
-        var unpinCount = 0 ;
-        Object.keys(this.state.notes).map((item) => {
-          this.state.notes[item].pinStatus == false
-          ?
-          unpinCount = ++unpinCount
-          :
-          null
-          
-        })
-        console.log("=========UNPIN================")
-          console.log("=========================")
-          console.log("=========================")
-          console.log("=========================")
-          console.log(unpinCount)
-          countOfNotesTypes(this.state.Others,{unpinedCount:unpinCount})
       })
     })
   }
@@ -52,7 +35,7 @@ export default class FlatListNotesArchived extends React.Component {
     var moment = require('moment');
     var pinnedNote = [];
     Object.keys(this.state.notes).map((item) => {
-      if (this.state.notes[item].pinStatus == false && this.state.notes[item].archiveStatus == false) {
+      if (this.state.notes[item].pinStatus == false && this.state.notes[item].archiveStatus == false && this.state.notes[item].trashStatus == false) {
         this.state.notes[item].noteId = item
         pinnedNote.push(this.state.notes[item])
       }

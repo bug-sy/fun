@@ -25,16 +25,16 @@ export default class EditNotesPinned extends Component {
     handleReminderResult = () => {
         this.state.archiveStatus == true
             ?
-            updateUserNote( {
+            updateUserNote({
                 pinStatus : this.state.pinStatus,
-                archiveStatus : this.state.archiveStatus,
+                archiveStatus : !this.state.archiveStatus,
                 title : this.state.title,
                 textNote : this.state.textNote,
             }, this.state.noteUpdationId)
             :
-            updateUserNote({
+            updateUserNote( {
                 pinStatus : this.state.pinStatus,
-                archiveStatus : !this.state.archiveStatus,
+                archiveStatus : this.state.archiveStatus,
                 title : this.state.title,
                 textNote : this.state.textNote,
             }, this.state.noteUpdationId)

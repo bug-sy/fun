@@ -3,8 +3,6 @@ import { SafeAreaView, View, FlatList, StyleSheet, Text, TouchableOpacity } from
 import Constants from 'expo-constants';
 import { getNotes, countOfNotesTypes } from '../SignUpDataLayer/'
 
-
-
 export default class FlatlistNotesArchived extends React.Component {
   constructor(props) {
     super(props)
@@ -21,21 +19,6 @@ export default class FlatlistNotesArchived extends React.Component {
       this.setState({
         notes : notes
       }, () => {
-        var archiveCount = 0 ;
-        Object.keys(this.state.notes).map((item) => {
-          this.state.notes[item].archiveStatus == true
-          ?
-          archiveCount = ++archiveCount
-          :
-          null
-          
-        })
-        console.log("=========ARCHIVED================")
-          console.log("=========================")
-          console.log("=========================")
-          console.log("=========================")
-          console.log(archiveCount)
-          countOfNotesTypes(this.state.archive, {archivedCount : archiveCount })
       })
     })
   }
@@ -53,6 +36,8 @@ export default class FlatlistNotesArchived extends React.Component {
       if (this.state.notes[item].archiveStatus == true
         &&
         this.state.notes[item].pinStatus == false
+        &&
+        this.state.notes[item].trashStatus == false
       ) {
         this.state.notes[item].noteId = item
         archiveNote.push(this.state.notes[item])

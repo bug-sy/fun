@@ -7,6 +7,9 @@ import ReminderPage from '../NavigationPages/ReminderPage'
 import CreateLabel from '../NavigationPages/CreateLabel'
 import Piechart from './Piechart.js'
 import Drag from './Draggable'
+import TrashNotes from '../NavigationPages/Trash'
+import { Divider, } from 'react-native-paper';
+import SideMenu from './SideMenu';
 
 const MyDrawerNavigator = createDrawerNavigator({
     Dashboard : {
@@ -27,12 +30,20 @@ const MyDrawerNavigator = createDrawerNavigator({
     ReminderPage : {
         screen : ReminderPage,
      },
+    TrashNotes : {
+        screen : TrashNotes,
+    },
     Piechart : {
         screen : Piechart,
     },
      
 }, {
     initialRouteName : 'Dashboard',
+    contentComponent: SideMenu,
+    contentOptions: {
+      activeTintColor: '#000000',
+      activeBackgroundColor: '#e6e6e6',
+    }
 
 });
 

@@ -21,8 +21,8 @@ export default class SearchNotes extends Component {
             this.setState({
                 editLabel : text
            })
-   }
-   }
+    }
+    }
 
     componentDidMount() {
         getNotes((notes) => {

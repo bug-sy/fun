@@ -12,6 +12,7 @@ export default class FlatListNotesPinned extends React.Component {
       columnCount : [],
       pinned : 'pinned',
       columnCountAnother : [],
+      trashTag : 'trashTag' 
     }
   }
 
@@ -27,18 +28,18 @@ export default class FlatListNotesPinned extends React.Component {
   header = () => {
     return (
       <View >
-        <Text style = {{ fontSize: 30 }}>Pinned</Text>
+        <Text style = {{ fontSize: 30 }}>Trash Notes</Text>
       </View>);
   }
 
   render() {
     var moment = require('moment');
-    var pinnedNote = [];
+    var trashNotes = [];
     Object.keys(this.state.notes).map((item) => {
-      if (this.state.notes[item].pinStatus == true && this.state.notes[item].trashStatus == false
+      if (this.state.notes[item].trashStatus == true
       ) {
         this.state.notes[item].noteId = item
-        pinnedNote.push(this.state.notes[item])
+        trashNotes.push(this.state.notes[item])
       }
     })
 
@@ -58,12 +59,11 @@ export default class FlatListNotesPinned extends React.Component {
         this.state.columnCountAnother[0] = 1
     }
 
-    const Item = ({label, bgColor, List, pinStatus, trashStatus, archiveStatus, noteId, title, textNote, reminderDate, reminderTime }) => {
+    const Item = ({trashTag, label, bgColor, List, pinStatus, trashStatus, archiveStatus, noteId, title, textNote, reminderDate, reminderTime }) => {
       return (
         <View style = {List == false
           ?
             {
-
             backgroundColor : bgColor?bgColor:'grey',
             padding : 2,
             marginVertical : 4,
@@ -72,11 +72,9 @@ export default class FlatListNotesPinned extends React.Component {
             borderRadius : 6,
             elevation : 4,
             borderWidth : 0.25
-
             }
             :
             {
-
             backgroundColor :  bgColor ? bgColor : 'grey',
             padding : 2,
             marginVertical : 4,
@@ -85,16 +83,16 @@ export default class FlatListNotesPinned extends React.Component {
             borderRadius : 6,
             elevation : 4,
             borderWidth : 0.25
-
             }
         }>
           <TouchableOpacity onPress = { () =>
-            this.props.navigation.navigate('VerticalIconOfEdit',
+            this.props.navigation.navigate('Deletion',
               {
                 "pin" : pinStatus, "trash" : trashStatus,
                 "archive" : archiveStatus, "noteId" : noteId,
                 "titleOfCurrentNote" : title, "note" : textNote,
-                "label" : label, "bgColor" : bgColor
+                "label" : label, "bgColor" : bgColor,
+                "trashTag" : trashTag
               })}>
             <Text style = { styles.title }>{ title }</Text>
             <Text style = { styles.title }>{ textNote }</Text>
@@ -130,7 +128,7 @@ export default class FlatListNotesPinned extends React.Component {
       <SafeAreaView style = { styles.container }>
 
         <FlatList
-          data = { pinnedNote }
+          data = { trashNotes }
           renderItem = {({ item }) => (console.log("Pinned items are ------------->>>>>> :", item)
             ,
             <Item List = { this.props.toggleGridOrList }
@@ -140,6 +138,7 @@ export default class FlatListNotesPinned extends React.Component {
               reminderDate = { item.reminderDate } reminderTime = { item.reminderTime }
               label = { item.noteLabel  ? item.noteLabel  : null }
               bgColor = { item.bgColor  ? item.bgColor  : null }
+              trashTag = { this.state.trashTag }
             />)
           }
           key = { this.state.columnCount[0] }
