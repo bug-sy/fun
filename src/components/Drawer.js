@@ -10,13 +10,17 @@ import Drag from './Draggable'
 import TrashNotes from '../NavigationPages/Trash'
 import { Divider, } from 'react-native-paper';
 import SideMenu from './SideMenu';
+import React from 'react'
 
 const MyDrawerNavigator = createDrawerNavigator({
     Dashboard : {
-        screen : Dashboard,
+        //screen : Dashboard,
+       // screen: (props) => <Dashboard  />
+        screen: (props) => <Dashboard {...props} propName={'dashboard'} />
     },
     CreateLabel : {
         screen : CreateLabel,
+
     },
     Drag : {
         screen : Drag,
@@ -25,13 +29,16 @@ const MyDrawerNavigator = createDrawerNavigator({
         screen : SignUp,
     },
     Archive : {
-        screen : Archive,
+       // screen : Archive,
+        screen: (props) => <Archive {...props} propName={'achive'} />
     },
     ReminderPage : {
-        screen : ReminderPage,
+       // screen : ReminderPage,
+        screen: (props) => <ReminderPage {...props} propName={'reminderPage'} />
      },
     TrashNotes : {
-        screen : TrashNotes,
+       // screen : TrashNotes,
+        screen: (props) => <TrashNotes {...props} propName={'trashNotes'} />
     },
     Piechart : {
         screen : Piechart,

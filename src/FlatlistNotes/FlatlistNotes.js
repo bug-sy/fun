@@ -32,6 +32,7 @@ export default class FlatListNotesPinned extends React.Component {
   }
 
   render() {
+    if(this.props.propName == 'dashboard'){
     var moment = require('moment');
     var pinnedNote = [];
     Object.keys(this.state.notes).map((item) => {
@@ -41,6 +42,7 @@ export default class FlatListNotesPinned extends React.Component {
         pinnedNote.push(this.state.notes[item])
       }
     })
+  }
 
     {
       this.props.toggleGridOrList == false

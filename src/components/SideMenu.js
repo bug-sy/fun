@@ -2,7 +2,6 @@
 import { Avatar } from 'react-native-elements';
 import PropTypes from 'prop-types';
 import React, {Component} from 'react';
-//import styles from './SideMenu.style';
 import {NavigationActions} from 'react-navigation';
 import {ScrollView, Text, View, StyleSheet} from 'react-native';
 import { Divider, } from 'react-native-paper';
@@ -18,75 +17,83 @@ class SideMenu extends Component {
     }
   }
 
-
   componentDidMount() {
     getProfilePic((profilePic) => {
       this.setState({
         profilePic : profilePic
       }, () => {
-      console.log("*******************************")
-   console.log("*******************************")
-   console.log("*******************************")
-   console.log(this.state.profilePic)
       })
     })
   }
 
-  navigateToScreen = (route) => () => {
-    const navigateAction = NavigationActions.navigate({
-      routeName: route
-    });
-    this.props.navigation.dispatch(navigateAction);
+  navigateToScreen = (route,xyz) => () => {
+    console.log("xyz------------------------------------------------------------------------------------------------------------------------",xyz)
+    // const navigateAction = NavigationActions.navigate({
+    //   routeName: route,
+    //   payload : xyz
+    // });
+    // this.props.navigation.dispatch({navigateAction,params:{
+    // user : xyz
+    // },});
+
+  this.props.navigation.navigate(route,{value: xyz})
   }
 
   render () {
     return (
-      <View style={styles.container}>
+      <View style = { styles.container }>
         <ScrollView>
           <View>
          
-            <View style={styles.navSectionStyle}>
+            <View style={ styles.navSectionStyle }>
             <Avatar rounded 
-                    title = "MD"  
-                    onPress = { () => this.handleImage() } 
-                    source = {
-                      this.state.profilePic
-                          }
-                    size = "xlarge"
-                    overlayContainerStyle = {{ backgroundColor: 'blue', marginLeft : 40, width :200}}
+              title = "MD"  
+              onPress = { () => this.handleImage() } 
+              source = {
+              this.state.profilePic
+              }
+              size = "xlarge"
+              overlayContainerStyle = {{ backgroundColor: 'blue', width :180, marginBottom : 5, marginLeft : 40}}
             />
-            <Text style={[styles.navItemStyle,{ marginTop : 10}]} onPress={this.navigateToScreen('Dashboard')}>
-            Dashboard
+             <Divider/>
+              <Text style = { [styles.navItemStyle,{ marginTop : 10}] } onPress = { this.navigateToScreen('Dashboard', {
+            xyz: 'dashboard',
+          }) }>
+                Dashboard
               </Text>
-            
-              <Text style={styles.navItemStyle} onPress={this.navigateToScreen('CreateLabel')}>
-              CreateLabel
+              <Text style = { styles.navItemStyle } onPress = { this.navigateToScreen('CreateLabel') }>
+                CreateLabel
               </Text>
-              <Text style={styles.navItemStyle} onPress={this.navigateToScreen('ReminderPage')}>
-              ReminderPage  
+              <Text style = { styles.navItemStyle } onPress = { this.navigateToScreen('ReminderPage',  {
+            xyz: 'ReminderPage',
+          }) }>
+                ReminderPage  
               </Text>
-            
-              <Text style={styles.navItemStyle} onPress={this.navigateToScreen('Piechart')}>
-              Piechart 
+              <Text style = { styles.navItemStyle } onPress = { this.navigateToScreen('Piechart') }>
+                Piechart 
               </Text>
-             
             </View>
           </View>
           <View>
           <Divider/>
-            <View style={styles.navSectionStyle}>
-              <Text style={styles.navItemStyle} onPress={this.navigateToScreen('Archive')}>
+            <View style = { styles.navSectionStyle }>
+              <Text style = { styles.navItemStyle } onPress = { this.navigateToScreen('Archive', {
+            xyz: 'Archive',
+          }) }>
               Archive
               </Text>
-              <Text style={styles.navItemStyle} onPress={this.navigateToScreen('TrashNotes')}>
+              <Text style = { styles.navItemStyle } onPress = { this.navigateToScreen('TrashNotes', {
+            xyz: 'TrashNotes',
+          }) }>
               TrashNotes
               </Text>
             </View>
           </View>
         </ScrollView>
-        <View style={styles.footerContainer}>
+        <View style = { styles.footerContainer }>
           <Text>Fundoo App</Text>
         </View>
+
       </View>
     );
   }
@@ -102,13 +109,11 @@ const styles = StyleSheet.create({
         flex: 1
       },
       navItemStyle: {
-        padding: 10,
-        fontSize : 20
-
+        padding: 15,
+        fontSize : 20,
       },
       navSectionStyle: {
-        //backgroundColor: 'lightgrey'
-        marginBottom : 70
+        marginBottom : 70,
       },
       sectionHeadingStyle: {
         paddingVertical: 10,
@@ -116,7 +121,6 @@ const styles = StyleSheet.create({
       },
       footerContainer: {
         padding: 20,
-       // backgroundColor: 'lightgrey'
       }
   });
 

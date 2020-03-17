@@ -17,6 +17,13 @@ export default class ArchivePage extends Component {
     }
 
     render() {
+        const { navigation } = this.props
+        const xyz =  navigation.getParam('value','no value')
+        //const label = navigation.getParam('label','no value')
+        console.log("name**********************")
+        console.log("name**********************")
+        console.log("name**********************")
+        console.log("xyz**********************",xyz)
         return (
             <View style = {{ flex : 1, flexDirection : 'column', elevation : 10 }}>
 

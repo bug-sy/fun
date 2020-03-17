@@ -11,7 +11,6 @@ export default class LabelInNote extends Component {
         super(props)
         this.state =
         {
-            
             addLabel : false,
             displayLabel : null,
             editLabel : ''

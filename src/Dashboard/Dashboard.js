@@ -28,10 +28,10 @@ export default class DashBoard extends Component {
         this.state = { 
             toggleGridOrList : false ,
             avatarSource : '',
-            profilePic : ''
+            profilePic : '',
+            condition : '',
         }
     }
-
 
   componentDidMount() {
     getProfilePic((profilePic) => {
@@ -41,7 +41,7 @@ export default class DashBoard extends Component {
       console.log("*******************************")
    console.log("*******************************")
    console.log("*******************************")
-   console.log(this.state.profilePic)
+   console.log(this.state.profilePic.uri)
       })
     })
   }
@@ -57,17 +57,25 @@ export default class DashBoard extends Component {
             } else {
                 const source = { uri: response.uri };
                 console.log("profile pic",source)
-              this.setState({
-                avatarSource:  source 
-              })
-              handleProfilePic({ imageUrl : this.state.avatarSource })
-        console.log("avatar source",this.state.avatarSource)
+                this.setState({
+                    avatarSource:  source 
+                })
+                handleProfilePic({ imageUrl : this.state.avatarSource })
+                console.log("avatar source",this.state.avatarSource)
             }
           });
         
         }
 
     render() {
+        const { navigation } = this.props
+        const xyz =  navigation.getParam('value','noValue')
+        //const label = navigation.getParam('label','no value')
+        console.log("name**********************")
+        console.log("name**********************")
+        console.log("kjkjkjkj**********************",this.props.propName == 'dashboard')
+        console.log("xyz**********************",Object.values(xyz))
+      // {()=> this.setState({ condition : xyz }) }
         return (
             <View style = {{ flex : 1, flexDirection : 'column' }}>
 
@@ -122,11 +130,15 @@ export default class DashBoard extends Component {
                     </View>
                 </View>
 
+                {
+                 this.props.propName == 'dashboard'
+                ?
                 <ScrollView>
                     <View style = {{ justifyContent : 'center' }}>
                         <FlatlistNotes
                             navigation = { this.props.navigation }
                             toggleGridOrList = { this.state.toggleGridOrList }
+                            propName = { this.props.propName }
                         />
                     </View>
                     <View style = {{ justifyContent: 'center', marginBottom: 45 }}>
@@ -136,6 +148,11 @@ export default class DashBoard extends Component {
                         />
                     </View>
                 </ScrollView>
+                :
+                <ScrollView>
+
+                </ScrollView>
+                }
 
                 <View style = {{ flexDirection : 'row', bottom : 0, position : 'absolute', backgroundColor : '#999966' }}>
                     <View style = {{
